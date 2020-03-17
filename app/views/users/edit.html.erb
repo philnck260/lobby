@@ -1,2 +1,21 @@
 <h1>Edit</h1>
-<%= @user.username %>
+
+<%= form_for @user do |f|%>
+<p><label>Username</label>
+<%= f.text_field :username, class:"form-control" %></p>
+
+<p><label>Prénom</label>
+<%= f.text_field :first_name, class:"form-control" %></p>
+
+<p><label>Nom</label>
+<%= f.text_field :last_name, class:"form-control" %></p>
+
+<p><label>Département</label>
+<%= f.select :department, @departement, class:"dropdown" %></p>
+<br>
+<p><label>Afficher son prénom et nom ?</label>
+<br>
+<%= f.check_box :name_display, class:"form-check" %></p>
+
+<button type='submit' class='btn btn-primary'>Edit</button>
+<% end %>
