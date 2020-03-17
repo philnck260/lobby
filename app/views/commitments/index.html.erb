@@ -5,17 +5,27 @@
 
 <div class="list-group">
 
-	<% @commitments.each do |each_commitment| %>
+	<% if @commitments.count == 0 %>
+
 		<div class="list-group-item">
-			<a href="<%= commitment_path(each_commitment.id) %>">
-			<div class="row">
-				<div class="col-1">ID: <%= each_commitment.id %></div>
-				<div class="col-3"><%= each_commitment.title %></div>
-				<div class="col-6"><%= each_commitment.description %></div>
-				<div class="col-2">Users number: <%= each_commitment.users.count %></div>
-			</div>
-			</a>
+			Il n'y a pas de Commitment sur le Lobby...
 		</div>
+
+	<% else %>
+
+		<% @commitments.each do |each_commitment| %>
+			<div class="list-group-item">
+				<a href="<%= commitment_path(each_commitment.id) %>">
+					<div class="row">
+						<div class="col-1">ID: <%= each_commitment.id %></div>
+						<div class="col-3"><%= each_commitment.title %></div>
+						<div class="col-6"><%= each_commitment.description %></div>
+						<div class="col-2">Users number: <%= each_commitment.users.count %></div>
+					</div>
+				</a>
+			</div>
+		<% end %>
+
 	<% end %>
 
 </div>
