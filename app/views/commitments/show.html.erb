@@ -27,4 +27,13 @@
 
 </div>
 
+<% if user_signed_in? %>
+	<% if current_user.commitments.include?(@commitment) %>
+		<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block' %>
+	<% else %>
+		<%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success" %>
+
+	<% end %>
+<% end %>
+
 <%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-info" %>
