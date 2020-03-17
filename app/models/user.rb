@@ -10,4 +10,9 @@ class User < ApplicationRecord
     self.username = "User#{self.id}"
     self.save
   end
+
+	# LINK TABLES
+	has_many :user_commitments, dependent: :destroy
+	has_many :commitments, through: :user_commitments
+
 end
