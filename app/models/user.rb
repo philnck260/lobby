@@ -6,13 +6,21 @@ class User < ApplicationRecord
 
   after_create :assign_default_username
 
+  after_create :welcome_send
+  
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+
   def assign_default_username
     self.username = "User#{self.id}"
     self.save
   end
 
+
 	# LINK TABLES
 	has_many :user_commitments, dependent: :destroy
 	has_many :commitments, through: :user_commitments
+
 
 end

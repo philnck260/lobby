@@ -66,3 +66,4 @@ gem 'faker'
 gem 'table_print'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'devise', '~> 4.2'
+gem 'dotenv-rails'
