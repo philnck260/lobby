@@ -10,4 +10,5 @@ class User < ApplicationRecord
     self.username = "User#{self.id}"
     self.save
   end
+
 end
