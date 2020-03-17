@@ -3,4 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  after_create :assign_default_username
+
+  def assign_default_username
+    self.username = "User#{self.id}"
+    self.save
+  end
 end
