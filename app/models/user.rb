@@ -17,4 +17,10 @@ class User < ApplicationRecord
     self.save
   end
 
+
+	# LINK TABLES
+	has_many :user_commitments, dependent: :destroy
+	has_many :commitments, through: :user_commitments
+
+
 end
