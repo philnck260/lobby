@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	root to: "commitments#index"
 
 
+	get '/statistics' => 'static#statistics'
 	get '/Contact' => 'static#contact'
 	get '/About' => 'static#about'
 	get '/FAQ' => 'static#faq'

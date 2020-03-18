@@ -1,0 +1,26 @@
+<h1>app/views/static/statistics.html.erb</h1>
+
+<div class="container">
+	<h3>Nombre d'users crees chaque jour dans le temps</h3>
+	<h4>users created / day</h4>
+	<%= line_chart(User.group_by_day(:created_at).count) %>
+
+	<div class="row">
+		<div class="col-6">
+			<h5 class="text-wrap">Repartition des Commitments pris</h5>
+			<h6 class="text-wrap">user_commitment taken / commitment</h6>
+			<%= pie_chart(UserCommitment.group(:commitment).count) %>
+		</div>
+		<div class="col-6">
+			<h5 class="text-wrap">Repartition du nombre de Users par department</h5>
+			<h6 class="text-wrap">nombre de users / departement</h6>
+			<%= pie_chart(User.group(:department).count) %>
+		</div>
+	</div>
+
+	<h3>Evolution du nombre total de Users dans le temps</h3>
+	<h4> nombre total de users / day</h4>
+	<%= line_chart(User.count_by_day) %>
+
+
+</div>
