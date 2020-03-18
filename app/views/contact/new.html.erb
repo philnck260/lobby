@@ -1,0 +1,18 @@
+
+<div class = " card container col-md-7 p-0 shadow">
+  <h1 class ="text-center mb-4 card-header border-0 bg-primary text-white " > Nous contacter </h1>
+  <br/>
+  <fieldset>
+
+  <div class="form-group">
+    <%= form_tag(contact_index_path, method: :post, class:'form') do %>
+      <label for="email"> Email </label>
+      <%= text_field_tag :email, class: 'form-group' %>
+      <label for="content"> Texte </label>
+      <%= text_field_tag :content, class: 'form-group' %>
+      <%= submit_tag 'create', :name => 'commit' %>
+    <% end %>
+
+  </div>
+  </fieldset>
+</div>
