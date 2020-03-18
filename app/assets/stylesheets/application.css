@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+ 
+
+ body {
+   
+ }
+
+
+
+.navbar-brand{
+
+color: rgb(33, 34, 34)!important;
+
+}
+ .navbar {
+
+background-color: rgb(112, 219, 144);
+
+font-family: 'Open Sans'!important;
+font-size: 11px!important;
+letter-spacing:1px;
+height: 50px!important;
+font-weight: lighter!important;
+
+ } 
+
+
+ 
+.firstline {
+
+  min-height: 400px;
+
+}
+
+.sources {
+  min-height: 250px;
+}
+
+.chiffres {
+  min-height: 250px;
+
+}
+
+p {
+  word-wrap: break-word;
+}
+
+.border-right {
+border-width:6px !important;
+
+}

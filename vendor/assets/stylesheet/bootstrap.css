@@ -39,7 +39,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -63,7 +63,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -85,7 +85,7 @@ hr {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom:;
 }
 
 p {
@@ -6848,7 +6848,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #1a1a1a !important;
+  background-color: rgb(164, 55, 179) !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -6858,7 +6858,7 @@ button.bg-primary:focus {
 }
 
 .bg-secondary {
-  background-color: #fff !important;
+  background-color: #39A05C !important;
 }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -6936,23 +6936,23 @@ button.bg-dark:focus {
 }
 
 .border {
-  border: 1px solid #eceeef !important;
+  border: 1px solid #e3e5e6 !important;
 }
 
 .border-top {
-  border-top: 1px solid #eceeef !important;
+  border-top: 1px solid #e3e5e6 !important;
 }
 
 .border-right {
-  border-right: 1px solid #eceeef !important;
+  border-right: 1px solid #e3e5e6 !important;
 }
 
 .border-bottom {
-  border-bottom: 1px solid #eceeef !important;
+  border-bottom: 1px solid #e3e5e6 !important;
 }
 
 .border-left {
-  border-left: 1px solid #eceeef !important;
+  border-left: 1px solid #e3e5e6 !important;
 }
 
 .border-0 {
@@ -10510,7 +10510,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .bg-primary {
-  background-color: #1a1a1a !important;
+  background-color: rgb(50, 182, 90) !important;
 }
 
 .bg-light {
