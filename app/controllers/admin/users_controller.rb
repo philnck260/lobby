@@ -1,7 +1,8 @@
 module Admin
+  
     class UsersController < ApplicationController
       before_action :find_user, only: [:edit, :update, :destroy]
-      before_action :isAdmin?
+      before_action :authenticate_user!
   
       def index
         @users = User.all
@@ -51,6 +52,13 @@ module Admin
       def user_params
         params.require(:user).permit(:email, :username, :first_name, :last_name, :department, :name_display)
       end
+
+      def is_user_admin
+        unless user_signed_in? && current_user.role == "admin"
+          redirect_to root_path
+        end
+      end
+
     end
   end
   
