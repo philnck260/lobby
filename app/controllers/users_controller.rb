@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
   
   def show
+    @user_commitments = UserCommitment.where(user: @user)
   end
 
   def edit
