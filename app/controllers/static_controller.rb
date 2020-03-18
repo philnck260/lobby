@@ -1,15 +1,11 @@
 class StaticController < ApplicationController
 
+
 	def statistics
 		render params[:page]
 		puts params
 	end
-
-  def contact
-    render params[:page]
-    puts params
-  end
-
+  
   def faq
     render params[:page]
     puts params
@@ -19,4 +15,5 @@ class StaticController < ApplicationController
     render params[:page]
     puts params
   end
+
 end
