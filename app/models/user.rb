@@ -17,6 +17,13 @@ class User < ApplicationRecord
 		self.save
 	end
 
+	def display
+		if self.name_display == true
+			return "#{self.first_name}  #{self.last_name}"
+		else
+			return self.username
+		end
+	end
 
 	# LINK TABLES
 	has_many :user_commitments, dependent: :destroy

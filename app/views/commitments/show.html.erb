@@ -67,7 +67,7 @@
 <table class="table table-sm">
 	<thead>
 		<tr>
-			<th scope="col">username</th>
+			<th scope="col"> Utilisateur </th>
 			<th scope="col">Départment</th>
 			<th scope="col">Nombre de Commitments</th>
 		</tr>
@@ -78,7 +78,7 @@
 		<% else %>
 			<% @commitment.users.each do |each_user| %>
 				<tr>
-					<td><%= each_user.username %></td>
+					<td><%= each_user.display %></td>
 					<td><%= each_user.department %></td>
 					<td><%= each_user.commitments.count %></td>
 				</tr>
