@@ -1,4 +1,10 @@
 class StaticController < ApplicationController
+
+
+	def statistics
+		render params[:page]
+		puts params
+	end
   
   def faq
     render params[:page]

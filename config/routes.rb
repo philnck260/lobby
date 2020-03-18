@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 	end
 	root to: "commitments#index"
 
+
+
+	get '/statistics' => 'static#statistics'
 	get '/about' => 'static#about'
 	get '/faq' => 'static#faq'
 
