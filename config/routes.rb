@@ -4,17 +4,18 @@ Rails.application.routes.draw do
   end
   root to: "commitments#index"
 
-  get "/Contact" => "static#contact"
-  get "/About" => "static#about"
-  get "/FAQ" => "static#faq"
-
-  devise_for :users, controllers: { registrations: "registrations" }
-  resources :users, only: [:show, :edit, :update]
 
   scope "admin", module: "admin", as: "admin" do
     resources :commitments
     resources :users
   end
+  
+	get '/about' => 'static#about'
+	get '/faq' => 'static#faq'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+	devise_for :users, controllers: { registrations: "registrations" }
+	resources :users, only: [:show, :edit, :update]
+	resources :contact, only: [:new, :create]
+
+	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
