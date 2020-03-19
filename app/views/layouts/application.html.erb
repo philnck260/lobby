@@ -15,19 +15,21 @@
 		<%= stylesheet_link_tag "bootstrap" %>
   </head>
 
-  <body>
+  <body class="bg">
 
 		<!-- PARTIAL NAVBAR -->
 		<%= render 'layouts/navbar' %>
-
+    <main>
 		<!-- CONTAINER SURROUNDING YIELD -->
-		<div class="container">
-		
-    <%= yield %>
+      <div class="container">
+      
+      <%= yield %>
 
-		</div>
-		<!-- CONTAINER SURROUNDING YIELD END -->
+      </div>
+     </main> 
+      <!-- CONTAINER SURROUNDING YIELD END -->
 		
-	<!-- <%= render 'layouts/footer' %> -->
+    <%= render 'layouts/footer' %>
+    
   </body>
 </html>
