@@ -73,7 +73,6 @@ footer
   margin-top: 50px;
 }
 .bg {
-  background: url('fond.jpg') center;
   left: 0;
   right: 0;
   z-index: -3; 
