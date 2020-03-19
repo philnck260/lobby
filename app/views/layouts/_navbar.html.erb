@@ -5,17 +5,27 @@
 	</button>
 
 	<div class="collapse navbar-collapse " id="navbarColor01">
+
 		<ul class="navbar-nav mr-auto ml-3">
 			<li class="nav-item active">
-				<a class="nav-link text-white" href="<%= root_path %>">Commitments<span class="sr-only">(current)</span></a>
+				<a class="nav-link text-white" href="<%= root_path %>">
+					Commitments<span class="sr-only">(current)</span>
+				</a>
 			</li>
-    </ul>
+			<li class="nav-item active">
+				<a class="nav-link text-white" href="<%= statistics_path %>">
+					Statistiques<span class="sr-only">(current)</span>
+				</a>
+			</li>
+		</ul>
 
 		<ul class= "navbar-nav mr-1">
+
 			<% if user_signed_in? %>
 				<li class="nav-item">
 					<%= link_to "Profil", user_path(current_user.id), class: 'nav-link text-white' %>
 				</li>
+
 				<% if isAdmin? %>
 					<li class="nav-item">
 						<%= link_to "Gestion des Mouvements", admin_commitments_path, class:'nav-link' %>
@@ -24,6 +34,7 @@
 						<%= link_to "Gestion des Utilisateurs", admin_users_path, class:'nav-link' %>
 					</li>
 				<% end %>
+
 				<li class="nav-item">
 					<%= link_to "Déconnexion", destroy_user_session_path, method: 'delete', class: 'nav-link' %>
 				</li>
