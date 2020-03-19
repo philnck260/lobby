@@ -1,19 +1,5 @@
 <h1><%= @user.username %></h1>
-<% if flash[:error]  %>
-  <div class="alert alert-dismissible alert-danger text-center my-2">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-  <h4 class="alert-heading"> Error ! </h4>
-    <p class="text-center"> <%= flash[:error] %> </p>
-  </div>
-<% end %>
 
-<% if flash[:success] %>
-  <div class="alert alert-dismissible alert-success text-center my-2">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-  <h4 class="alert-heading"> Success ! </h4>
-    <p class="text-center"> <%= flash[:success] %> </p>
-  </div>
-<% end %>
 
 <h2>Informations générales</h2>
   <p>Email : <%= @user.email %></p>

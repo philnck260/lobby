@@ -15,17 +15,14 @@ class UsersController < ApplicationController
   end
 
   def update
-
-
       if @user.update(user_params)
         @user.save
-        flash[:success] = "Profil's update success !"
+        flash[:success] = "Vous avez modifié vos informations avec succès !"
         redirect_to user_path(current_user)
 
       else
-        flash[:error] = "Username is already token."
-        redirect_to user_path(current_user)
-
+        flash[:error] = @user.errors.full_messages.to_sentence
+        redirect_to edit_user_path(current_user)
     end
 
   end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 		:recoverable, :rememberable, :validatable
 
-  validates :username, uniqueness: true 
+  validates :username, uniqueness: {message: ": Ce nom d'utilisateur existe déjà"}
 
 	after_create :assign_default_username
 
