@@ -36,7 +36,7 @@ padding-bottom: 4px!important;
 padding-top: 5px!important;
 font-size: 13px!important;
 letter-spacing:1px;
-margin-bottom: 90px;
+margin-bottom: 50px;
  background-color: #343a40!important;
 
  } 
@@ -101,4 +101,8 @@ footer
 main {
   flex: 1;
   min-height: 70vh;
+}
+
+.statistics {
+  min-width: 425px!important;
 }
