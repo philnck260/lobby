@@ -27,12 +27,18 @@ module Admin
 		end
 
 		def update
-			@commitment.update(commitment_params)
+			if @commitment.update(commitment_params)
+			flash[:success] = 'Vous avez bien édité ce mouvement'
 			redirect_to admin_commitments_path
+			else
+			flash[:error] = @commitment.errors.full_messages.to_sentence
+			redirect_to edit_admin_commitment_path(@commitment.id)
+			end
 		end
 
 		def destroy
 			@commitment.destroy
+			flash[:success] = 'Vous avez bien supprimé ce mouvement'
 			redirect_to admin_commitments_path
 		end
 
