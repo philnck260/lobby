@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  resources :commitments, only: [:show, :index] do
+    resources :user_commitments, only: [:create, :destroy]
+  end
+  root to: "commitments#index"
 
-	resources :commitments, only: [:show, :index] do
-		resources :user_commitments, only: [:create, :destroy]
-	end
-	root to: "commitments#index"
-
-
+  scope "admin", module: "admin", as: "admin" do
+    resources :commitments
+    resources :users
+  end
+  
 
 	get '/statistics' => 'static#statistics'
 	get '/about' => 'static#about'

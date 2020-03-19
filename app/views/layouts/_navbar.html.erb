@@ -16,7 +16,15 @@
 				<li class="nav-item">
 					<%= link_to "Profil", user_path(current_user.id), class: 'nav-link text-white' %>
 				</li>
-				<li class="nav-item ">
+				<% if isAdmin? %>
+					<li class="nav-item">
+						<%= link_to "Gestion des Mouvements", admin_commitments_path, class:'nav-link' %>
+					</li>
+					<li class="nav-item">
+						<%= link_to "Gestion des Utilisateurs", admin_users_path, class:'nav-link' %>
+					</li>
+				<% end %>
+				<li class="nav-item">
 					<%= link_to "Déconnexion", destroy_user_session_path, method: 'delete', class: 'nav-link' %>
 				</li>
 			<% else %>
