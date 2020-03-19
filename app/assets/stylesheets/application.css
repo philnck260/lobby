@@ -90,15 +90,20 @@ footer
 {
   min-height: 20vh;
   margin-top: 50px;
+  background-color: #343a40!important;
+  
 }
-.bg {
+.bg 
+{
   left: 0;
   right: 0;
   z-index: -3; 
   display: block;
   background-size: cover;
 }
+
 main {
   flex: 1;
   min-height: 70vh;
 }
+
