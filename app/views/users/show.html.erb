@@ -4,6 +4,8 @@
 <p>First Name : <%= @user.first_name %></p>
 <p>Last Name : <%= @user.last_name %></p>
 <p>Department : <%= @user.department %></p>
+<%= link_to 'Editer votre profil', edit_user_path(@user), class: 'btn btn-secondary' %>
+<%= link_to 'Changez vos paramètres de connexion', edit_user_registration_path, class: 'btn btn-secondary' %>
 <h2>Toutes vos adhésions</h2>
 <% if @user_commitments.length > 0%>
   <% @user_commitments.each do |user_commitment| %>
