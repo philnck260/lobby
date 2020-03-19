@@ -17,6 +17,10 @@
 
  body {
    background-color: rgb(247, 245, 245)!important;
+  display: flex;
+  flex-direction: column;
+  
+
  }
 
 
@@ -30,10 +34,10 @@
 font-family: 'Nunito Sans';
 padding-bottom: 4px!important;
 padding-top: 5px!important;
-  background-color: #343a40!important;
 font-size: 13px!important;
 letter-spacing:1px;
 margin-bottom: 90px;
+ background-color: #343a40!important;
 
  } 
 
@@ -81,4 +85,20 @@ border-width:6px !important;
   padding-right: 22px;
   padding-left: 22px;
 
+}
+footer
+{
+  min-height: 20vh;
+  margin-top: 50px;
+}
+.bg {
+  left: 0;
+  right: 0;
+  z-index: -3; 
+  display: block;
+  background-size: cover;
+}
+main {
+  flex: 1;
+  min-height: 70vh;
 }

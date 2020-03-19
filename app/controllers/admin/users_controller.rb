@@ -9,22 +9,6 @@ module Admin
 			@users = User.all
 		end
 
-		def new
-			@user = User.new
-
-		end
-
-		def create
-			@user = User.new(user_params)
-			if @user.save
-				flash[:sucess] = "Vous avez créé un mouvement"
-				redirect_to admin_users_path
-			else
-				flash[:warning] = "Vous n'avez pas réussi à créer un mouvement : le titre et la description doivent avoir respectivement 10 et 20 caractères"
-				redirect_to new_admin_user_path
-			end
-		end
-
 		def edit
 			@departement = []
 			count = 0
@@ -35,12 +19,18 @@ module Admin
 		end
 
 		def update
-			@user.update(user_params)
-			redirect_to admin_users_path
+			if @user.update(user_params)
+				flash[:success] = "Vous avez modifié l'utilisateur avec succès"
+				redirect_to admin_users_path
+			else
+				flash[:error] = @user.errors.full_messages.to_sentence
+				redirect_to edit_admin_user_path(@user.id)
+			end
 		end
 
 		def destroy
 			@user.destroy
+			flash[:success] = "Vous avez supprimé l'utilisateur avec succès"
 			redirect_to admin_users_path
 		end
 

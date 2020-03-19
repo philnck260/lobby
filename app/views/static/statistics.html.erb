@@ -1,43 +1,65 @@
 
-	<div>
-	<h2 class="text-center">Nombre d'users crées chaque jour dans le temps</h2>
-	</div>
-	<br/><br/><br/>
+<!-- PRESENTATION -->
+<div class="container p-3 border border-primary">
+	<h1 class="border-bottom border-primary text-center">Statistiques globales du <strong>Lobby</strong></h1>
+	<h5 class="text-center">
+		Suivez l'évolution du Lobby a travers ses statistiques essentielles
+	</h5>
+</div>
 
-	<div class="container col-md-10 p-0 ">
-		<div class="bg-white p-4">
-		<h4>users created / day</h4> 
-		<br/>
-		<%= line_chart(User.group_by_day(:created_at).count) %>
+<!-- LINE CHART 1 -->
+<div class="container my-1 p-3 border border-primary bg-light">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-3 border-right border-primary text-center">
+			<h5>Evolution du nombre total de Users dans le temps</h5>
+			<h6>nombre total de users / day</h6>
+		</div>
+		<div class="col-9">
+			<%= line_chart(User.count_by_day) %>
 		</div>
 	</div>
-   <br/><br/>
-	 
+</div>
 
-<div class="container col-md-10">
-	<div class="row justify-content-between">
-		<div class=" bg-white col-md-5 p-4 p-4">
+<!-- PIE CHART 1 -->
+<div class="container my-1 p-3 border border-primary">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-6">
+			<%= pie_chart(Commitment.users_number, legend: false) %>
+		</div>
+		<div class="col-6 border-left border-primary text-center">
 			<h5 class="text-wrap">Repartition des Commitments pris</h5>
-			<h6 class="text-wrap">user_commitment taken / commitment</h6>
-			<%= pie_chart(UserCommitment.group(:commitment).count) %>
+			<h6 class="text-wrap">users / commitment</h6>
 		</div>
-		<div class="bg-white col-md-5 p-4">
+
+	</div>
+</div>
+
+<!-- PIE CHART 2 -->
+<div class="container my-1 p-3 border border-primary bg-light">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-6 border-right border-primary text-center">
 			<h5 class="text-wrap">Repartition du nombre de Users par department</h5>
 			<h6 class="text-wrap">nombre de users / departement</h6>
-			<%= pie_chart(User.group(:department).count) %>
+		</div>
+		<div class="col-6">
+			<%= pie_chart(User.group(:department).count, legend: false) %>
 		</div>
 	</div>
 </div>
 
-<br/><br/><br/>
 
-<div>
-	<h3 class="text-center">Evolution du nombre total de Users dans le temps</h3>
+<!-- LINE CHART 2 -->
+<div class="container my-1 p-3 border border-primary">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-9">
+			<%= line_chart(User.group_by_day(:created_at).count) %>
+		</div>
+		<div class="col-3 border-left border-primary text-center">
+			<h5>Nombre d'users crees chaque jour</h5>
+			<h6>users created / day</h6>
+		</div>
+	</div>
 </div>
-<br/><br/>
 
-<div class="container col-md-10 bg-white ">
-	<h4 class="p-4"> nombre total de users / day</h4>
-	<%= line_chart(User.count_by_day) %>
-
+<%= link_to "Retour à l'Accueil", root_path, class: "btn btn-block btn-warning" %>
 
