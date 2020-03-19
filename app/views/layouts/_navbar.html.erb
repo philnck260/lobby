@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-	<a class="navbar-brand m-2 mr-3" href="<%= root_path %>">LE LOBBY</a>
+<nav class="navbar navbar-expand-lg navbar-light">
+	<a class="navbar-brand text-white" href="<%= root_path %>">LE LOBBY</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -8,12 +8,12 @@
 
 		<ul class="navbar-nav mr-auto ml-3">
 			<li class="nav-item active">
-				<a class="nav-link text-white" href="<%= root_path %>">
+				<a class="nav-link text-muted" href="<%= root_path %>">
 					Commitments<span class="sr-only">(current)</span>
 				</a>
 			</li>
 			<li class="nav-item active">
-				<a class="nav-link text-white" href="<%= statistics_path %>">
+				<a class="nav-link text-muted" href="<%= statistics_path %>">
 					Statistiques<span class="sr-only">(current)</span>
 				</a>
 			</li>
@@ -36,14 +36,15 @@
 				<% end %>
 
 				<li class="nav-item">
-					<%= link_to "Déconnexion", destroy_user_session_path, method: 'delete', class: 'nav-link' %>
+				<button class="btn btn-primary">	<%= link_to "Déconnexion", destroy_user_session_path, method: 'delete' %></button>
 				</li>
+		
 			<% else %>
 				<li class="nav-item">
-					<%= link_to "Inscription", new_user_registration_path, class: 'nav-link text-white' %>
+					<button class="btn btn-primary"><%= link_to "Inscription", new_user_registration_path %></button>
 				</li>
 				<li class="nav-item">
-					<%= link_to "Connexion", new_user_session_path, class: 'nav-link text-white'  %> 
+					<button class= "btn btn-outline-primary"><span><%= link_to "Connexion", new_user_session_path %></span></button>
 				</li>
 			<% end %>
 
