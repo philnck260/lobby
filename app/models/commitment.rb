@@ -1,8 +1,8 @@
 class Commitment < ApplicationRecord
 
 	# VALIDATIONS
-	validates :title, presence: true, length: {minimum: 10}
-	validates :description, presence: true, length: {minimum: 20}
+	validates :title, presence: {message: ": Le titre est obligatoire"}, length: {minimum: 10, message: ": Le titre doit avoir 10 caractères minimum"}
+	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
 
 	# LINK TABLES
 	has_many :user_commitments, dependent: :destroy
