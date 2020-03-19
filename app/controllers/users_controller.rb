@@ -15,8 +15,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to user_path(current_user)
+
+
+      if @user.update(user_params)
+        @user.save
+        flash[:success] = "Profil's update success !"
+        redirect_to user_path(current_user)
+
+      else
+        flash[:error] = "Username is already token."
+        redirect_to user_path(current_user)
+
+    end
+
   end
 
   private
