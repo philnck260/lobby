@@ -1,39 +1,94 @@
-<h1>COMMITMENTS#SHOW</h1>
-<h3>in app/views/commitments/show.html.erb</h3>
 
-<div>Titre : <%= @commitment.title %></div>
-<div>Description : <%= @commitment.description %></div>
 
-<h4>Liste des Users ayant souscrit a ce Commitment</h4>
 
-<div class="list-group">
+<br/>
 
-	<% if @commitment.users.count == 0 %>
+<div class="container container-fluid col-12 center mt-5">
 
-		<div class="list-group-item">
-			Il n'y a pas d'User ayant souscrit a ce Commitment.
-		</div>
+    <div class= "text-center pb-2 bg-primary pt-3 shadow border">
+      <h4 class="text-white"> <%= @commitment.title%></h4>
+  </div>
+<br/><br/>
 
-	<% else %>
+<div class="container shadow">
 
-		<% @commitment.users.each do |each_user| %>
-			<div class="list-group-item">
-				<div class="col-3"><%= each_user.email %></div>
-				<div class="col-3"><%= each_user.username %></div>
-			</div>
+    <div class="row">
+        <div class="col-sm-5 border-right p-0">
+                <div class="card-header"> <h5>Description : </h5></div>
+             <p class="p-3"><%= @commitment.description %>  </p>
+        </div>
+        
+       <div class="sources col-sm-4  border-right p-0">
+            <div class="card-header"> <h5>Sources:</h5>  
+            </div>
+              <p class="p-3">blablablablbalablbalbalbalbalblablablabalbablablabalefeazzezgzrgzgrzgzrgzrgzrg</p>
+        </div>
+ 
+        <div class="cheese col-sm-3 p-4">
+        </div>
+    </div>
+
+    <div class="row">
+         <div class="col-sm-5 border-top border-right chiffres p-0">
+            <div class="card-header">
+            <h5>Chiffres: </h5>
+            </div>
+             <p class="p-4">blabakbazjkfbeafbezjfbzejbgzkjgblabakbazjkfbeafbezjfbzejbgzkjgbblabakbazjkfbeafbezjfbzejbgzkjgbb </p>
+        </div>
+
+        <div class="grafik border-top col-sm-7">
+        </div>
+
+    </div>
+    
+</div>
+
+<br/><br/>
+ <% if user_signed_in? %>
+        <% if current_user.commitments.include?(@commitment) %>
+            <%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block' %>
+        <% else %>
+            <%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success" %>
+
+        <% end %>
+    <% end %>
+
+
+<br/><br/>
+
+
+<div class= "bg-primary text-center pt-2 pb-1">
+       <h5 class= "text-white align-middle">Liste des Users ayant souscrit a ce Commitment</h5>
+  </div>
+
+<br/>
+
+  
+<table class="table table-sm">
+	<thead>
+		<tr>
+			<th scope="col"> Utilisateur </th>
+			<th scope="col">Départment</th>
+			<th scope="col">Nombre de Commitments</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if @commitment.users.count == 0 %>
+			<tr>Il n'y a pas d'User ayant pris ce Commitment</tr>
+		<% else %>
+			<% @commitment.users.each do |each_user| %>
+				<tr>
+					<td><%= each_user.display %></td>
+					<td><%= each_user.department %></td>
+					<td><%= each_user.commitments.count %></td>
+				</tr>
+			<% end %>
 		<% end %>
-
-	<% end %>
+	</tbody>
+</table>
+<br/><br/>
+    <%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning" %>
 
 </div>
 
-<% if user_signed_in? %>
-	<% if current_user.commitments.include?(@commitment) %>
-		<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block' %>
-	<% else %>
-		<%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success" %>
-
-	<% end %>
-<% end %>
-
-<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-info" %>
+<br/>
