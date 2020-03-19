@@ -1,18 +1,22 @@
 <div class="container col-sm-11 m-auto">
 
-	<div class= "container text-center p-2 pt-3 pb-3 border">
+	<!-- COMMITMENT TITLE -->
+	<div class="container text-center mt-3 p-2 pt-3 pb-3 border-primary bg-light">
 		<h4><%= @commitment.title%></h4>
 	</div>
 
+	<!-- BUTTON TO COMMIT OR UNCOMMIT -->
 	<% if user_signed_in? %>
 		<% if current_user.commitments.include?(@commitment) %>
-			<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block' %>
+			<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block mt-3' %>
 		<% else %>
-			<%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success" %>
+			<%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success mt-3" %>
 		<% end %>
 	<% end %>
 
-	<div class="container">
+	<!-- COMMITMENT PRESENTATION GRID -->
+	<div class="container mt-3 border border-primary">
+
 		<div class="row">
 
 			<!-- LEFT CELL -->
@@ -33,11 +37,31 @@
 					<div class="col-sm-7 p-0">
 						<div class="card" style="height: 100%;">	
 							<div class="card-header">Chiffres</div>
-							<div class="card-body">
-								<ul>
-									<li>chiffre 1</li>
-									<li>chiffre 2</li>
-								</ul>
+							<div class="card-body p-0">
+								<table class="table table-sm table-striped m-0">
+									<thead>
+										<tr>
+											<th scope="col">Donnée</th>	
+											<th scope="col">Valeur</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Total</td>
+											<td><%= @commitment.users.count %></td>
+										</tr>
+										<% if user_signed_in? %>
+											<tr>
+												<td>Dans votre Département</td>
+												<% if current_user.department == nil %>
+													<td>Inconnu</td>
+												<% else %>
+													<td><%= User.where(department: current_user.department).count %></td>
+												<% end %>
+											</tr>
+										<% end %>
+									</tbody>
+								</table>
 							</div>
 						</div>
 
@@ -56,11 +80,13 @@
 				</div>
 
 				<!-- BOTTOM RIGHT CELL -->
-				<div class="grafik col-sm-12 p-0">
-					<div class="card m-0">
-						<div class="card-header">Evolution du nombre d'Utilisateurs</div>
-						<div class="card-body">
-							<%= line_chart(@commitment.users_by_day) %>
+				<div class="row">
+					<div class="grafik col-sm-12 p-0">
+						<div class="card m-0">
+							<div class="card-header">Evolution du nombre d'Utilisateurs</div>
+							<div class="card-body">
+								<%= line_chart(@commitment.users_by_day) %>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -69,38 +95,38 @@
 		</div>
 	</div>
 
-	<br/><br/>
-
-	<div class= "border text-center pt-2 pb-1 mb-0">
-		<h5 class= "align-middle">
-			Liste des Users ayant souscrit a ce Commitment
-		</h5>
-	</div>
-	<table class="table table-bordered table-sm mt-0">
-		<thead>
-			<tr>
-				<th scope="col"> Utilisateur </th>
-				<th scope="col">Départment</th>
-				<th scope="col">Nombre de Commitments</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% if @commitment.users.count == 0 %>
-				<tr>Il n'y a pas d'User ayant pris ce Commitment</tr>
-			<% else %>
-				<% @commitment.users.each do |each_user| %>
-					<tr>
-						<td><%= each_user.display %></td>
-						<td><%= each_user.department %></td>
-						<td><%= each_user.commitments.count %></td>
-					</tr>
+	<!-- USERS LIST FOR THIS COMMITMENT -->
+	<div class="container mt-3 p-0 border border-primary">
+		<div class= "border text-center pt-2 pb-1">
+			<h5 class= "align-middle">
+				Liste des Users ayant souscrit a ce Commitment
+			</h5>
+		</div>
+		<table class="table table-bordered table-sm">
+			<thead>
+				<tr>
+					<th scope="col"> Utilisateur </th>
+					<th scope="col">Départment</th>
+					<th scope="col">Nombre de Commitments</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if @commitment.users.count == 0 %>
+					<tr>Il n'y a pas d'User ayant pris ce Commitment</tr>
+				<% else %>
+					<% @commitment.users.each do |each_user| %>
+						<tr>
+							<td><%= each_user.display %></td>
+							<td><%= each_user.department %></td>
+							<td><%= each_user.commitments.count %></td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 
-	<br/><br/>
-
-	<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning" %>
+	<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
+	<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning mt-3" %>
 
 </div>
