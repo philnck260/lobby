@@ -1,5 +1,5 @@
 
-<div class = " card container col-md-7 mt-2 shadow">
+<div class = " card container col-md-7 mt-2 p-0 shadow">
   <h1 class ="text-center mb-4 card-header border-0 bg-primary text-white " > Nous contacter </h1>
 
   <div class = "m-3">
@@ -15,11 +15,11 @@
     </div>
       <div class="col text-center">
         <label for="subject"> Sujet du mail </label> <br />
-        <%= text_field_tag :subject,'',class:"form-control text-center" %>
+        <%= text_field_tag :subject,'',class:"form-control" %>
       </div>
     <div class="col text-center">
       <label for="content"> Texte </label> <br />
-      <%= text_area_tag :content,'',class:"form-control text-center" %>
+      <%= text_area_tag :content,'',class:"form-control" %>
     </div>
     <br />
     <div class="col text-center">
