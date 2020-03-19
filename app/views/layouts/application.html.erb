@@ -21,9 +21,12 @@
 		<%= render 'layouts/navbar' %>
     <main>
 		<!-- CONTAINER SURROUNDING YIELD -->
-      <div class="container">
-      
-      <%= yield %>
+
+		<div class="container">
+    <%= render 'layouts/flash'%>
+		
+    <%= yield %>
+
 
       </div>
      </main> 

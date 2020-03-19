@@ -18,7 +18,7 @@ module Admin
 				flash[:sucess] = "Vous avez créé un mouvement"
 				redirect_to admin_commitments_path
 			else
-				flash[:warning] = "Vous n'avez pas réussi à créer un mouvement : le titre et la description doivent avoir respectivement 10 et 20 caractères"
+				flash[:error] = @commitment.errors.full_messages.to_sentence
 				redirect_to new_admin_commitment_path
 			end
 		end
@@ -27,12 +27,18 @@ module Admin
 		end
 
 		def update
-			@commitment.update(commitment_params)
+			if @commitment.update(commitment_params)
+			flash[:success] = 'Vous avez bien édité ce mouvement'
 			redirect_to admin_commitments_path
+			else
+			flash[:error] = @commitment.errors.full_messages.to_sentence
+			redirect_to edit_admin_commitment_path(@commitment.id)
+			end
 		end
 
 		def destroy
 			@commitment.destroy
+			flash[:success] = 'Vous avez bien supprimé ce mouvement'
 			redirect_to admin_commitments_path
 		end
 
