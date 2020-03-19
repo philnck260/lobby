@@ -16,7 +16,7 @@
  
 
  body {
-   
+   background-color: rgb(243, 242, 242)!important;
  }
 
 
@@ -28,7 +28,7 @@ color: rgb(33, 34, 34)!important;
 }
  .navbar {
 
-background-color: rgb(112, 219, 144);
+background-color: rgb(95, 214, 188);
 
 font-family: 'Open Sans'!important;
 font-size: 11px!important;
@@ -42,15 +42,12 @@ font-weight: lighter!important;
  
 .firstline {
 
-  min-height: 400px;
+  min-height: 300px;
 
 }
 
-.sources {
-  min-height: 250px;
-}
 
-.chiffres {
+.grafik {
   min-height: 250px;
 
 }
