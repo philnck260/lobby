@@ -5,7 +5,7 @@
 		<h4><%= @commitment.title%></h4>
 	</div>
 
-	<!-- BUTTON TO COMMIT OR UNCOMMIT -->
+	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
 	<% if user_signed_in? %>
 		<% if current_user.commitments.include?(@commitment) %>
 			<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block mt-3' %>
