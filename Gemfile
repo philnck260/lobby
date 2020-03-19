@@ -69,4 +69,4 @@ gem 'devise', '~> 4.2'
 gem 'sendgrid-ruby'
 gem 'chartkick'
 gem 'groupdate'
-gem 'groupdate'
+
