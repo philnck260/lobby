@@ -1,8 +1,11 @@
 class ContactMailer < ApplicationMailer
 
-  def contact_email(email, content)
-    @email = email
-    @content = content
-    mail(from: email,to: 'admilobbynistrator@gmail.com', subject: 'Contact Request')
+
+  def contact_email(email,content,subject)
+    User.where(role: "admin").each do |admin|
+      mail(to: admin.email, from: email, subject: subject).deliver
+    end
   end
+
 end
+
