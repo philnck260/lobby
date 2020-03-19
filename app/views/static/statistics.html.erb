@@ -1,7 +1,9 @@
 <!-- PRESENTATION -->
-<div class="container border border-primary">
+<div class="container p-3 border border-primary">
 	<h1 class="border-bottom border-primary text-center">Statistiques globales du <strong>Lobby</strong></h1>
-	<h5 class="border-bottom border-priary text-center">Suivez l'evolution du Lobby a travers ses statistiques essentielles</h5>
+	<h5 class="text-center">
+		Suivez l'évolution du Lobby a travers ses statistiques essentielles
+	</h5>
 </div>
 
 <!-- LINE CHART 1 -->
@@ -21,11 +23,11 @@
 <div class="container my-1 p-3 border border-primary">
 	<div class="row justify-content-center align-items-center">
 		<div class="col-6">
-			<%= pie_chart(UserCommitment.group(:commitment).count) %>
+			<%= pie_chart(Commitment.users_number, legend: false) %>
 		</div>
 		<div class="col-6 border-left border-primary text-center">
 			<h5 class="text-wrap">Repartition des Commitments pris</h5>
-			<h6 class="text-wrap">user_commitment taken / commitment</h6>
+			<h6 class="text-wrap">users / commitment</h6>
 		</div>
 	</div>
 </div>
@@ -38,7 +40,7 @@
 			<h6 class="text-wrap">nombre de users / departement</h6>
 		</div>
 		<div class="col-6">
-			<%= pie_chart(User.group(:department).count) %>
+			<%= pie_chart(User.group(:department).count, legend: false) %>
 		</div>
 	</div>
 </div>
@@ -50,8 +52,10 @@
 			<%= line_chart(User.group_by_day(:created_at).count) %>
 		</div>
 		<div class="col-3 border-left border-primary text-center">
-			<h5>Nombre d'users crees chaque jour dans le temps</h5>
+			<h5>Nombre d'users crees chaque jour</h5>
 			<h6>users created / day</h6>
 		</div>
 	</div>
 </div>
+
+<%= link_to "Retour à l'Accueil", root_path, class: "btn btn-block btn-warning" %>
