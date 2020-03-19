@@ -8,4 +8,13 @@ class Commitment < ApplicationRecord
 	has_many :user_commitments, dependent: :destroy
 	has_many :users, through: :user_commitments
 	
+	# METHODS
+	def self.users_number
+		hash = Hash.new
+		self.all.each do |each_commitment|
+			hash[each_commitment.title] = each_commitment.users.count
+		end	
+		return hash
+	end
+
 end
