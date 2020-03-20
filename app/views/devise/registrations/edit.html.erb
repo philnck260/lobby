@@ -6,7 +6,7 @@
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="field">
         <label>Email</label><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",  class: 'form-control border ' %>
       </div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>En attente de confirmation pour : <%= resource.unconfirmed_email %></div>
@@ -14,7 +14,7 @@
       <br>
       <div class="field">
         <label>Mot de passe</label> <i>(laissez vide si vous ne souhaitez pas changer de mot de passe)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control' %>
+        <%= f.password_field :password, autocomplete: "new-password",  class: 'form-control border' %>
         <% if @minimum_password_length %>
           <br />
           <em><%= @minimum_password_length %> caractères minimum</em>
@@ -23,12 +23,12 @@
       <br>
       <div class="field">
         <label>Confirmation du mot de passe</label><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",  class: 'form-control border' %>
       </div>
       <br>
       <div class="field">
         <label>Mot de passe actuel</label> <i>(nécessaire pour faire la modification)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password",  class: 'form-control' %>
+        <%= f.password_field :current_password, autocomplete: "current-password",  class: 'form-control border' %>
       </div>
       <br>
       <div class="actions">

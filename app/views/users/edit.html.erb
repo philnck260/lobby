@@ -1,35 +1,30 @@
-<h1>Edit</h1>
-
+<h1>Editer mon profil</h1>
 <% if @user.errors.any? %>
   <div class="alert alert-danger m-auto" style="width: 600px" role="alert">
     <div id="error_explanation">
       <h2>Validation Error</h2>
       <% @user.errors.full_messages.each do |msg| %>
-          <p><%= msg %></p>
+        <p><%= msg %></p>
       <% end %>
     </div>
   </div>
 <% end %>
-
 <%= form_for @user do |f|%>
-<p><label>Username</label>
-<%= f.text_field :username, class:"form-control" %></p>
-
-<p><label>Prénom</label>
-<%= f.text_field :first_name, class:"form-control" %></p>
-
-<p><label>Nom</label>
-<%= f.text_field :last_name, class:"form-control" %></p>
-
-<p><label>Email</label>
-<%= f.text_field :email, class:"form-control" %></p>
-
-<p><label>Département</label>
-<%= f.select :department, @departement, class:"dropdown" %></p>
-<br>
-<p><label>Afficher son prénom et nom ?</label>
-<br>
-<%= f.check_box :name_display, class:"form-check" %></p>
-
-<button type='submit' class='btn btn-primary'>Edit</button>
+  <p><label>Nom d'utilisateur</label>
+    <%= f.text_field :username, class:"form-control border" %></p>
+  <p><label>Prénom</label>
+    <%= f.text_field :first_name, class:"form-control border" %></p>
+  <p><label>Nom</label>
+    <%= f.text_field :last_name, class:"form-control border" %></p>
+  <p><label>Email</label>
+    <%= f.text_field :email, class:"form-control border" %></p>
+  <p><label>Département</label>
+    <%= f.select :department, @departement, {}, class:"form-control col-2 border" %></p>
+  <br>
+  <div class="form-check">
+    <%= f.check_box :name_display, class:"form-check-input" %>
+    <label class="form-check-label">Je souhaite que mon prénom et mon nom soient affichés sur le site</label>
+  </div>
+  <br>
+  <button type='submit' class='btn btn-primary'>Editer le profil</button>
 <% end %>
