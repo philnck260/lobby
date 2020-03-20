@@ -107,6 +107,11 @@ main {
   min-height: 70vh;
 }
 
+html {
+  max-width: 100%;
+}
+
+
 .statistics {
   min-width: 425px!important;
 }
@@ -129,4 +134,5 @@ main {
 
 .mosaikc {
   min-height: 380px!important;
+
 }
