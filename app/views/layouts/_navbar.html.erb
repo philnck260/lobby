@@ -37,15 +37,15 @@
 					<% end %>
 
 
-					<li class="nav-item pt-1">
+					<li class="nav-item pt-1 mb-1">
 						<%= link_to "Déconnexion", destroy_user_session_path, class: "btn btn-primary", method: 'delete' %>
 					</li>
 			
 				<% else %>
-					<li class="nav-item pt-1">
+					<li class="nav-item pt-1 mb-1">
 						<%= link_to "Inscription", new_user_registration_path, class: "btn btn-primary"%>
 					</li>
-					<li class="nav-item pt-1">
+					<li class="nav-item pt-1 mb-1">
 						<%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
 					</li>
 				<% end %>
