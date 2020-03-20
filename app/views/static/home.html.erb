@@ -1,7 +1,7 @@
 <div class="container p-0">
 
 	<!-- PRESENTATION -->
-	<div class="container border border-dark bg-light">
+	<div class="container border border-dark bg-light p-3">
 		<h1>
 			Bienvenue sur Le Lobby<br/>
 			<small>Le réseau des mouvements écologistes</small>
@@ -12,6 +12,18 @@
 			<%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.
 		</p>
 
+	</div>
+
+	<!-- BUTTONS COMMITMENTS AND STATS -->
+	<div class="container p-0">
+		<div class="row">    
+			<div class="col-md-6 mt-3">
+				<%= link_to "Tous les Mouvements", commitments_path, class: "btn btn-block btn-secondary p-2" %>
+			</div>
+			<div class="col-md-6 mt-3">
+				<%= link_to "Toutes nos Statistiques", statistics_path, class: "btn btn-block btn-secondary p-2" %>
+			</div>
+		</div>
 	</div>
 
 	<div class="container-md p-0">
@@ -133,14 +145,3 @@
 	 </div>
 	-->
 
-	<!-- BUTTONS COMMITMENTS AND STATS -->
-	<div class="container p-0">
-		<div class="row">    
-			<div class="col-md-6 mt-3">
-				<%= link_to "Tous les Mouvements", commitments_path, class: "btn btn-block btn-secondary p-2" %>
-			</div>
-			<div class="col-md-6 mt-3">
-				<%= link_to "Toutes nos Statistiques", statistics_path, class: "btn btn-block btn-secondary p-2" %>
-			</div>
-		</div>
-	</div>
