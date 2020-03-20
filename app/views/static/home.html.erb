@@ -1,6 +1,6 @@
-<div class="container border p-0">
+<div class="container p-0">
 
-	<div class="container-md border p-0">
+	<div class="container-md p-0">
 		<div class="row">
 
 			<!-- TOP LEFT CELL -->
@@ -39,12 +39,12 @@
 		</div>
 	</div>
 
-	<div class="container-md border p-0">
+	<div class="container-md p-0">
 		<div class="row">
 
 			<!-- BOTTOM LEFT CELL -->
-			<div class="col-md-5">
-				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+			<div class="col-md-5 mb-3">
+				<div class="card border-dark" style="height: 100%; width: 100%;">
 					<div class="card-header">LINE-CHART</div>
 					<div class="card-body">
 						<h4 class="card-title">Light card title</h4>
@@ -54,8 +54,8 @@
 			</div>
 
 			<!-- BOTTOM RIGHT CELL -->
-			<div class="col-md-7">
-				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+			<div class="col-md-7 mb-3">
+				<div class="card border-dark" style="height: 100%; width: 100%;">
 					<div class="card-header">2ND MOUVEMENT LE PLUS POPULAIRE</div>
 					<div class="card-body">
 						<h4 class="card-title">Light card title</h4>
@@ -106,12 +106,18 @@
 	-->
 
 	<!-- BUTTONS COMMITMENTS AND STATS -->
-	<div class=" col-md m-auto row p-0 ">    
-		<%= link_to "Page Statistiques", statistics_path, class: "btn btn-secondary p-2" %>
-		<%= link_to "Tous les mouvements", root_path, class: "btn btn-secondary p-2 ml-2" %>
+	<div class="container p-0">
+		<div class="row">    
+			<div class="col-md-6 mb-3">
+				<%= link_to "Tous les Mouvements", commitments_path, class: "btn btn-block btn-secondary p-2" %>
+			</div>
+			<div class="col-md-6 mb-3">
+				<%= link_to "Toutes nos Statistiques", statistics_path, class: "btn btn-block btn-secondary p-2" %>
+			</div>
+		</div>
 	</div>
 
 	<!-- COMMITMENTS LIST -->
-	<div class="container col-md border mosaikc mt-3 mb-3 border-primary">
+	<div class="container border mosaikc mb-3 border-primary">
 		<h5 class="p-4">Mouvements les plus populaires</h5>
 	</div>
