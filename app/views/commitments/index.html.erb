@@ -1,5 +1,5 @@
 
-<h2 class="text-center pb-4"> Liste des Mouvements  </h2>
+<h2 class="text-center pb-4">Liste des Mouvements</h2>
 
 <div class="col-md-11 m-auto">
   <% if @commitments.count == 0 %>
@@ -18,7 +18,7 @@
         <div class="card commitement border-0" style="min-height: 200px">
           <a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
           <div class="card-body">
-            <h5 class="card-title text-center"> <%= each_commitment.title %> </h5>
+            <h5 class="card-title text-center" style="height: 5rem;"> <%= each_commitment.title %> </h5>
             <p class="card-text text-center"> <%= each_commitment.description %> </p>
             <p class="card-text text-center size:5"> Membres inscrit : <%= each_commitment.users.count %> </p>
             <p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
