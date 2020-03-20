@@ -1,16 +1,16 @@
 <div class="container col-sm-11 m-auto">
 
 	<!-- COMMITMENT TITLE -->
-	<div class="container text-center mt-3 p-2 pt-3 pb-3 border-primary bg-light">
+	<div class="container text-center mt-3 p-2 pt-3 pb-3">
 		<h4><%= @commitment.title%></h4>
 	</div>
 
 	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
 	<% if user_signed_in? %>
 		<% if current_user.commitments.include?(@commitment) %>
-			<%= link_to "Retirer ce Commitment", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-danger btn-block mt-3' %>
+			<%= link_to "Quitter ce mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
 		<% else %>
-			<%= link_to "Prendre ce Commitment", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-success mt-3" %>
+			<%= link_to "Rejoindre ce mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
 		<% end %>
 	<% end %>
 

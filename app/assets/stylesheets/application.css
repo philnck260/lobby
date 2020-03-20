@@ -17,7 +17,7 @@
 
 
  body {
-   background-color: rgb(247, 245, 245)!important;
+   background-color: rgb(242, 240, 240)!important;
   display: flex;
   flex-direction: column;
   
@@ -33,8 +33,8 @@
 }
  .navbar {
 font-family: 'Nunito Sans';
-padding-bottom: 4px!important;
-padding-top: 5px!important;
+padding-bottom: 7px!important;
+padding-top: 8px!important;
 font-size: 13px!important;
 letter-spacing:1px;
 margin-bottom: 40px;
@@ -92,7 +92,7 @@ footer
 {
   min-height: 20vh;
   margin-top: 50px;
-  background-color: #343a40!important;
+  background-color:#7a828a!important;
   
 }
 .bg 
@@ -141,7 +141,7 @@ html {
 
 /* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
 .commitement:hover {
-    background-color: gray;
+    background-color: rgb(224, 224, 224);
     text-decoration: none;
 
 }
