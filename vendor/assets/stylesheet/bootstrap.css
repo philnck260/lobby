@@ -5436,9 +5436,9 @@ a.badge-dark:focus, a.badge-dark.focus {
 }
 
 .alert-primary {
-  color: #0e0e0e;
-  background-color: #d1d1d1;
-  border-color: #bfbfbf;
+  color: #858585;
+  background-color: #9ef8e68e;
+  border-color: #9ef8e6b2;
 }
 
 .alert-primary hr {
