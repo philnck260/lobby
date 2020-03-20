@@ -61,18 +61,4 @@ class User < ApplicationRecord
     end
     return hash
   end
-
-  def dropdown_department
-    @departement = []
-    count = 0
-    95.times do
-      count += 1
-      unless count == 20
-        @departement << count.to_s
-      end
-      if count == 2
-        @departement += ["2A", "2B"]
-      end
-    end
-  end
 end
