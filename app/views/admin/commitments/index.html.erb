@@ -1,5 +1,4 @@
 <h1>Tous les mouvements</h1>
-
 <%= link_to 'Créer un mouvement', new_admin_commitment_path, class: 'btn btn-success' %>
 <div class="list-group">
   <% if @commitments.count == 0 %>
@@ -7,26 +6,27 @@
       Il n'y a pas de Commitment sur le Lobby...
     </div>
   <% else %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>TITRE </th>
-          <th>NB DE USERS</th>  
-        </tr>
-      </thead>
-      <tbody>
-        <% @commitments.each do |each_commitment| %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td class='text-center'><%= each_commitment.id %></td>
-            <td ><%= each_commitment.title %></td>
-            
-            <td  class='text-center'><%= each_commitment.users.count %></td>
-            <td><%= link_to 'Editer',  edit_admin_commitment_path(each_commitment.id), class: 'btn btn-secondary' %></td>
-            <td><%= link_to 'Supprimer', admin_commitment_path(each_commitment.id), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'}, class: 'btn btn-danger' %></td>
+            <th>ID</th>
+            <th>TITRE </th>
+            <th>NB DE USERS</th>
           </tr>
-    <% end %>
+        </thead>
+        <tbody>
+          <% @commitments.each do |each_commitment| %>
+            <tr>
+              <td class='text-center'><%= each_commitment.id %></td>
+              <td ><%= each_commitment.title %></td>
+              <td  class='text-center'><%= each_commitment.users.count %></td>
+              <td><%= link_to 'Editer',  edit_admin_commitment_path(each_commitment.id), class: 'btn btn-secondary' %></td>
+              <td><%= link_to 'Supprimer', admin_commitment_path(each_commitment.id), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'}, class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 </div>
-</tbody>
-</table>
