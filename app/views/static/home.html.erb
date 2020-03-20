@@ -1,37 +1,117 @@
-<div class="container row col-md-11 mx-auto mosaik p-0">
-    <div class="col-md-7 border mb-4 ">
-        <h3 class="text-center p-4 mb-2">Mouvement plus populaire</h3>
-    </div>
+<div class="container border p-0">
 
-    <div class="col-md-5 pr-0  ">
-        <div class= "border mosaika mb-4 p-3">  
-            <h5>Proposition Valeur</h5>
-        </div>
+	<div class="container-md border p-0">
+		<div class="row">
 
-        <div class="border mosaika p-3 mb-4">
-          <h5>Camembert</h5>
-        </div>
+			<!-- TOP LEFT CELL -->
+			<div class="col-md-7 pb-3">
+				<div class="card border-dark" style="height: 100%; width: 100%;">
+					<div class="card-header">MOUVEMENT LE PLUS POPULAIRE</div>
+					<div class="card-body">
+						<h4 class="card-title">Light card title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+			</div>
 
-    </div>
+			<div class="col-md-5">
 
-</div>
+				<!-- TOP RIGHT CELL -->
+				<div class="card border-dark mb-3" style="width: 100%;">
+					<div class="card-header">PROPOSITION DE VALEUR</div>
+					<div class="card-body">
+						<h4 class="card-title">Light card title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
 
-<div class="container row col-md-11 m-auto mosaika p-0 justify-content-between">
-    <div class="col-md-5 p-3 border mosaikb mb-3">
-    </div>
+				<!-- MID RIGHT CELL -->
+				<div class="card border-dark mb-3" style="width: 100%;">
+					<div class="card-header">CAMEMBERT</div>
+					<div class="card-body">
+						<h4 class="card-title">Light card title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
 
-    <div class="col-md-5 p-3 border mosaikb mb-3">
-    </div>
-</div>
+			</div>
 
-<div class="container col-md-11 border mosaikc mb-3">
-     <h5 class="p-4">Mouvements les plus populaires</h5>
+		</div>
+	</div>
 
-</div>
+	<div class="container-md border p-0">
+		<div class="row">
 
-<div class=" col-md-11 m-auto row p-0 ">    
+			<!-- BOTTOM LEFT CELL -->
+			<div class="col-md-5">
+				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+					<div class="card-header">LINE-CHART</div>
+					<div class="card-body">
+						<h4 class="card-title">Light card title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+			</div>
 
-    <%= link_to "Page Statistiques", statistics_path, class: "btn btn-secondary p-2" %>
-    <%= link_to "Tous les mouvements", root_path, class: "btn btn-secondary p-2 ml-2" %>
-</div>
+			<!-- BOTTOM RIGHT CELL -->
+			<div class="col-md-7">
+				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+					<div class="card-header">2ND MOUVEMENT LE PLUS POPULAIRE</div>
+					<div class="card-body">
+						<h4 class="card-title">Light card title</h4>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+			</div>
 
+		</div>
+	</div>
+
+
+
+	<!--
+	 <div class="container col-md mx-auto mosaik p-0">
+	 <div class="row">
+
+	 <div class="col-md-7 border mb-4 border-primary">
+	 <h3 class="text-center p-4 mb-2">Mouvement plus populaire</h3>
+	 </div>
+
+	 <div class="col-md-5 pr-0  ">
+
+	 <div class= "border mosaika mb-4 p-3 border-primary">  
+	 <h5>Proposition Valeur</h5>
+	 </div>
+
+	 <div class="border mosaika p-3 mb-4 border-primary">
+	 <h5>Camembert</h5>
+	 </div>
+
+	 </div>
+
+	 </div>
+	 </div>
+
+	 <div class="container col-md m-auto mosaika p-0 justify-content-between">
+	 <div class="row">
+
+	 <div class="col-md-6 p-3 border mosaikb mb-3 border-primary">
+	 </div>
+
+	 <div class="col-md-6 p-3 border mosaikb mb-3 border-primary">
+	 </div>
+
+	 </div>
+	 </div>
+	-->
+
+	<!-- BUTTONS COMMITMENTS AND STATS -->
+	<div class=" col-md m-auto row p-0 ">    
+		<%= link_to "Page Statistiques", statistics_path, class: "btn btn-secondary p-2" %>
+		<%= link_to "Tous les mouvements", root_path, class: "btn btn-secondary p-2 ml-2" %>
+	</div>
+
+	<!-- COMMITMENTS LIST -->
+	<div class="container col-md border mosaikc mt-3 mb-3 border-primary">
+		<h5 class="p-4">Mouvements les plus populaires</h5>
+	</div>
