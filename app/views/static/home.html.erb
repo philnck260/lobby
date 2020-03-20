@@ -1,36 +1,53 @@
 <div class="container p-0">
 
+	<!-- PRESENTATION -->
+	<div class="container border border-dark bg-light">
+		<h1>
+			Bienvenue sur Le Lobby<br/>
+			<small>Le réseau des mouvements écologistes</small>
+		</h1>
+		<hr>
+		<p>
+			Le Lobby est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/>
+			<%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.
+		</p>
+
+	</div>
+
 	<div class="container-md p-0">
 		<div class="row">
 
 			<!-- TOP LEFT CELL -->
-			<div class="col-md-7 pb-3">
-				<div class="card border-dark" style="height: 100%; width: 100%;">
-					<div class="card-header">MOUVEMENT LE PLUS POPULAIRE</div>
-					<div class="card-body">
-						<h4 class="card-title">Light card title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<div class="col-md-7 mt-3">
+				<a href="<%= commitment_path(Commitment.two_most_popular[0].id) %>">
+					<div class="card border-dark" style="height: 100%; width: 100%;">
+						<h5 class="card-header">MOUVEMENT LE PLUS POPULAIRE</h5>
+						<div class="card-body">
+							<h6 class="card-title"><%= Commitment.two_most_popular[0].title  %></h6>
+							<p class="card-text"><%= Commitment.two_most_popular[0].description %></p>
+							<div class="card-content"><%= line_chart(Commitment.two_most_popular[0].users_by_day, legend: false) %></div>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
-			<div class="col-md-5">
+			<div class="col-md-5 mt-3">
 
 				<!-- TOP RIGHT CELL -->
-				<div class="card border-dark mb-3" style="width: 100%;">
-					<div class="card-header">PROPOSITION DE VALEUR</div>
+				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+					<a href="<%= about_path %>">
+						<h5 class="card-header">Le Lobby</h5>
+					</a>
 					<div class="card-body">
-						<h4 class="card-title">Light card title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
+						<div class="card-text" style="height: 19rem; overflow: hidden;">
+							<p>
+							Le Lobby est un réseau visant à fédérer les acteurs de bonne volonté dans le domaine de l’écologie.</p>
+							<p>Il se donne pour objectif la création d’une plateforme web centralisant l’information, l’action, ainsi que la volonté d’engagement – les Mouvements - de ces acteurs.</p>	
+							<hr>
+							<p>Vous avez une suggestion ? Vous souhaitez devenir partenaire ?</p>
+							<p><a href="<%= new_contact_path %>">Contactez-nous</a>, votre message sera reçu par nos administrateurs en charge du site.</p>
 
-				<!-- MID RIGHT CELL -->
-				<div class="card border-dark mb-3" style="width: 100%;">
-					<div class="card-header">CAMEMBERT</div>
-					<div class="card-body">
-						<h4 class="card-title">Light card title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						</div>
 					</div>
 				</div>
 
@@ -43,31 +60,42 @@
 		<div class="row">
 
 			<!-- BOTTOM LEFT CELL -->
-			<div class="col-md-5 mb-3">
-				<div class="card border-dark" style="height: 100%; width: 100%;">
-					<div class="card-header">LINE-CHART</div>
-					<div class="card-body">
-						<h4 class="card-title">Light card title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<div class="col-md-5 mt-3">
+				<a href="<%= statistics_path %>">
+					<div class="card border-dark" style="height: 100%; width: 100%;">
+						<h5 class="card-header">L'évolution du site</h5>
+						<div class="card-body">
+							<h6 class="card-title">Nombre total d'utilisateurs dans le temps</h6>
+							<div class="card-content"><%= line_chart(User.count_by_day, legend: false) %></div>
+							<p class="card-text"></p>
+						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 
 			<!-- BOTTOM RIGHT CELL -->
-			<div class="col-md-7 mb-3">
-				<div class="card border-dark" style="height: 100%; width: 100%;">
-					<div class="card-header">2ND MOUVEMENT LE PLUS POPULAIRE</div>
-					<div class="card-body">
-						<h4 class="card-title">Light card title</h4>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<div class="col-md-7 mt-3">
+				<a href="<%= commitment_path(Commitment.two_most_popular[1].id) %>">
+					<div class="card border-dark" style="height: 100%; width: 100%;">
+						<h5 class="card-header">AUTRE MOUVEMENT POPULAIRE</h5>
+						<div class="card-body">
+							<div class="col-sm-4 float-left">
+							<h6 class="card-title"><%= Commitment.two_most_popular[1].title  %></h6>
+							<hr>
+							<h6 class="card-subtitle">Description :</h6>
+							<br/>
+							<p class="card-text"><%= Commitment.two_most_popular[1].description %></p>
+							</div>
+							<div class="col-sm-7 float-right">
+								<%= pie_chart(Commitment.two_most_popular[1].users.group(:department).count) %>
+
+							</div>
+						</div>
 					</div>
-				</div>
 			</div>
 
 		</div>
 	</div>
-
-
 
 	<!--
 	 <div class="container col-md mx-auto mosaik p-0">
@@ -108,16 +136,11 @@
 	<!-- BUTTONS COMMITMENTS AND STATS -->
 	<div class="container p-0">
 		<div class="row">    
-			<div class="col-md-6 mb-3">
+			<div class="col-md-6 mt-3">
 				<%= link_to "Tous les Mouvements", commitments_path, class: "btn btn-block btn-secondary p-2" %>
 			</div>
-			<div class="col-md-6 mb-3">
+			<div class="col-md-6 mt-3">
 				<%= link_to "Toutes nos Statistiques", statistics_path, class: "btn btn-block btn-secondary p-2" %>
 			</div>
 		</div>
-	</div>
-
-	<!-- COMMITMENTS LIST -->
-	<div class="container border mosaikc mb-3 border-primary">
-		<h5 class="p-4">Mouvements les plus populaires</h5>
 	</div>
