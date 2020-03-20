@@ -1,7 +1,8 @@
 <div class="container p-0">
 
 	<!-- PRESENTATION -->
-	<div class="container border bg-light p-3">
+	<div class="container border bg-light p-3 shadow">
+		<p class="float-right"><%= fa_icon "leaf 2x" %></p>
 		<h1>
 			Bienvenue sur Le Lobby<br/>
 			<small>Le réseau des mouvements écologistes</small>
@@ -32,7 +33,7 @@
 			<!-- TOP LEFT CELL -->
 			<div class="col-md-7 mt-3">
 				<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
-					<div class="card border-dark" style="height: 100%; width: 100%;">
+					<div class="card border shadow" style="height: 100%; width: 100%;">
 						<h5 class="card-header">MOUVEMENT LE PLUS POPULAIRE</h5>
 						<div class="card-body">
 							<h6 class="card-title"><%= Commitment.by_popularity[0].title  %></h6>
@@ -46,7 +47,7 @@
 			<div class="col-md-5 mt-3">
 
 				<!-- TOP RIGHT CELL -->
-				<div class="card border-dark mb-3" style="height: 100%; width: 100%;">
+				<div class="card border shadow mb-3" style="height: 100%; width: 100%;">
 					<a href="<%= about_path %>">
 						<h5 class="card-header">Le Lobby</h5>
 					</a>
@@ -74,7 +75,7 @@
 			<!-- BOTTOM LEFT CELL -->
 			<div class="col-md-5 mt-3">
 				<a href="<%= statistics_path %>">
-					<div class="card border-dark" style="height: 100%; width: 100%;">
+					<div class="card border shadow" style="height: 100%; width: 100%;">
 						<h5 class="card-header">L'évolution du site</h5>
 						<div class="card-body">
 							<h6 class="card-title">Nombre total d'utilisateurs dans le temps</h6>
@@ -88,7 +89,7 @@
 			<!-- BOTTOM RIGHT CELL -->
 			<div class="col-md-7 mt-3">
 				<a href="<%= commitment_path(Commitment.by_popularity[1].id) %>">
-					<div class="card border-dark" style="height: 100%; width: 100%;">
+					<div class="card border shadow" style="height: 100%; width: 100%;">
 						<h5 class="card-header">AUTRE MOUVEMENT POPULAIRE</h5>
 						<div class="card-body">
 							<div class="col-sm-4 float-left">
@@ -109,40 +110,4 @@
 
 		</div>
 	</div>
-
-	<!--
-	 <div class="container col-md mx-auto mosaik p-0">
-	 <div class="row">
-
-	 <div class="col-md-7 border mb-4 border-primary">
-	 <h3 class="text-center p-4 mb-2">Mouvement plus populaire</h3>
-	 </div>
-
-	 <div class="col-md-5 pr-0  ">
-
-	 <div class= "border mosaika mb-4 p-3 border-primary">  
-	 <h5>Proposition Valeur</h5>
-	 </div>
-
-	 <div class="border mosaika p-3 mb-4 border-primary">
-	 <h5>Camembert</h5>
-	 </div>
-
-	 </div>
-
-	 </div>
-	 </div>
-
-	 <div class="container col-md m-auto mosaika p-0 justify-content-between">
-	 <div class="row">
-
-	 <div class="col-md-6 p-3 border mosaikb mb-3 border-primary">
-	 </div>
-
-	 <div class="col-md-6 p-3 border mosaikb mb-3 border-primary">
-	 </div>
-
-	 </div>
-	 </div>
-	-->
-
+</div>
