@@ -19,12 +19,12 @@
   <p><label>Email</label>
     <%= f.text_field :email, class:"form-control border" %></p>
   <p><label>Département</label>
-    <%= f.select :department, options_for_select(@departement), {}, class:"form-control col-2 border" %></p>
+    <%= f.select :department, @departement, {}, class:"form-control col-2 border" %></p>
   <br>
   <div class="form-check">
     <%= f.check_box :name_display, class:"form-check-input" %>
     <label class="form-check-label">Je souhaite que mon prénom et mon nom soient affichés sur le site</label>
   </div>
   <br>
-  <button type='submit' class='btn btn-primary'>Edit</button>
+  <button type='submit' class='btn btn-primary'>Editer le profil</button>
 <% end %>

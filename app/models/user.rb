@@ -1,37 +1,37 @@
 class User < ApplicationRecord
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :validatable
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
-  validates :username, uniqueness: {message: ": Ce nom d'utilisateur existe déjà"}
+  validates :username, uniqueness: { message: ": Ce nom d'utilisateur existe déjà" }
 
-	after_create :assign_default_username
+  after_create :assign_default_username
 
-	after_create :welcome_send
+  after_create :welcome_send
 
-	def welcome_send
-		UserMailer.welcome_email(self).deliver_now
-	end
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
 
-	def assign_default_username
-		self.username = "User#{self.id}"
-		self.save
-	end
+  def assign_default_username
+    self.username = "User#{self.id}"
+    self.save
+  end
 
-	def display
-		if self.name_display == true
-			return "#{self.first_name}  #{self.last_name}"
-		else
-			return self.username
-		end
-	end
+  def display
+    if self.name_display == true
+      return "#{self.first_name}  #{self.last_name}"
+    else
+      return self.username
+    end
+  end
 
-	# LINK TABLES
-	has_many :user_commitments, dependent: :destroy
-	has_many :commitments, through: :user_commitments
+  # LINK TABLES
+  has_many :user_commitments, dependent: :destroy
+  has_many :commitments, through: :user_commitments
 
-	@@first_user = self.first
+  @@first_user = self.first
 =begin
 	def self.count_by_day
 		today = Date.today
@@ -47,19 +47,32 @@ class User < ApplicationRecord
 		return hash 
 	end
 =end
-	def self.count_by_day
-		hash = Hash.new
-		self.all.each do |each_user|
-			date = each_user.created_at.to_date
-			if hash[date] == nil 
-				if hash[date - 1.day] == nil
-					hash[date - 1.day] = 0
-				end
-				hash[date] = hash[date - 1.day] 
-			end	
-			hash[date] += 1
-		end
-		return hash
-	end
+  def self.count_by_day
+    hash = Hash.new
+    self.all.each do |each_user|
+      date = each_user.created_at.to_date
+      if hash[date] == nil
+        if hash[date - 1.day] == nil
+          hash[date - 1.day] = 0
+        end
+        hash[date] = hash[date - 1.day]
+      end
+      hash[date] += 1
+    end
+    return hash
+  end
 
+  def dropdown_department
+    @departement = []
+    count = 0
+    95.times do
+      count += 1
+      unless count == 20
+        @departement << count.to_s
+      end
+      if count == 2
+        @departement += ["2A", "2B"]
+      end
+    end
+  end
 end
