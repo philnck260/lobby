@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   def assign_default_username
-    self.username = "User#{self.id}"
+    self.username = "Utilisateur#{self.id}"
     self.save
   end
 
