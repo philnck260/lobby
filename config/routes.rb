@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :commitments, only: [:show, :index] do
     resources :user_commitments, only: [:create, :destroy]
   end
-  root to: "commitments#index"
+  root to: "static#home"
 
   scope "admin", module: "admin", as: "admin" do
     resources :commitments
