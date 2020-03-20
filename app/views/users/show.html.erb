@@ -14,7 +14,7 @@
     <p><%= link_to "#{user_commitment.commitment.title}", commitment_path(user_commitment.commitment.id) %> : <small><%= user_commitment.commitment.description %></small></p>
   <% end %>
   <% else %>
-    <p>Vous n'avez adhérez à aucun mouvement pour le moment</p>
+    <p>Vous n'avez adhérez à aucun mouvement pour le moment  </p>
   <% end %>
 <%= link_to 'Adhérer à un mouvement', commitments_path, class: 'btn btn-primary' %>
 
