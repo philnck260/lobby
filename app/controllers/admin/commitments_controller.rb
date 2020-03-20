@@ -15,7 +15,7 @@ module Admin
 		def create
 			@commitment = Commitment.new(commitment_params)
 			if @commitment.save
-				flash[:sucess] = "Vous avez créé un mouvement"
+				flash[:success] = "Vous avez créé un mouvement"
 				redirect_to admin_commitments_path
 			else
 				flash[:error] = @commitment.errors.full_messages.to_sentence
