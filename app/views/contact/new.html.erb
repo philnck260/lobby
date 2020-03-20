@@ -1,31 +1,31 @@
 
 <div class = " card container col-md-7 mt-2 p-0 shadow">
-  <h1 class ="text-center mb-4 card-header border-0 bg-primary text-white " > Nous contacter </h1>
+	<h1 class ="text-center mb-4 card-header border-0 bg-primary text-white " > Nous contacter </h1>
 
-  <div class = "m-3">
-    <%= form_tag(contact_index_path, method: :post, class:'form') do %>
-    <div class="col text-center">
-      <% if current_user %>
-        <label for="email"> Le mail sera envoyer via cette adresse mail : </label> <br />
-        <input type="text" name="subject" id="subject" value="<%= current_user.email%>"  class="form-control text-center" disabled="disabled" >
-       <% else %>
-      <label for="email"> Votre adresse mail </label> <br />
-      <%= text_field_tag :email,'',class:"form-control text-center" %>
-        <% end %>
-    </div>
-      <div class="col text-center">
-        <label for="subject"> Sujet du mail </label> <br />
-        <%= text_field_tag :subject,'',class:"form-control" %>
-      </div>
-    <div class="col text-center">
-      <label for="content"> Texte </label> <br />
-      <%= text_area_tag :content,'',class:"form-control" %>
-    </div>
-    <br />
-    <div class="col text-center">
-      <%= submit_tag 'create', :name => 'commit',class:'btn btn-primary' %>
-    </div>
-    <% end %>
-  </div>
+	<div class = "m-3">
+		<%= form_tag(contact_index_path, method: :post, class:'form') do %>
+			<div class="col text-center">
+				<% if current_user %>
+					<label for="email">Votre adresse e-mail</label> <br />
+					<input type="text" name="subject" id="subject" value="<%= current_user.email%>"  class="form-control text-center" disabled="disabled" >
+				<% else %>
+					<label for="email">Votre adresse e-mail</label> <br />
+					<%= text_field_tag :email,'',class:"form-control text-center" %>
+				<% end %>
+			</div>
+			<div class="col text-center">
+				<label for="subject">Objet</label> <br />
+				<%= text_field_tag :subject,'',class:"form-control" %>
+			</div>
+			<div class="col text-center">
+				<label for="content">Message</label> <br />
+				<%= text_area_tag :content,'',class:"form-control" %>
+			</div>
+			<br />
+			<div class="col text-center">
+				<%= submit_tag 'Envoyer', :name => 'commit',class:'btn btn-primary' %>
+			</div>
+		<% end %>
+	</div>
 
 </div>
