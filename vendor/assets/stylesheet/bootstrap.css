@@ -2773,6 +2773,10 @@ fieldset:disabled a.btn {
   color: #343a40!important;
   background-color:#35e9c5;
   border-color:#35e9c5;
+  padding-top:5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .btn-primary:hover {
   color: #1a1a1a;
@@ -2797,6 +2801,10 @@ fieldset:disabled a.btn {
   color: #35e9c5!important;
   background-color: rgb(36, 36, 36)!important;
   border-color: rgb(36, 36, 36)!important;
+  padding-top:5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .btn-secondary:hover {
