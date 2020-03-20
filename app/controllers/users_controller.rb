@@ -10,7 +10,12 @@ class UsersController < ApplicationController
     count = 0
     95.times do 
       count += 1
-      @departement << count
+      unless count == 20
+      @departement << count.to_s
+      end
+      if count == 2 then 
+        @departement += ["2A","2B"]
+        end
     end
   end
 
