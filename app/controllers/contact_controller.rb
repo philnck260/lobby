@@ -11,7 +11,7 @@ class ContactController < ApplicationController
       if user_signed_in?
         email = current_user.email
       end
-      ContactMailer.contact_email(email,content,subject).deliver
+      ContactMailer.contact_email(email,subject,content).deliver
       flash[:success] = 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.'
       redirect_to root_path
     end

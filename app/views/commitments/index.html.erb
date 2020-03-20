@@ -17,7 +17,7 @@
       <div class="card commitement" style="min-height: 200px">
          <a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
         <div class="card-body">
-          <h5 class="card-title"> <%= each_commitment.title %> </h5>
+          <h5 class="card-title text-center"> <%= each_commitment.title %> </h5>
           <p class="card-text text-center"> <%= each_commitment.description %> </p>
           <p class="card-text text-center size:5"> Membres inscrit : <%= each_commitment.users.count %> </p>
           <p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
