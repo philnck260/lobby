@@ -110,3 +110,23 @@ main {
 .statistics {
   min-width: 425px!important;
 }
+
+
+.mosaik {
+
+  min-height: 450px!important;
+
+}
+
+.mosaika {
+  min-height: 225px!important;
+}
+
+.mosaikb {
+  min-width: 418px!important;
+  min-height: 235px!important;
+}
+
+.mosaikc {
+  min-height: 380px!important;
+}
