@@ -1,15 +1,15 @@
 <div class="container p-0">
 
 	<!-- PRESENTATION -->
-	<div class="container border border-dark bg-light p-3">
+	<div class="container border bg-light p-3">
 		<h1>
 			Bienvenue sur Le Lobby<br/>
 			<small>Le réseau des mouvements écologistes</small>
 		</h1>
 		<hr>
-		<p>
-			Le Lobby est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/>
-			<%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.
+		<p class="px-3">
+		Le Lobby est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/>
+		<%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.
 		</p>
 
 	</div>
@@ -31,13 +31,13 @@
 
 			<!-- TOP LEFT CELL -->
 			<div class="col-md-7 mt-3">
-				<a href="<%= commitment_path(Commitment.two_most_popular[0].id) %>">
+				<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
 					<div class="card border-dark" style="height: 100%; width: 100%;">
 						<h5 class="card-header">MOUVEMENT LE PLUS POPULAIRE</h5>
 						<div class="card-body">
-							<h6 class="card-title"><%= Commitment.two_most_popular[0].title  %></h6>
-							<p class="card-text"><%= Commitment.two_most_popular[0].description %></p>
-							<div class="card-content"><%= line_chart(Commitment.two_most_popular[0].users_by_day, legend: false) %></div>
+							<h6 class="card-title"><%= Commitment.by_popularity[0].title  %></h6>
+							<p class="card-text"><%= Commitment.by_popularity[0].description %></p>
+							<div class="card-content"><%= line_chart(Commitment.by_popularity[0].users_by_day, legend: false) %></div>
 						</div>
 					</div>
 				</a>
@@ -87,23 +87,24 @@
 
 			<!-- BOTTOM RIGHT CELL -->
 			<div class="col-md-7 mt-3">
-				<a href="<%= commitment_path(Commitment.two_most_popular[1].id) %>">
+				<a href="<%= commitment_path(Commitment.by_popularity[1].id) %>">
 					<div class="card border-dark" style="height: 100%; width: 100%;">
 						<h5 class="card-header">AUTRE MOUVEMENT POPULAIRE</h5>
 						<div class="card-body">
 							<div class="col-sm-4 float-left">
-							<h6 class="card-title"><%= Commitment.two_most_popular[1].title  %></h6>
-							<hr>
-							<h6 class="card-subtitle">Description :</h6>
-							<br/>
-							<p class="card-text"><%= Commitment.two_most_popular[1].description %></p>
+								<h6 class="card-title"><%= Commitment.by_popularity[1].title  %></h6>
+								<hr>
+								<h6 class="card-subtitle">Description :</h6>
+								<br/>
+								<p class="card-text"><%= Commitment.by_popularity[1].description %></p>
 							</div>
 							<div class="col-sm-7 float-right">
-								<%= pie_chart(Commitment.two_most_popular[1].users.group(:department).count) %>
-
+								<center><small>Utilisateurs par Département</small></center>
+								<%= pie_chart(Commitment.by_popularity[1].users.group(:department).count, legend: false) %>
 							</div>
 						</div>
 					</div>
+				</a>
 			</div>
 
 		</div>

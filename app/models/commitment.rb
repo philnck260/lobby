@@ -36,17 +36,9 @@ class Commitment < ApplicationRecord
 	end
 
 	# METHOD TO RETURN ARRAY OF TWO MOST POPULAR COMMITMENTS IN HOMEPAGE
-	def self.two_most_popular 
-		array = Array.new
-		first_commitment_users = 0 
-		array[0] = self.first
-		self.all.each do |each_commitment|
-			if each_commitment.users.count > first_commitment_users
-				array[1] = array[0]
-				array[0] = each_commitment
-			end
-		end
-		return array
+	def self.by_popularity 
+		to_sort_array = Commitment.all
+		to_sort_array.sort { |a, b| b.users.count <=> a.users.count }
 	end	
 
 end
