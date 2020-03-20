@@ -12,8 +12,9 @@
  *
  *= require_tree .
  *= require_self
- */
- 
+ *= require font-awesome
+*/
+
 
  body {
    background-color: rgb(247, 245, 245)!important;
@@ -107,3 +108,9 @@ main {
   min-height: 70vh;
 }
 
+/* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
+.commitement:hover {
+    background-color: gray;
+    text-decoration: none;
+
+}

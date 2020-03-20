@@ -1,31 +1,31 @@
-<h1>COMMITMENTS#INDEX</h1>
-<h3>in app/views/commitments/index.html.erb</h3>
 
-<h4>Liste de tous les Commitments</h4>
+<h2 class="text-center pb-4"> Liste des Mouvements  </h2>
 
-<div class="list-group">
+<% if @commitments.count == 0 %>
+  <div class="list-group">
+    <div class="list-group-item">
+      Il n'y a pas de Mouvement actuellement sur le Lobby...
+    </div>
+  </div>
 
-	<% if @commitments.count == 0 %>
+<% else %>
 
-		<div class="list-group-item">
-			Il n'y a pas de Commitment sur le Lobby...
-		</div>
+<div class="row">
+  <% @commitments.each do |each_commitment| %>
 
-	<% else %>
+    <div class="col-sm-6 p-2">
+      <div class="card commitement" style="min-height: 200px">
+         <a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
+        <div class="card-body">
+          <h5 class="card-title"> <%= each_commitment.title %> </h5>
+          <p class="card-text text-center"> <%= each_commitment.description %> </p>
+          <p class="card-text text-center size:5"> Membres inscrit : <%= each_commitment.users.count %> </p>
+          <p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
+        </div>
+         </a>
+      </div>
+    </div>
 
-		<% @commitments.each do |each_commitment| %>
-			<div class="list-group-item">
-				<a href="<%= commitment_path(each_commitment.id) %>">
-					<div class="row">
-						<div class="col-1">ID: <%= each_commitment.id %></div>
-						<div class="col-3"><%= each_commitment.title %></div>
-						<div class="col-6"><%= each_commitment.description %></div>
-						<div class="col-2">Users number: <%= each_commitment.users.count %></div>
-					</div>
-				</a>
-			</div>
-		<% end %>
-
-	<% end %>
-
+  <% end %>
+<% end %>
 </div>
