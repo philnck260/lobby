@@ -12,6 +12,8 @@
 		<% else %>
 			<%= link_to "Rejoindre ce mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
 		<% end %>
+		<% else %>
+		<%= link_to "Cliquer ici pour vous connectez et réjoindre le Mouvement ", user_session_path, method: 'get', class: "btn btn-block btn-primary mt-3" %>
 	<% end %>
 
 	<!-- COMMITMENT PRESENTATION GRID -->
