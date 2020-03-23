@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @reply = Reply.new
+    @replies = @post.replies
   end
 
   def create
