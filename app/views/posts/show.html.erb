@@ -1,0 +1,7 @@
+<%= @post.title %>
+<%= @post.user.username %>
+<%= @post.content %>
+<% if current_user == @post.user %>
+<%= link_to 'Supprimer', post_path(@post), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
+<%= link_to 'Editer', edit_post_path(@post) %>
+<% end %>
