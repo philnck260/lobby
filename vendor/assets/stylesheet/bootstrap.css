@@ -51,7 +51,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif!important; 
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -63,7 +63,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nurito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Open Sans", sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
@@ -86,7 +86,9 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
+
+
   letter-spacing: 2px!important;
 }
 
@@ -2730,7 +2732,9 @@ textarea.form-control {
           user-select: none;
   background-color: transparent;
   border: 0px solid transparent;
-  padding-top: 6px;
+  padding-top: 5px;
+  padding-left: 9px;
+  padding-right: 9px;
   min-width: 140px;
   height: 36px;
   font-size: 0.875rem;
@@ -2770,24 +2774,20 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #343a40!important;
-  background-color:#35e9c5;
-  border-color:#35e9c5;
-  padding-top:5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  color: #10191b!important;
+  background-color:#62c8a6;
+  border-color:#62c8a6;
 }
 .btn-primary:hover {
   color: #1a1a1a;
-  background-color: #2ec4a6;
-  border-color:#2ec4a6;
+  background-color:#62c8a6;
+  border-color:#62c8a6;
 }
 
   .btn-outline-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
-   background:#35e9c5!important;
+   background:#5cb99a!important;
    color:rgb(36, 36, 36)!important;
-   border-color:#35e9c5!important;
+   border-color:#5cb99a!important;
 
   }
 
@@ -2798,25 +2798,20 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  color: #35e9c5!important;
-  background-color: rgb(36, 36, 36)!important;
-  border-color: rgb(36, 36, 36)!important;
-  padding-top:5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  color: white;
+  background-color:#cb6b7b!important;
 }
 
 .btn-secondary:hover {
-  color: #1a1a1a;
-  background-color: #ececec;
-  border-color: #e6e5e5;
+  color: white;
+  background-color: #b65c6b!important;
+  border-color: #b65c6b!important;
 }
 
 .btn-secondary:focus, .btn-secondary.focus {
-  color: #1a1a1a;
-  background-color: #ececec;
-  border-color: #e6e5e5;
+  color: white;
+  background-color: #ce5e70;
+  border-color: #ce5e70;
   -webkit-box-shadow: 0 0 0 0.2rem rgba(221, 221, 221, 0.5);
           box-shadow: 0 0 0 0.2rem rgba(221, 221, 221, 0.5);
 }
@@ -3075,9 +3070,8 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-  border: px solid #35e9c5 !important;
-  border-color: #35e9c5;
-  color: #35e9c5!important;
+  border-color: #62c8a6;
+  color: #62c8a6!important;
 }
 
 .btn-outline-primary:hover {
@@ -3110,8 +3104,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #fff;
-  border-color: #fff;
+    border-color:#cb6b7b!important;
+    color:#cb6b7b!important;
+  }
 }
 
 .btn-outline-secondary:hover {
@@ -10570,7 +10565,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase;
+  text-transform: ;
   letter-spacing: 3px;
 }
 
