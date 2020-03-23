@@ -5,11 +5,14 @@ class Commitment < ApplicationRecord
 	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
 
 	# LINK TABLES
+	# LINK USERS
 	has_many :user_commitments, dependent: :destroy
 	has_many :users, through: :user_commitments
+	# LINK THEMES
+	has_many :commitment_themes, dependent: :destroy
+	has_many :themes, through: :commitment_themes
 
 	# METHODS
-	
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
 	def self.users_number
 		hash = Hash.new

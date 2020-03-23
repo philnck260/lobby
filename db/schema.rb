@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_081330) do
+ActiveRecord::Schema.define(version: 2020_03_23_100707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "commitment_themes", force: :cascade do |t|
+    t.bigint "commitment_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commitment_id"], name: "index_commitment_themes_on_commitment_id"
+    t.index ["theme_id"], name: "index_commitment_themes_on_theme_id"
+  end
+
   create_table "commitments", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "themes", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
@@ -29,6 +45,15 @@ ActiveRecord::Schema.define(version: 2020_03_23_081330) do
     t.datetime "updated_at", null: false
     t.index ["commitment_id"], name: "index_user_commitments_on_commitment_id"
     t.index ["user_id"], name: "index_user_commitments_on_user_id"
+  end
+
+  create_table "user_themes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "theme_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["theme_id"], name: "index_user_themes_on_theme_id"
+    t.index ["user_id"], name: "index_user_themes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
