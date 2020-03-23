@@ -47,8 +47,6 @@ class User < ApplicationRecord
 	has_many :user_themes, dependent: :destroy
 	has_many :themes, through: :user_themes
 
-  @@first_user = self.first
-  
 	def self.count_by_day
     hash = Hash.new
     self.all.each do |each_user|
