@@ -11,8 +11,9 @@
 			<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
 		<% else %>
 			<%= link_to "Suivre ce Thème", theme_user_themes_path(@theme.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
-
 		<% end %>
+		<% else %>
+		<%= link_to "Cliquez ici pour vous connectez et rejoindre ce Thème", user_session_path, method: 'get', class: "btn btn-block btn-primary mt-3" %>
 	<% end %>
 
 	<!-- THEME PRESENTATION GRID -->

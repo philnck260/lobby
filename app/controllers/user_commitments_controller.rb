@@ -2,7 +2,6 @@ class UserCommitmentsController < ApplicationController
 
 
 	def create
-		authenticate_user!
 		@user_commitment = UserCommitment.new
 		@user_commitment.commitment = Commitment.find(params[:commitment_id])
 		@user_commitment.user = current_user
