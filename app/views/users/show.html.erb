@@ -27,6 +27,12 @@
 							<td>Pseudonyme</td>
 						<% end %>
 					</tr>
+					<tr><td>Inscrit aux emails</td>
+					<% if @user.accept_mails %>
+					<td>Oui</td></tr>
+					<% else %>
+					<td>Non</td></tr>
+					<% end %>
 					<tr><td>Membre depuis</td><td><%= @user.created_at.to_date.to_s(:long) %></td></tr>
 				</tbody>
 			</table>
