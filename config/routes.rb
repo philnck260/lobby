@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   scope "admin", module: "admin", as: "admin" do
     resources :commitments
     resources :users
+		resources :themes
   end
   
 

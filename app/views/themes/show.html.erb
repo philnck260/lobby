@@ -5,7 +5,7 @@
 		<h4><%= @theme.title%></h4>
 	</div>
 
-	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
+	<!-- BUTTON TO FOLLOW A THEME OR UNFOLLOW A THEME -->
 	<% if user_signed_in? %>
 		<% if current_user.themes.include?(@theme) %>
 			<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
@@ -15,7 +15,7 @@
 		<% end %>
 	<% end %>
 
-	<!-- COMMITMENT PRESENTATION GRID -->
+	<!-- THEME PRESENTATION GRID -->
 	<div class="container mt-3 border border-primary">
 
 		<div class="row">
@@ -96,7 +96,7 @@
 		</div>
 	</div>
 
-	<!-- USERS LIST FOR THIS COMMITMENT -->
+	<!-- USERS LIST FOR THIS THEME -->
 	<div class="container mt-3 p-0 border border-primary">
 		<div class= "border text-center pt-2 pb-1">
 			<h5 class= "align-middle">
@@ -127,7 +127,7 @@
 		</table>
 	</div>
 
-	<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
+	<!-- BUTTON BACK TO THEME#INDEX.HTML.ERB -->
 	<%= link_to "Retour aux Thèmes", themes_path, class: "btn btn-block btn-warning mt-3" %>
 
 </div>
