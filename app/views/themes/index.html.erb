@@ -1,0 +1,11 @@
+<h1>VIEW THEMES#INDEX </h1>
+<h3>app/views/themes/index.html.erb</h3>
+<% if @themes.count == 0 %>
+	<h5>Il n'y a pour l'instant aucun Thème sur Le Lobby...</h5>
+<% else %>
+	<ul>
+		<% @themes.each do |each_theme| %>
+			<li><%= each_theme.title %></li>
+		<% end %>
+	</ul>
+<% end %>

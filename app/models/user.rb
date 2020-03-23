@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+	# VALIDATIONS
   validates :username, 
   uniqueness: { message: ": Ce nom d'utilisateur existe déjà" }
 
@@ -17,8 +18,8 @@ class User < ApplicationRecord
 
   has_many :posts
 
+	# CALLBACKS
   after_create :assign_default_username
-
   after_create :welcome_send
 
   def welcome_send
@@ -39,26 +40,16 @@ class User < ApplicationRecord
   end
 
   # LINK TABLES
+	#	LINK COMMITMENTS
   has_many :user_commitments, dependent: :destroy
   has_many :commitments, through: :user_commitments
+	# LINK THEMES
+	has_many :user_themes, dependent: :destroy
+	has_many :themes, through: :user_themes
 
   @@first_user = self.first
-=begin
+  
 	def self.count_by_day
-		today = Date.today
-		beginning = @@first_user.created_at.to_date
-		total = 0
-		hash = Hash.new
-		while (beginning <= today + 1.day)
-			total += self.where(created_at: beginning).count
-			beginning += 1.day
-			puts total
-			hash[beginning] = total
-		end
-		return hash 
-	end
-=end
-  def self.count_by_day
     hash = Hash.new
     self.all.each do |each_user|
       date = each_user.created_at.to_date
