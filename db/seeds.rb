@@ -8,6 +8,7 @@
 
 require 'faker'
 
+Post.destroy_all
 UserCommitment.destroy_all
 Commitment.destroy_all
 User.destroy_all
@@ -37,7 +38,15 @@ Commitment.create(id: 10, title: "J'installe des eclairages LEDs dans mon logeme
 count = 0
 20.times do
     count += 1
-    UserCommitment.create(user: User.find(rand(1..20)), commitment: Commitment.find(rand(1..10)))
+    UserCommitment.create(id: count, user: User.find(rand(1..20)), commitment: Commitment.find(rand(1..10)))
 end
+
+count = 0
+20.times do
+    count += 1
+    Post.create(id: count, user: User.find(rand(1..20)), title: Faker::Book.title, content: Faker::Quote.yoda)
+end
+
+
 
 puts 'SEEDS LOADED'

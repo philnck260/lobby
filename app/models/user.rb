@@ -16,6 +16,8 @@ class User < ApplicationRecord
   length: {minimum: 1, maximum: 50},
   allow_blank: true
 
+  has_many :posts
+
 	# CALLBACKS
   after_create :assign_default_username
   after_create :welcome_send

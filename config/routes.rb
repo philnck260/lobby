@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 	resources :themes, only: [:show, :index]
 	resources :contact, only: [:new, :create]
 
+	resources :posts 
 	# STATIC ROUTES
 	get '/home' => 'static#home'
 	get '/statistics' => 'static#statistics'
