@@ -1,0 +1,134 @@
+<div class="container col-sm-11 m-auto">
+
+	<!-- THEME TITLE -->
+	<div class="container text-center mt-3 p-2 pt-3 pb-3">
+		<h4><%= @theme.title%></h4>
+	</div>
+
+	<!-- BUTTON TO FOLLOW A THEME OR UNFOLLOW A THEME -->
+	<% if user_signed_in? %>
+		<% if current_user.themes.include?(@theme) %>
+			<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
+		<% else %>
+			<%= link_to "Suivre ce Thème", theme_user_themes_path(@theme.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
+
+		<% end %>
+	<% end %>
+
+	<!-- THEME PRESENTATION GRID -->
+	<div class="container mt-3 border border-primary">
+
+		<div class="row">
+
+			<!-- LEFT CELL -->
+			<div class="col-sm-4 p-0">
+				<div class="card" style="height: 100%;">
+					<div class="card-header">Description</div>
+					<div class="card-body">
+						<%= @theme.description %>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-8 border firstline">
+
+				<div class="row">
+
+					<!-- TOP MID CELL -->
+					<div class="col-sm-7 p-0">
+						<div class="card" style="height: 100%;">
+							<div class="card-header">Chiffres</div>
+							<div class="card-body p-0">
+								<table class="table table-sm table-striped m-0">
+									<thead>
+										<tr>
+											<th scope="col">Donnée</th>
+											<th scope="col">Valeur</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Total</td>
+											<td><%= @theme.users.count %></td>
+										</tr>
+										<% if user_signed_in? %>
+											<tr>
+												<td>Dans votre Département</td>
+												<% if current_user.department == nil %>
+													<td>Inconnu</td>
+												<% else %>
+													<td><%= @theme.users.where(department: current_user.department).count %></td>
+												<% end %>
+											</tr>
+										<% end %>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- TOP RIGHT CELL -->
+					<div class="cheese col-sm-5 border p-0" style="height: 100%">
+						<div class="card">
+							<div class="card-header">Géographiquement</div>
+							<div class="card-body">
+								<%= pie_chart(@theme.users.group(:department).count, legend: false) %>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- BOTTOM RIGHT CELL -->
+				<div class="row">
+					<div class="grafik col-sm-12 p-0">
+						<div class="card m-0">
+							<div class="card-header">Evolution du nombre d'Utilisateurs</div>
+							<div class="card-body">
+								<%= line_chart(@theme.users_by_day) %>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- USERS LIST FOR THIS THEME -->
+	<div class="container mt-3 p-0 border border-primary">
+		<div class= "border text-center pt-2 pb-1">
+			<h5 class= "align-middle">
+				Liste des Utilisateurs suivant ce Thème
+			</h5>
+		</div>
+		<table class="table table-bordered table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Utilisateur</th>
+					<th scope="col">Départment</th>
+					<th scope="col">Nombre de Mouvements</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if @theme.users.count == 0 %>
+					<tr>Il n'y a pas d'Utilisateur suivant ce Thème</tr>
+				<% else %>
+					<% @theme.users.each do |each_user| %>
+						<tr>
+							<td><%= each_user.display %></td>
+							<td><%= each_user.department %></td>
+							<td><%= each_user.commitments.count %></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- BUTTON BACK TO THEME#INDEX.HTML.ERB -->
+	<%= link_to "Retour aux Thèmes", themes_path, class: "btn btn-block btn-warning mt-3" %>
+
+</div>
+

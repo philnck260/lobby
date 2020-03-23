@@ -35,10 +35,13 @@
 			<!-- ADMIN BUTTONS -->
 			<% if isAdmin? %>
 				<li class="nav-item">
-					<%= link_to "Gestion des Mouvements", admin_commitments_path, class:'nav-link text-white' %>
+					<%= link_to "Thèmes", admin_themes_path, class:'nav-link text-white' %>
 				</li>
 				<li class="nav-item">
-					<%= link_to "Gestion des Utilisateurs", admin_users_path, class:'nav-link text-white' %>
+					<%= link_to "Mouvements", admin_commitments_path, class:'nav-link text-white' %>
+				</li>
+				<li class="nav-item">
+					<%= link_to "Utilisateurs", admin_users_path, class:'nav-link text-white' %>
 				</li>
 			<% end %>
 

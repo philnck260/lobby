@@ -7,12 +7,15 @@ Rails.application.routes.draw do
   scope "admin", module: "admin", as: "admin" do
     resources :commitments
     resources :users
+		resources :themes
   end
   
 
 	devise_for :users, controllers: { registrations: "registrations" }
 	resources :users, only: [:show, :edit, :update]
-	resources :themes, only: [:show, :index]
+	resources :themes, only: [:show, :index] do
+		resources :user_themes, only: [:create, :destroy]
+	end
 	resources :contact, only: [:new, :create]
 
 	resources :posts 
