@@ -12,15 +12,17 @@ module Admin
 			@themes = themes_titles 
 			@commitment = Commitment.new
 			@commitment.commitment_themes.build 
+=begin
 			@commitment.commitment_themes.each do |ct|
 				ct.build_theme
 			end
+=end
 		end
 
 		def create
 			@commitment = Commitment.new(commitment_params)
 			if @commitment.save
-				flash[:success] = "Vous avez créé un Mouvement"
+				flash[:success] = "Vous avez créé un Mouvement.\nVous pouvez ajouter un second Thème au Mouvement créé en l'Éditant."
 				redirect_to admin_commitments_path
 			else
 				flash[:error] = @commitment.errors.full_messages.to_sentence
@@ -29,10 +31,14 @@ module Admin
 		end
 
 		def edit
+			if @commitment.themes.count == 0 || @commitment.themes.count == 1
+				@commitment.commitment_themes.build
+			elsif @commitment.themes.count == 2
+				@checkbox = true
+			end
 		end
 
 		def update
-			commitment_params = params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id])
 			if @commitment.update(commitment_params)
 				flash[:success] = 'Vous avez bien édité ce Mouvement'
 				redirect_to admin_commitments_path
@@ -55,7 +61,7 @@ module Admin
 		end
 
 		def commitment_params
-			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:theme_id])
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy])
 		end
 
 		def is_user_admin?
