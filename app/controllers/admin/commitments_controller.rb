@@ -11,18 +11,17 @@ module Admin
 		def new
 			@themes = themes_titles 
 			@commitment = Commitment.new
-			2.times do
 				@commitment.commitment_themes.build 
 				@commitment.commitment_themes.each do |ct|
 					ct.build_theme
-				end
 
 			end
 		end
 
 		def create
-			puts "=" * 60 + "\n" + commitment_params + "\n" + "=" * 60
+			puts "=" * 60 + "\n" + commitment_params[:commitment_themes_attributes]["0"][:theme].to_s + "\n" + "=" * 60
 			@commitment = Commitment.new(commitment_params)
+			ct = CommitmentTheme.new(commitment: @commitment, theme: Theme.find(commitment_params[:commitment_themes_attributes]["0"][:theme_id]))
 			
 			if @commitment.save
 				flash[:success] = "Vous avez créé un mouvement"
@@ -59,7 +58,7 @@ module Admin
 		end
 
 		def commitment_params
-			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:theme_attributes])
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:theme_id])
 		end
 
 		def is_user_admin?

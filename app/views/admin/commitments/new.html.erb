@@ -7,10 +7,7 @@
 	<%= f.text_field :description, class:"form-control border" %></p>
 
 	<%= f.fields_for :commitment_themes do |ct_form| %>
-		<%= ct_form.fields_for :theme do |t_form| %>
-			<%= t_form.label :title, "Theme" %>
-			<%= t_form.select :title, Theme.all.collect { |t| [t.title, t.id] }, { :prompt => 'Attribuer un Thème' } %>
-		<% end %>
+			<%= ct_form.select :theme_id, Theme.all.collect { |t| [t.title, t.id] }, { :prompt => 'ATTRIUER THEME' } %>
 	<% end %>
 
 	<button type='submit' class='btn btn-primary'>Créer</button>
