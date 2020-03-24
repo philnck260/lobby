@@ -12,10 +12,10 @@ class RepliesController < ApplicationController
     @reply.post = @post
     if @reply.save
       flash[:success] = "Vous avez répondu à ce post"
-      redirect_to post_path(@post)
+      redirect_to forum_post_path(@post.forum, @post)
     else
       flash[:error] = @reply.errors.full_messages.to_sentence
-      redirect_to new_post_reply_path(@post)
+      redirect_to new_forum_post_reply_path(@post.forum, @post)
     end
   end
 
@@ -28,17 +28,17 @@ class RepliesController < ApplicationController
   def update
     if @reply.update(reply_params)
       flash[:success] = "Vous avez édité votre commentaire avec succès"
-      redirect_to post_path(@post)
+      redirect_to forum_post_path(@post.forum, @post)
     else
       flash[:error] = @reply.errors.full_messages.to_sentence
-      redirect_to edit_post_reply_path(@post, @reply)
+      redirect_to edit_forum_post_reply_path(@post.forum, @post, @reply)
     end
   end
 
   def destroy
     @reply.destroy
     flash[:success] = "Vous avez détruit votre commentaire avec succès"
-    redirect_to post_path(@post)
+    redirect_to forum_post_path(@post.forum, @post)
   end
 
   private

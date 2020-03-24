@@ -1,0 +1,7 @@
+<% if @forum.posts.size > 1 %>
+<% @forum.posts.each do |post| %>
+<%= link_to post.title, forum_post_path(@forum, post) %>
+<%  end %>
+<% else %>
+<p> Il n'y a pas de post dans ce forum </p>
+<% end %>

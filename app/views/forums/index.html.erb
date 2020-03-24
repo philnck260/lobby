@@ -1,0 +1,7 @@
+<% @forums.each do |forum| %>
+<% if forum.commitment %>
+<%= link_to forum.commitment.title, forum_path(forum) %>
+<% else %>
+<%= link_to 'Forum Général', forum_path(forum) %>
+<% end %>
+<% end %>
