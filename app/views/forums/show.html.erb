@@ -3,13 +3,13 @@
 <% end %>
 <% if current_user == nil %>
   <p>Pour créer un post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
- <% elsif current_user.commitments.include?(@forum.commitment) == false %>
+ <% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
  <p>Si vous souhaitez créer un post sur ce forum, il faut <%= link_to 'adhérer au forum.', commitment_path(@forum.commitment) %>
  <% else %>
  <%= link_to 'Créer un post', new_forum_post_path(@forum) %>
  <% end %>
 
-<% if @forum.posts.size > 1 %>
+<% if @forum.posts.size >= 1 %>
 <% @forum.posts.each do |post| %>
 <%= link_to post.title, forum_post_path(@forum, post) %>
 <%  end %>

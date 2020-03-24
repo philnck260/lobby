@@ -61,13 +61,15 @@ end
 count = 0
 20.times do
     count += 1
-    Post.create(id: count, forum: Forum.find(rand(1..10)), user: User.find(rand(1..20)), title: Faker::Book.title, content: Faker::Quote.yoda)
+    @user = (UserCommitment.all[count-1]).user
+    Post.create(id: count, forum: Forum.find(@user.commitments[0].id), user: @user, title: Faker::Book.title, content: Faker::Quote.yoda)
 end
 
 count = 0
 20.times do
     count += 1
-    Reply.create(id: count, user: User.find(rand(1..20)), content: Faker::Quote.famous_last_words, post: Post.find(rand(1..20)))
+    @user = (UserCommitment.all[count-1]).user
+    Reply.create(id: count, user: @user, content: Faker::Quote.famous_last_words, post: Post.where(user: @user)[0])
 end
 
 
