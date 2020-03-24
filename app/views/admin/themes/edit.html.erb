@@ -1,0 +1,9 @@
+<h1>Editer le Thème</h1>
+
+<%= form_with(model: @theme, url:  admin_theme_path, method: "patch") do |f| %>
+  <p><label>Titre</label>
+  <%= f.text_field :title, class:"form-control border" %></p>
+  <p><label>Description</label>
+  <%= f.text_field :description, class:"form-control border" %></p>
+  <button type='submit' class='btn btn-primary'>Editer</button>
+<% end %>

@@ -1,32 +1,32 @@
 <div class="container col-sm-11 m-auto">
 
-	<!-- COMMITMENT TITLE -->
+	<!-- THEME TITLE -->
 	<div class="container text-center mt-3 p-2 pt-3 pb-3">
-		<h4><%= @commitment.title%></h4>
+		<h4><%= @theme.title%></h4>
 	</div>
 
-	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
+	<!-- BUTTON TO FOLLOW A THEME OR UNFOLLOW A THEME -->
 	<% if user_signed_in? %>
-		<% if current_user.commitments.include?(@commitment) %>
-			<%= link_to "Quitter ce mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
+		<% if current_user.themes.include?(@theme) %>
+			<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
 		<% else %>
-			<%= link_to "Rejoindre ce mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
+			<%= link_to "Suivre ce Thème", theme_user_themes_path(@theme.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
 		<% end %>
 		<% else %>
-		<%= link_to "Cliquer ici pour vous connectez et rejoindre le Mouvement ", user_session_path, method: 'get', class: "btn btn-block btn-primary mt-3" %>
+		<%= link_to "Cliquez ici pour vous connectez et rejoindre ce Thème", user_session_path, method: 'get', class: "btn btn-block btn-primary mt-3" %>
 	<% end %>
 
-	<!-- COMMITMENT PRESENTATION GRID -->
+	<!-- THEME PRESENTATION GRID -->
 	<div class="container mt-3 border border-primary">
 
 		<div class="row">
 
 			<!-- LEFT CELL -->
 			<div class="col-sm-4 p-0">
-				<div class="card" style="height: 100%;">	
+				<div class="card" style="height: 100%;">
 					<div class="card-header">Description</div>
 					<div class="card-body">
-						<%= @commitment.description %>
+						<%= @theme.description %>
 					</div>
 				</div>
 			</div>
@@ -37,20 +37,20 @@
 
 					<!-- TOP MID CELL -->
 					<div class="col-sm-7 p-0">
-						<div class="card" style="height: 100%;">	
+						<div class="card" style="height: 100%;">
 							<div class="card-header">Chiffres</div>
 							<div class="card-body p-0">
 								<table class="table table-sm table-striped m-0">
 									<thead>
 										<tr>
-											<th scope="col">Donnée</th>	
+											<th scope="col">Donnée</th>
 											<th scope="col">Valeur</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>Total</td>
-											<td><%= @commitment.users.count %></td>
+											<td><%= @theme.users.count %></td>
 										</tr>
 										<% if user_signed_in? %>
 											<tr>
@@ -58,7 +58,7 @@
 												<% if current_user.department == nil %>
 													<td>Inconnu</td>
 												<% else %>
-													<td><%= User.where(department: current_user.department).count %></td>
+													<td><%= @theme.users.where(department: current_user.department).count %></td>
 												<% end %>
 											</tr>
 										<% end %>
@@ -74,7 +74,7 @@
 						<div class="card">
 							<div class="card-header">Géographiquement</div>
 							<div class="card-body">
-								<%= pie_chart(@commitment.users.group(:department).count, legend: false) %>
+								<%= pie_chart(@theme.users.group(:department).count, legend: false) %>
 							</div>
 						</div>
 					</div>
@@ -87,7 +87,7 @@
 						<div class="card m-0">
 							<div class="card-header">Evolution du nombre d'Utilisateurs</div>
 							<div class="card-body">
-								<%= line_chart(@commitment.users_by_day) %>
+								<%= line_chart(@theme.users_by_day) %>
 							</div>
 						</div>
 					</div>
@@ -97,26 +97,26 @@
 		</div>
 	</div>
 
-	<!-- USERS LIST FOR THIS COMMITMENT -->
+	<!-- USERS LIST FOR THIS THEME -->
 	<div class="container mt-3 p-0 border border-primary">
 		<div class= "border text-center pt-2 pb-1">
 			<h5 class= "align-middle">
-				Liste des Users ayant souscrit a ce Commitment
+				Liste des Utilisateurs suivant ce Thème
 			</h5>
 		</div>
 		<table class="table table-bordered table-sm">
 			<thead>
 				<tr>
-					<th scope="col"> Utilisateur </th>
+					<th scope="col">Utilisateur</th>
 					<th scope="col">Départment</th>
-					<th scope="col">Nombre de Commitments</th>
+					<th scope="col">Nombre de Mouvements</th>
 				</tr>
 			</thead>
 			<tbody>
-				<% if @commitment.users.count == 0 %>
-					<tr>Il n'y a pas d'User ayant pris ce Commitment</tr>
+				<% if @theme.users.count == 0 %>
+					<tr>Il n'y a pas d'Utilisateur suivant ce Thème</tr>
 				<% else %>
-					<% @commitment.users.each do |each_user| %>
+					<% @theme.users.each do |each_user| %>
 						<tr>
 							<td><%= each_user.display %></td>
 							<td><%= each_user.department %></td>
@@ -128,7 +128,8 @@
 		</table>
 	</div>
 
-	<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
-	<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning mt-3" %>
+	<!-- BUTTON BACK TO THEME#INDEX.HTML.ERB -->
+	<%= link_to "Retour aux Thèmes", themes_path, class: "btn btn-block btn-warning mt-3" %>
 
 </div>
+

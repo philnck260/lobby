@@ -1,5 +1,6 @@
 class UserCommitmentsController < ApplicationController
-	
+
+
 	def create
 		@user_commitment = UserCommitment.new
 		@user_commitment.commitment = Commitment.find(params[:commitment_id])
