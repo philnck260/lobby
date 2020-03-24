@@ -11,6 +11,8 @@ class Commitment < ApplicationRecord
 	# LINK THEMES
 	has_many :commitment_themes, dependent: :destroy
 	has_many :themes, through: :commitment_themes
+#	accepts_nested_attributes_for :themes
+	accepts_nested_attributes_for :commitment_themes
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW

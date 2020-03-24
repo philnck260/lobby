@@ -9,11 +9,21 @@ module Admin
 		end
 
 		def new
+			@themes = themes_titles 
 			@commitment = Commitment.new
+			2.times do
+				@commitment.commitment_themes.build 
+				@commitment.commitment_themes.each do |ct|
+					ct.build_theme
+				end
+
+			end
 		end
 
 		def create
+			puts "=" * 60 + "\n" + commitment_params + "\n" + "=" * 60
 			@commitment = Commitment.new(commitment_params)
+			
 			if @commitment.save
 				flash[:success] = "Vous avez créé un mouvement"
 				redirect_to admin_commitments_path
@@ -49,7 +59,7 @@ module Admin
 		end
 
 		def commitment_params
-			params.require(:commitment).permit(:title, :description)
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:theme_attributes])
 		end
 
 		def is_user_admin?
@@ -57,6 +67,14 @@ module Admin
 				flash[:warning] = "Vous n'êtes pas Administrateur."
 				redirect_to root_path
 			end
+		end
+
+		def themes_titles
+			titles_array = Array.new
+			Theme.all.each do |each_theme|
+				titles_array << each_theme.title
+			end	
+			return titles_array
 		end
 
 	end
