@@ -32,6 +32,7 @@ module Admin
 		end
 
 		def update
+			commitment_params = params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id])
 			if @commitment.update(commitment_params)
 				flash[:success] = 'Vous avez bien édité ce Mouvement'
 				redirect_to admin_commitments_path
