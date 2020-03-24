@@ -10547,7 +10547,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .btn-outline-secondary:not([disabled]):not(.disabled):hover, .btn-outline-secondary:not([disabled]):not(.disabled):focus, .btn-outline-secondary:not([disabled]):not(.disabled):active {
   background-color: #cf445b!important;
-  border-color: ##cf445b!important;
+  border-color: #cf445b!important;
   color: white!important;
 }
 
