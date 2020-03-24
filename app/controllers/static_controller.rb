@@ -16,8 +16,4 @@ class StaticController < ApplicationController
     render params[:page]
   end
 
-  def soutenez_nous
-    render params[:page]
-  end
-
 end

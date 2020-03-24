@@ -30,5 +30,7 @@ Rails.application.routes.draw do
   get "/faq" => "static#faq"
   get "/soutenez-nous" => "static#soutenez_nous"
 
+  resources :charges, path: 'soutenez_nous', only: [:show, :new, :create]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
