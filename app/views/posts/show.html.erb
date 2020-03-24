@@ -7,12 +7,14 @@
 <% end %>
 <% unless current_user %>
   <p>Pour répondre à ce post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
+  <% else %>
+   <%= link_to 'Répondre', new_post_reply_path(@post) %>
 <% end %>
 <% if @replies.size > 1 %>
   <% @replies.each do |reply| %>
     <% @user = reply.user %>
     <% unless reply.id.class == NilClass %>
-      <p><%= @user.username  %> on <%= reply.created_at.to_s[0..9]%>  :
+      <p><%= @user.username  %> le <%= reply.created_at.to_s[0..9]%>  :
         <%= reply.content %> </p>
       <% if @user == current_user %>
         <%= link_to 'Détruire la réponse', post_reply_path(@post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %></p>
