@@ -53,6 +53,8 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to forums_path
   end
 
   def post_params
