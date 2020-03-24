@@ -3,6 +3,7 @@ class Commitment < ApplicationRecord
 	# VALIDATIONS
 	validates :title, presence: {message: ": Le titre est obligatoire"}, length: {minimum: 10, message: ": Le titre doit avoir 10 caractères minimum"}
 	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
+	validates :commitment_themes, presence: true
 
 	# LINK TABLES
 	# LINK USERS
@@ -12,7 +13,7 @@ class Commitment < ApplicationRecord
 	has_many :commitment_themes, dependent: :destroy
 	has_many :themes, through: :commitment_themes
 #	accepts_nested_attributes_for :themes
-	accepts_nested_attributes_for :commitment_themes
+	accepts_nested_attributes_for :commitment_themes, allow_destroy: true, reject_if: proc { |attr| attr[:theme_id].blank? }
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
@@ -34,7 +35,7 @@ class Commitment < ApplicationRecord
 					hash[date - 1.day] = 0
 				end
 				hash[date] = hash[date - 1.day]
-			end
+				end
 			hash[date] += 1
 		end
 		return hash

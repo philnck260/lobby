@@ -8,8 +8,8 @@
 		<%= f.text_field :description, class:"form-control border" %></p>
 
 		<%= f.fields_for :commitment_themes do |ct_form| %>
-			<%= ct_form.label "Thème" %>
-			<%= ct_form.select :theme_id, Theme.all.collect { |t| [t.title, t.id] }, { :prompt => 'Attribuer un Thème' }, class: "form-control border" %>
+			<%= ct_form.label "Thème principal" %>
+			<%= ct_form.select :theme_id, Theme.all.collect { |t| [t.title, t.id] }, { :prompt => '1 Thème minimum' }, class: "form-control border" %>
 		<% end %>
 	</fieldset>
 	<button type='submit' class='btn btn-primary'>Créer</button>
