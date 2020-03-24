@@ -3106,7 +3106,6 @@ fieldset:disabled a.btn {
 .btn-outline-secondary {
     border-color:#cb6b7b!important;
     color:#cb6b7b!important;
-  }
 }
 
 .btn-outline-secondary:hover {
@@ -10299,7 +10298,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #1a1a1a !important;
+  color: #62c8a6!important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10565,7 +10564,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  text-transform: ;
   letter-spacing: 3px;
 }
 
