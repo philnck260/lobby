@@ -15,7 +15,8 @@
       <p><%= @user.username  %> on <%= reply.created_at.to_s[0..9]%>  :
         <%= reply.content %> </p>
       <% if @user == current_user %>
-        <%= link_to 'Détruire le commentaire', post_reply_path(@post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %></p>
+        <%= link_to 'Détruire la réponse', post_reply_path(@post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %></p>
+        <%= link_to 'Editer la réponse', edit_post_reply_path(@post, reply) %></p>
     <% end %>
   </p>
   <% end %>

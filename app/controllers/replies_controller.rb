@@ -1,5 +1,5 @@
 class RepliesController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update, :destroy]
+  before_action :set_post, only: [:create, :update]
   before_action :set_reply, only: [:edit, :update, :destroy]
 
   def new
@@ -9,7 +9,7 @@ class RepliesController < ApplicationController
   def create
     @reply = Reply.new(post: @post, user: current_user, content: params[:content])
     if @reply.save
-      flash[:succes] = 'Vous avez répondu à ce post'
+      flash[:succes] = "Vous avez répondu à ce post"
       redirect_to post_path(@post)
     else
       flash[:error] = @reply.errors.full_messages.to_sentence
@@ -18,6 +18,9 @@ class RepliesController < ApplicationController
   end
 
   def edit
+    unless authenticate_user! && current_user == @reply.user
+      redirect_to root_path
+    end
   end
 
   def update
@@ -36,7 +39,7 @@ class RepliesController < ApplicationController
     redirect_to post_path(@post)
   end
 
-  private 
+  private
 
   def set_post
     @post = Post.find(params[:post_id])
