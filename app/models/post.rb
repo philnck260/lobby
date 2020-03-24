@@ -10,6 +10,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :replies
+  belongs_to :forum 
   
 end
 

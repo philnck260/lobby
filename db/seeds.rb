@@ -10,6 +10,7 @@ require 'faker'
 
 Reply.destroy_all
 Post.destroy_all
+Forum.destroy_all
 UserCommitment.destroy_all
 Commitment.destroy_all
 User.destroy_all
@@ -55,7 +56,7 @@ end
 count = 0
 20.times do
     count += 1
-    Post.create(id: count, user: User.find(rand(1..20)), title: Faker::Book.title, content: Faker::Quote.yoda)
+    Post.create(id: count, forum: Forum.find(rand(1..10)), user: User.find(rand(1..20)), title: Faker::Book.title, content: Faker::Quote.yoda)
 end
 
 count = 0
@@ -63,6 +64,7 @@ count = 0
     count += 1
     Reply.create(id: count, user: User.find(rand(1..20)), content: Faker::Quote.famous_last_words, post: Post.find(rand(1..20)))
 end
+
 
 
 

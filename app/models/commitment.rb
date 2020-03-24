@@ -1,5 +1,8 @@
 class Commitment < ApplicationRecord
 
+	after_create :create_forum
+
+	
 	# VALIDATIONS
 	validates :title, presence: {message: ": Le titre est obligatoire"}, length: {minimum: 10, message: ": Le titre doit avoir 10 caractères minimum"}
 	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
@@ -11,7 +14,7 @@ class Commitment < ApplicationRecord
 	# LINK THEMES
 	has_many :commitment_themes, dependent: :destroy
 	has_many :themes, through: :commitment_themes
-
+	has_one :forum, dependent: :destroy
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
 	def self.users_number
@@ -43,5 +46,10 @@ class Commitment < ApplicationRecord
 		to_sort_array = Commitment.all
 		to_sort_array.sort { |a, b| b.users.count <=> a.users.count }
 	end	
+
+	# METHOD TO CREATE A FORUM AFTER A CREATION OF COMMITMENT
+	def create_forum
+    @forum = Forum.create(id: self.id, commitment: self)
+  end
 
 end
