@@ -1,4 +1,5 @@
-<%= form_for @post, method: :post do |f| %>
+<%= form_for @post, :url => {:controller => "posts", :action => "create"} do |f| %>
 <%= render 'form', f: f %>
 <button type='submit' class='btn btn-primary'>Créer un post</button>
 <% end %>
+

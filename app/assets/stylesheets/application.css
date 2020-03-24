@@ -146,11 +146,3 @@ html {
     text-decoration: none;
 
 }
-
-
-.fit-picture {
-
-  max-width: 250px;
-  max-height: 250px;
-  background-color: whitesmoke;
-}

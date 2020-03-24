@@ -3109,7 +3109,7 @@ fieldset:disabled a.btn {
     border-color:#cf445b!important;
     color:#cf445b!important;
   }
-}
+
 
 .btn-outline-secondary:hover {
   color: #fcf8f8;
@@ -10570,7 +10570,6 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  text-transform: ;
   letter-spacing: 3px;
 }
 

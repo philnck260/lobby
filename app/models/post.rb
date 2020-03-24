@@ -6,10 +6,11 @@ class Post < ApplicationRecord
 
   validates :content,
   presence: {message: ': Un contenu de post est requis'},
-  length: {minimum: 5, maximum: 500}
+  length: {minimum: 5, maximum: 500,  message: ': Le titre doit contenir un minimum de 5 et un maximum de 500 caractères'}
 
   belongs_to :user
   has_many :replies
+  belongs_to :forum 
   
 end
 

@@ -10,6 +10,7 @@ require 'faker'
 
 Reply.destroy_all
 Post.destroy_all
+Forum.destroy_all
 UserCommitment.destroy_all
 Commitment.destroy_all
 User.destroy_all
@@ -22,19 +23,23 @@ count = 0
     last_name = Faker::Name.last_name
     User.create(id: count, email: "#{(first_name + '.' + last_name).downcase}@yopmail.com", password: "nonono", first_name: first_name, last_name: last_name, department: (rand(1..95)).to_s, name_display: [true, false].sample)
 end
+#ADMIN USER
 User.create(id: 21, role: 'admin', email: "adminlobby@yopmail.com", password: "nonono", first_name: 'Amine', last_name: 'Admin', department: (rand(1..95)).to_s, name_display: [true, false].sample)
 
+#GENERAL FORUM
+Forum.create(id: 1)
+
 # COMMITMENTS SEED
-Commitment.create(id: 1, title: "Je ne mange plus ni viande ni poisson", description: "Economie moyenne de 1,12 tCO2/an/pers")
-Commitment.create(id: 2, title: "Je fais tous mes trajets urbains courts a velo", description: "Economie moyenne de 0.32 tCO2/an/pers")
-Commitment.create(id: 3, title: "Je fais du covoiturage pour tous mes trajets moyens-longs", description: "Economie moyenne de 0.27 tCO2/an/pers")
-Commitment.create(id: 4, title: "Je ne prends plus l'avion", description: "Economie moyenne de 0.22 tCO2/an/pers")
-Commitment.create(id: 5, title: "Je n'achete plus de vetements neufs", description: "Economie moyenne de 0.17 tCO2/an/pers")
-Commitment.create(id: 6, title: "Je ne mange que local", description: "Economie moyenne de 0.17 tCO2/an/pers")
-Commitment.create(id: 7, title: "Je n'achete plus d'electromenager neuf", description: "Economie moyenne de 0.16 tCO2/an/pers")
-Commitment.create(id: 8, title: "Je n'achete plus de hi-tech neuf", description: "Economie moyenne de 0.16 tCO2/an/pers")
-Commitment.create(id: 9, title: "Je ne fais plus de dechet et suis equipe d'une gourde", description: "Economie moyenne de 0.09 tCO2/an/pers")
-Commitment.create(id: 10, title: "J'installe des eclairages LEDs dans mon logement", description: "Economie moyenne de 0.02 tCO2/an/pers")
+Commitment.create(id: 2, title: "Je ne mange plus ni viande ni poisson", description: "Economie moyenne de 1,12 tCO2/an/pers")
+Commitment.create(id: 3, title: "Je fais tous mes trajets urbains courts a velo", description: "Economie moyenne de 0.32 tCO2/an/pers")
+Commitment.create(id: 4, title: "Je fais du covoiturage pour tous mes trajets moyens-longs", description: "Economie moyenne de 0.27 tCO2/an/pers")
+Commitment.create(id: 5, title: "Je ne prends plus l'avion", description: "Economie moyenne de 0.22 tCO2/an/pers")
+Commitment.create(id: 6, title: "Je n'achete plus de vetements neufs", description: "Economie moyenne de 0.17 tCO2/an/pers")
+Commitment.create(id: 7, title: "Je ne mange que local", description: "Economie moyenne de 0.17 tCO2/an/pers")
+Commitment.create(id: 8, title: "Je n'achete plus d'electromenager neuf", description: "Economie moyenne de 0.16 tCO2/an/pers")
+Commitment.create(id: 9, title: "Je n'achete plus de hi-tech neuf", description: "Economie moyenne de 0.16 tCO2/an/pers")
+Commitment.create(id: 10, title: "Je ne fais plus de dechet et suis equipe d'une gourde", description: "Economie moyenne de 0.09 tCO2/an/pers")
+Commitment.create(id: 11, title: "J'installe des eclairages LEDs dans mon logement", description: "Economie moyenne de 0.02 tCO2/an/pers")
 
 # THEMES SEED
 count = 0
@@ -49,20 +54,24 @@ Theme.create(title: "Hygiène", description: "Ce Thème traite des problématiqu
 count = 0
 20.times do
     count += 1
-    UserCommitment.create(id: count, user: User.find(rand(1..20)), commitment: Commitment.find(rand(1..10)))
+    UserCommitment.create(id: count, user: User.find(rand(1..20)), commitment: Commitment.find(rand(2..11)))
+end
+
+
+count = 0
+20.times do
+    count += 1
+    @user = (UserCommitment.all[count-1]).user
+    Post.create(id: count, forum: Forum.find(@user.commitments[0].id), user: @user, title: Faker::Book.title, content: Faker::Quote.yoda)
 end
 
 count = 0
 20.times do
     count += 1
-    Post.create(id: count, user: User.find(rand(1..20)), title: Faker::Book.title, content: Faker::Quote.yoda)
+    @user = (UserCommitment.all[count-1]).user
+    Reply.create(id: count, user: @user, content: Faker::Quote.famous_last_words, post: Post.where(user: @user)[0])
 end
 
-count = 0
-20.times do
-    count += 1
-    Reply.create(id: count, user: User.find(rand(1..20)), content: Faker::Quote.famous_last_words, post: Post.find(rand(1..20)))
-end
 
 
 
