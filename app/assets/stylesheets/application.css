@@ -142,7 +142,15 @@ html {
 
 /* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
 .commitement:hover {
-    background-color:#62c8a694;;
+    background-color:#62c8a694;
     text-decoration: none;
 
+}
+
+
+.fit-picture {
+
+  max-width: 250px;
+  max-height: 250px;
+  background-color: whitesmoke;
 }
