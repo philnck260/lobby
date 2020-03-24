@@ -1,10 +1,17 @@
 <h1>Créer un mouvement</h1>
 
 <%= form_with(model: @commitment, url:  admin_commitments_path, method: "post") do |f| %>
-<p><label>Titre</label>
-<%= f.text_field :title, class:"form-control border" %></p>
-<p><label>Description</label>
-<%= f.text_field :description, class:"form-control border" %></p>
+	<fieldset class="form-group">
+		<p><label>Titre</label>
+		<%= f.text_field :title, class:"form-control border" %></p>
+		<p><label>Description</label>
+		<%= f.text_field :description, class:"form-control border" %></p>
 
-<button type='submit' class='btn btn-primary'>Créer</button>
+		<%= f.fields_for :commitment_themes do |ct_form| %>
+			<%= ct_form.label "Thème" %>
+			<%= ct_form.select :theme_id, Theme.all.collect { |t| [t.title, t.id] }, { :prompt => 'Attribuer un Thème' }, class: "form-control border" %>
+		<% end %>
+	</fieldset>
+	<button type='submit' class='btn btn-primary'>Créer</button>
+
 <% end %>
