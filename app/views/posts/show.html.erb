@@ -5,12 +5,14 @@
   <%= link_to 'Supprimer', forum_post_path(@post.forum, @post), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
   <%= link_to 'Editer', edit_forum_post_path(@post.forum, @post) %>
 <% end %>
-<% unless current_user %>
+<% if current_user == nil %>
   <p>Pour répondre à ce post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
+<% elsif current_user.commitments.include?(@post.forum.commitment) == false %>
+  <p>Pour répondre à ce post, vous devez <%= link_to 'adhérer au mouvement', commitment_path(@post.forum.commitment) %>
   <% else %>
-   <%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post) %>
-<% end %>
-<% if @replies.size > 1 %>
+    <%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post) %>
+  <% end %>
+<% if @replies.size >= 1 %>
   <% @replies.each do |reply| %>
     <% @user = reply.user %>
     <% unless reply.id.class == NilClass %>
@@ -18,9 +20,9 @@
         <%= reply.content %> </p>
       <% if @user == current_user %>
         <%= link_to 'Détruire la réponse', forum_post_reply_path(@post.forum, @post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %></p>
-        <%= link_to 'Editer la réponse', edit_forum_post_reply_path(@post.forum, @post, reply) %></p>
-    <% end %>
-  </p>
+      <%= link_to 'Editer la réponse', edit_forum_post_reply_path(@post.forum, @post, reply) %></p>
   <% end %>
+</p>
+<% end %>
 <% end %>
 <% end %>

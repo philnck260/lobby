@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_forum, only: [:create, :edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -17,9 +18,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.forum = @forum 
     if @post.save
       flash[:success] = "Vous avez créé un nouveau post !"
-      redirect_to forum_posts_path
+      redirect_to forum_path(@forum)
     else
       puts @post.errors.messages
       flash[:error] = @post.errors.full_messages.to_sentence
@@ -43,7 +45,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = "Vous avez détruit votre post avec succès"
-    redirect_to forum_posts_path
+    redirect_to forum_path(@forum)
   end
 
 
@@ -55,6 +57,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def set_forum
+    @forum = Forum.find(params[:forum_id])
   end
   
 end
