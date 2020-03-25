@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_085957) do
+ActiveRecord::Schema.define(version: 2020_03_25_084954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(version: 2020_03_24_085957) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string "url"
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.string "media"
+    t.string "sourceable_type"
+    t.bigint "sourceable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sourceable_type", "sourceable_id"], name: "index_sources_on_sourceable_type_and_sourceable_id"
   end
 
   create_table "themes", force: :cascade do |t|
