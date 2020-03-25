@@ -32,10 +32,14 @@ module Admin
 		end
 
 		def edit
+			# BUILD NEW COMMITMENT_THEME FORM, if count == 0 or == 1
 			if @commitment.themes.count == 0 || @commitment.themes.count == 1
 				@commitment.commitment_themes.build
-			elsif @commitment.themes.count == 2
-				@checkbox = true
+			end
+			# BUILD NEW SOURCE FORM, if count == 2 or == 1
+			if @commitment.sources.count == 1 || @commitment.sources.count == 2
+				@add_msg = "Ajouter une Source"
+				@commitment.sources.build
 			end
 		end
 
