@@ -1,12 +1,12 @@
-<h1>Tous les mouvements</h1>
-<%= link_to 'Créer un mouvement', new_admin_commitment_path, class: 'btn btn-success' %>
+<h1>Tous les Mouvements</h1>
+<%= link_to 'Créer un Mouvement', new_admin_commitment_path, class: 'btn btn-lg btn-success' %>
 <div class="list-group">
   <% if @commitments.count == 0 %>
     <div class="list-group-item">
       Il n'y a pas de Commitment sur le Lobby...
     </div>
   <% else %>
-    <div class="table-responsive">
+    <div class="table-responsive border">
       <table class="table table-striped">
         <thead>
           <tr>
