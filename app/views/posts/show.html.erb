@@ -1,13 +1,15 @@
 <%= @post.title %>
 <%= @post.user.username %>
 <%= @post.content %>
-<% if current_user == @post.user %>
-  <%= link_to 'Supprimer', forum_post_path(@post.forum, @post), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
-  <%= link_to 'Editer', edit_forum_post_path(@post.forum, @post) %>
-<% end %>
 <% if current_user == nil %>
   <p>Pour répondre à ce post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
 <% else %>
+  <% if current_user == @post.user || current_user.role == "moderator" %>
+    <%= link_to 'Supprimer', forum_post_path(@post.forum, @post), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
+  <% end %>
+  <% if  current_user == @post.user %>
+    <%= link_to 'Editer', edit_forum_post_path(@post.forum, @post) %>
+  <% end %>
   <% if (@post.forum.commitment != nil ) && (current_user.commitments.include?(@post.forum.commitment) == false) %>
     <p>Pour répondre à ce post, vous devez <%= link_to 'adhérer au mouvement', commitment_path(@post.forum.commitment) %>
     <% else %>
@@ -21,9 +23,13 @@
         <p><%= @user.username  %> le <%= reply.created_at.to_s[0..9]%>  :
           <%= reply.content %>
         <% end %>
-        <% if @user == current_user %>
-          <%= link_to 'Détruire la réponse', forum_post_reply_path(@post.forum, @post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %>
-          <%= link_to 'Editer la réponse', edit_forum_post_reply_path(@post.forum, @post, reply) %></p>
+        <% unless current_user == nil %>
+          <% if @user == current_user || current_user.role == "moderator" %>
+            <%= link_to 'Détruire la réponse', forum_post_reply_path(@post.forum, @post, reply), method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %>
+          <% end %>
+          <% if @user == current_user %>
+            <%= link_to 'Editer la réponse', edit_forum_post_reply_path(@post.forum, @post, reply) %></p>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
