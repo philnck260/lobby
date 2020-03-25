@@ -1,114 +1,38 @@
-<div class="container p-0">
+
+	<div class="jumbotron d-flex align-items-center justify-content-center">
+		
+				<%= link_to "Tous les Mouvements", commitments_path, class: 'btnjumb btn btn-primary mr-3 mb-3' %>
+				<%= link_to "Toutes nos Statistiques", statistics_path, class: 'btnjumb btn btn-primary mb-3' %>
+			
+	</div>
+
 
 	<!-- PRESENTATION -->
-	<div class="container border bg-light p-3 shadow">
-		<p class="float-right"><%= fa_icon "leaf 2x" %></p>
-		<h1 class="px-2">
-			Bienvenue sur Le Lobby<br/>
-			<small>Le réseau des mouvements écologistes</small>
-		</h1>
-		<hr>
-		<p class="px-4">
-		Le Lobby est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/>
-		</p>
-		<p class="px-4">
-		<%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.
-		</p>
+	<div class="container text-center mt-5 mb-5" id="presentation">
+	
+
+		<p><a href="<%= about_path %>">Le Lobby</a> est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/></p>
+		<p>Il se donne pour objectif la création d’une plateforme web centralisant l’information, l’action, ainsi que la volonté d’engagement –  <strong>les Mouvements</strong> - de ces acteurs.</p>	
+		<p><%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.</p>
+		<p>Vous avez une suggestion ? Vous souhaitez devenir partenaire ?</p>
+		<p><%= link_to "Contactez-nous", new_contact_path, class: "font-weight-bold" %>, votre message sera reçu par nos administrateurs en charge du site.</p>
+	
+
 	</div>
 
-	<!-- BUTTONS COMMITMENTS AND STATS -->
-	<div class="container p-0">
-		<div class="row">    
-			<div class="col-md-6 mt-3">
-				<%= link_to "Tous les Mouvements", commitments_path, class: "btn btn-outline-secondary" %>
-			</div>
-			<div class="col-md-6 mt-3">
-				<%= link_to "Toutes nos Statistiques", statistics_path, class: "btn btn-secondary" %>
-			</div>
-		</div>
-	</div>
+<h3 class= "text-center mb-5">Mouvement le plus populaire</h3>
 
-	<div class="container-md p-0">
-		<div class="row">
+<div class="container">
 
-			<!-- TOP LEFT CELL -->
-			<div class="col-md-7 mt-3">
-				<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
-					<div class="card border shadow" style="height: 100%; width: 100%;">
-						<h5 class="card-header">MOUVEMENT LE PLUS POPULAIRE</h5>
-						<div class="card-body">
-							<h6 class="card-title"><%= Commitment.by_popularity[0].title  %></h6>
-							<p class="card-text"><%= Commitment.by_popularity[0].description %></p>
-							<div class="card-content"><%= line_chart(Commitment.by_popularity[0].users_by_day, legend: false) %></div>
-						</div>
-					</div>
-				</a>
-			</div>
+			<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
+			<h6 class="card-title"><%= Commitment.by_popularity[0].title  %></h6>
+			<p class="card-text"><%= Commitment.by_popularity[0].description %></p>
+		
+			<%= line_chart(Commitment.by_popularity[0].users_by_day, legend: false) %>
+			</a>
 
-			<div class="col-md-5 mt-3">
-
-				<!-- TOP RIGHT CELL -->
-				<div class="card border shadow mb-3" style="height: 100%; width: 100%;">
-					<a href="<%= about_path %>">
-						<h5 class="card-header">Le Lobby</h5>
-					</a>
-					<div class="card-body">
-						<div class="card-text" style="height: 19rem; overflow: hidden;">
-							<p>
-							<a href="<%= about_path %>"><strong>Le Lobby</strong></a> est un réseau visant à fédérer les acteurs de bonne volonté dans le domaine de l’écologie.</p>
-							<p>Il se donne pour objectif la création d’une plateforme web centralisant l’information, l’action, ainsi que la volonté d’engagement – les <strong>Mouvements</strong> - de ces acteurs.</p>	
-							<hr>
-							<p>Vous avez une suggestion ? Vous souhaitez devenir partenaire ?</p>
-							<p><a href="<%= new_contact_path %>">Contactez-nous</a>, votre message sera reçu par nos administrateurs en charge du site.</p>
-
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</div>
-
-	<div class="container-md p-0">
-		<div class="row">
-
-			<!-- BOTTOM LEFT CELL -->
-			<div class="col-md-5 mt-3">
-				<a href="<%= statistics_path %>">
-					<div class="card border shadow" style="height: 100%; width: 100%;">
-						<h5 class="card-header">L'évolution du site</h5>
-						<div class="card-body">
-							<h6 class="card-title">Nombre total d'utilisateurs dans le temps</h6>
-							<div class="card-content"><%= line_chart(User.count_by_day, legend: false) %></div>
-							<p class="card-text"></p>
-						</div>
-					</div>
-				</a>
-			</div>
-
-			<!-- BOTTOM RIGHT CELL -->
-			<div class="col-md-7 mt-3">
-				<a href="<%= commitment_path(Commitment.by_popularity[1].id) %>">
-					<div class="card border shadow" style="height: 100%; width: 100%;">
-						<h5 class="card-header">AUTRE MOUVEMENT POPULAIRE</h5>
-						<div class="card-body">
-							<div class="col-sm-4 float-left align-items-center">
-								<h6 class="card-title"><%= Commitment.by_popularity[1].title  %></h6>
-								<hr>
-								<h6 class="card-subtitle mt-3">Description :</h6>
-								<br/>
-								<p class="card-text"><%= Commitment.by_popularity[1].description %></p>
-							</div>
-							<div class="col-sm-7 float-right">
-								<center><small>Utilisateurs par Département</small></center>
-								<%= pie_chart(Commitment.by_popularity[1].users.group(:department).count, legend: false) %>
-							</div>
-						</div>
-					</div>
-				</a>
-			</div>
-
-		</div>
-	</div>
 </div>
+
+
+
+
