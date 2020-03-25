@@ -1,6 +1,6 @@
 <div>
   <div class="alert alert-primary alert-dismissible fade show mb-5" role="alert">
-    <strong>Avertissement :</strong>
+    <strong>Avertissement :</strong><br />
     Vous êtes sur le point d'éffectuer un don, merci de bien vouloir vérifier le prix inséré avant d'éffectuer le payement, le montant minimum 1 Euros
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -14,7 +14,10 @@
       <small>Le réseau des mouvements écologistes</small>
     </h1>
     <hr>
-    <p class="px-4 text-center">
+    <p class="px-2">
+      Un autre texte explicatif "donner envie aux visiteurs de faire un don"
+    </p>
+    <p>
       <%= form_tag charges_path do %>
         <article>
           <% if flash[:error].present? %>
@@ -23,7 +26,7 @@
             </div>
           <% end %>
           <label>
-            <p>Prix: <%= @amount %> &euro; </p>
+            <p class="px-4">Montant du don : <%= @amount %> &euro; </p>
             <%= hidden_field_tag :@amount, @amount %>
           </label>
         </article>
