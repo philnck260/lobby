@@ -12,20 +12,16 @@
    <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-
     <!-- LINK vers vendor/assets/bootstrap.css -->
     <%= stylesheet_link_tag "bootstrap" %>
   </head>
-  <body class="bg">
+  <body class="bg p-0 m-0">
     <!-- PARTIAL NAVBAR -->
     <%= render 'layouts/navbar' %>
-    <main>
+    <main class="p-0 m-0">
       <!-- CONTAINER SURROUNDING YIELD -->
-      
-
         <%= render 'layouts/flash'%>
         <%= yield %>
-      
       <!-- CONTAINER SURROUNDING YIELD END -->
     </main>
     <!-- PARTIAL FOOTER -->
