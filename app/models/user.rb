@@ -17,7 +17,8 @@ class User < ApplicationRecord
   allow_blank: true
 
   has_many :posts
-
+  has_many :replies 
+  
 	# CALLBACKS
   after_create :assign_default_username
   after_create :welcome_send

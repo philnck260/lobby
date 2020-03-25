@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light d-flex align-items-center">
 	<a class="navbar-brand text-white" href="<%= root_path %>">LE LOBBY</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -24,21 +24,24 @@
 				</a>
 			</li>
 			<li class="nav-item active">
-				<a class="nav-link text-muted" href="<%= posts_path %>">
-					Forum<span class="sr-only">(current)</span>
+				<a class="nav-link text-muted" href="<%= forums_path %>">
+					Forums<span class="sr-only">(current)</span>
 				</a>
 			</li>
 		</ul>
 
-		<ul class= "navbar-nav ml-3">
+		<ul class= "navbar-nav d-flex align-items-center">
 
 			<!-- ADMIN BUTTONS -->
 			<% if isAdmin? %>
 				<li class="nav-item">
-					<%= link_to "Gestion des Mouvements", admin_commitments_path, class:'nav-link text-white' %>
+					<%= link_to "Thèmes", admin_themes_path, class:'nav-link text-white' %>
 				</li>
 				<li class="nav-item">
-					<%= link_to "Gestion des Utilisateurs", admin_users_path, class:'nav-link text-white' %>
+					<%= link_to "Mouvements", admin_commitments_path, class:'nav-link text-white' %>
+				</li>
+				<li class="nav-item">
+					<%= link_to "Utilisateurs", admin_users_path, class:'nav-link text-white' %>
 				</li>
 			<% end %>
 

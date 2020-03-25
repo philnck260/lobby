@@ -1,0 +1,3 @@
+document.getElementById('<%= @theme.id %>').remove()
+document.getElementsByTagName('main')[0].insertAdjacentHTML('afterbegin', "<p><div class='alert alert-success alert-dismissable fade show' role='alert'>Vous avez supprimé le thème '<%= @theme.title %>'<br></div></p>")
+

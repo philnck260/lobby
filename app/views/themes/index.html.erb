@@ -1,11 +1,35 @@
-<h1>VIEW THEMES#INDEX </h1>
-<h3>app/views/themes/index.html.erb</h3>
-<% if @themes.count == 0 %>
-	<h5>Il n'y a pour l'instant aucun Thème sur Le Lobby...</h5>
-<% else %>
-	<ul>
-		<% @themes.each do |each_theme| %>
-			<li><%= each_theme.title %></li>
-		<% end %>
-	</ul>
-<% end %>
+<h2 class="text-center pb-4">Liste des Thèmes</h2>
+
+<div class="col-md-11 m-auto">
+
+  <% if @themes.count == 0 %>
+
+    <div class="list-group">
+      <div class="list-group-item">
+        Il n'y a pas de Thème actuellement sur Le Lobby...
+      </div>
+    </div>
+
+  <% else %>
+
+    <div class="row">
+
+      <% @themes.each do |each_theme| %>
+        <div class="col-sm-4 justify-content-center p-2">
+          <div class="card commitement border-primary" style="min-height: 200px">
+            <a href="<%= theme_path(each_theme.id)%>" style="text-decoration: none">
+              <div class="card-body">
+                <h5 class="card-title text-center"> <%= each_theme.title %> </h5>
+                <p class="card-text text-center" style="height: 6rem;"> <%= each_theme.description %> </p> 
+                <p class="card-text text-center size:5">Membres inscrits : <%= each_theme.users.count %> </p> 
+                <p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      <% end %>
+
+    <% end %>
+
+    </div>
+</div>

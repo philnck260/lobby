@@ -17,10 +17,10 @@
 
 
  body {
-   background-color: rgb(242, 240, 240)!important;
+  
   display: flex;
   flex-direction: column;
-  
+  background-color: rgb(233, 251, 252);
 
  }
 
@@ -28,7 +28,7 @@
 
 .navbar-brand{
 
-  color: rgb(33, 34, 34)!important;
+  color: rgb(46, 49, 49)!important;
 
 }
  .navbar {
@@ -37,7 +37,9 @@ padding-bottom: 7px!important;
 padding-top: 8px!important;
 font-size: 13px!important;
 letter-spacing:1px;
-background-color: #343a40!important;
+margin-bottom: 40px;
+ background-color: #10191b!important;
+
  } 
 
 
@@ -90,7 +92,7 @@ footer
 {
   min-height: 20vh;
   margin-top: 50px;
-  background-color:#7a828a!important;
+  background-color:#50565c!important;
   
 }
 .bg 
@@ -139,7 +141,7 @@ html {
 
 /* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
 .commitement:hover {
-    background-color: rgb(224, 224, 224);
+    background-color:#62c8a694;
     text-decoration: none;
 
 }

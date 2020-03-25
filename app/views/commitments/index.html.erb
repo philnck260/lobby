@@ -1,5 +1,5 @@
 
-<h2 class="text-center pb-4">Liste des Mouvements</h2>
+<h2 class="text-center pb-4">Tous les Mouvements</h2>
 
 <div class="col-md-11 m-auto">
   <% if @commitments.count == 0 %>
@@ -15,7 +15,7 @@
     <% @commitments.each do |each_commitment| %>
 
       <div class="col-sm-6 p-2">
-        <div class="card commitement border-0" style="min-height: 200px">
+        <div class="card border-primary  commitement " style="min-height: 200px">
           <a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
           <div class="card-body">
             <h5 class="card-title text-center" style="height: 5rem;"> <%= each_commitment.title %> </h5>

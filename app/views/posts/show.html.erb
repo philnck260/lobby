@@ -1,7 +1,75 @@
-<%= @post.title %>
-<%= @post.user.username %>
-<%= @post.content %>
-<% if current_user == @post.user %>
-<%= link_to 'Supprimer', post_path(@post), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
-<%= link_to 'Editer', edit_post_path(@post) %>
-<% end %>
+  
+ <div class="container p-0"> 
+ <h5>Post:</h5>
+  <div class="row p-4 border mb-3"> 
+    <div class= "col-md-4 p-0 border-right ">
+      <h5><%= @post.title %></h5>
+      <h5>Créé par <%= @post.user.username %></h5>
+    </div>
+
+    <div class="col-md-8">
+      <%= @post.content %>
+    </div>
+  </div>
+
+<div class="row">
+   <div class="col-md-6">
+    <% if current_user == nil %>
+      <p>Pour répondre à ce post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
+
+    <% else %>
+      <% if current_user == @post.user || current_user.role == "moderator" %>
+        <%= link_to 'Supprimer', forum_post_path(@post.forum, @post), class:'btn btn-primary mt-3',method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
+      <% end %>
+
+ 
+      <% if  current_user == @post.user %>
+        <%= link_to 'Editer', edit_forum_post_path(@post.forum, @post) ,class:'btn btn-outline-primary'%>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <% if (@post.forum.commitment != nil ) && (current_user.commitments.include?(@post.forum.commitment) == false) %>
+        <p>Pour répondre à ce post, vous devez <%= link_to 'adhérer au mouvement', commitment_path(@post.forum.commitment) %>
+
+        <% else %>
+          <%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post), class:'btn btn-secondary float-right' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+    <h5 class="mt-4">Section commentaires: </h5 >
+     <div class="container p-0 mt-3"> 
+         
+         <% if @replies.size >= 1 %>
+            <% @replies.each do |reply| %>
+               <% @user = reply.user %>
+
+          <% if reply.id.class != NilClass %>
+           <div class="row p-4 border mb-3"> 
+              <div class= "col-md-4 p-0 border-right ">
+                <p><%= @user.username  %> le <%= reply.created_at.to_s[0..9]%>  :
+              </div>
+           <div class="col-md-8">
+              <%= reply.content %>
+            </div>
+         <% end %>
+             </div>
+          
+
+           
+
+            <% unless current_user == nil %>
+              <% if @user == current_user || current_user.role == "moderator" %>
+                <%= link_to 'Détruire la réponse', forum_post_reply_path(@post.forum, @post, reply),class:' btn btn-primary', method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %>
+              <% end %>
+
+              <% if @user == current_user %>
+                <%= link_to 'Editer la réponse', edit_forum_post_reply_path(@post.forum, @post, reply),class:'btn btn-outline-primary' %></p>
+            <% end %>
+
+          <% end %>
+        <% end %>
+      <% end %>
+</div>
+</div>

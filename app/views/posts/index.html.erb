@@ -1,5 +1,8 @@
-<%= link_to 'Créer un post', new_post_path %>
-<% @posts.each do |post| %>
-<%= link_to post.title, post_path(post) %>
-<%= post.user.username %>
-<% end %>
+<div class="container">
+
+  <%= link_to 'Créer un post', new_post_path%>
+  <% @posts.each do |post| %>
+  <%= link_to post.title, post_path(post) %>
+  <%= post.user.username %>
+  <% end %>
+</div>
