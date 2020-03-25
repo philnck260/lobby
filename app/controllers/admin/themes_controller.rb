@@ -16,7 +16,7 @@ module Admin
 			@theme = Theme.new(theme_params)
 			if @theme.save
 				flash[:success] = "Vous avez créé un Thème."
-				redirect_to admin_commitments_path
+				redirect_to admin_themes_path
 			else
 				flash[:error] = @theme.errors.full_messages.to_sentence
 				redirect_to new_admin_theme_path

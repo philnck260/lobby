@@ -12,6 +12,7 @@ module Admin
 			@themes = themes_titles 
 			@commitment = Commitment.new
 			@commitment.commitment_themes.build 
+			@commitment.sources.build
 =begin
 			@commitment.commitment_themes.each do |ct|
 				ct.build_theme
@@ -61,7 +62,7 @@ module Admin
 		end
 
 		def commitment_params
-			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy])
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy], sources_attributes: [:id, :title, :media, :url, :description, :category])
 		end
 
 		def is_user_admin?
