@@ -1,38 +1,169 @@
-
-	<div class="jumbotron d-flex align-items-center justify-content-center">
-		
-				<%= link_to "Tous les Mouvements", commitments_path, class: 'btnjumb btn btn-primary mr-3 mb-3' %>
-				<%= link_to "Toutes nos Statistiques", statistics_path, class: 'btnjumb btn btn-primary mb-3' %>
-			
+<div class="container-fluid p-0 m-0">
+	<div class="jumbotron d-flex align-items-center justify-content-center mt-0 mb-0">
+		<%= link_to "Tous les Mouvements", commitments_path, class: 'btnjumb btn btn-primary mr-3 mb-3' %>
+		<%= link_to "Toutes nos Statistiques", statistics_path, class: 'btnjumb btn btn-primary mb-3' %>
 	</div>
-
-
-	<!-- PRESENTATION -->
-	<div class="container text-center mt-5 mb-5" id="presentation">
-	
-
-		<p><a href="<%= about_path %>">Le Lobby</a> est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des mouvements qu'ils rejoignent.<br/></p>
-		<p>Il se donne pour objectif la création d’une plateforme web centralisant l’information, l’action, ainsi que la volonté d’engagement –  <strong>les Mouvements</strong> - de ces acteurs.</p>	
-		<p><%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.</p>
-		<p>Vous avez une suggestion ? Vous souhaitez devenir partenaire ?</p>
-		<p><%= link_to "Contactez-nous", new_contact_path, class: "font-weight-bold" %>, votre message sera reçu par nos administrateurs en charge du site.</p>
-	
-
-	</div>
-
-<h3 class= "text-center mb-5">Mouvement le plus populaire</h3>
-
-<div class="container">
-
-			<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
-			<h6 class="card-title"><%= Commitment.by_popularity[0].title  %></h6>
-			<p class="card-text"><%= Commitment.by_popularity[0].description %></p>
-		
-			<%= line_chart(Commitment.by_popularity[0].users_by_day, legend: false) %>
-			</a>
-
 </div>
 
+<!-- WEBSITE PRESENTATION -->
+<div class="container-fluid d-flex bg-secondary p-4" id="presentation">
+	<div class="container mt-4 mb-4">
+		<div class="row justify-content-around align-items-around">
+			<div class="col-md-5 border bg-light p-4">
+				<h4 class="mb-3">Le Site</h4>
+				<p><a href="<%= about_path %>">Le Lobby</a> est un réseau militant visant à fédérer particuliers, associations et entreprises au travers des Mouvements - ou demarches - qu'ils rejoignent.</p>
+				<br/>
+				<p>Il se donne pour objectif la création d’une plateforme sociale web centralisant l’information, l’action, ainsi que la volonté d’engagement de ces acteurs.</p>	
+			</div>
+			<div class="col-md-2 align-self-center">
+				<p class="text-center"><%= fa_icon "leaf 2x" %></p>
+			</div>
+			<div class="col-md-5 border bg-light p-4">
+				<h4 class="mb-3">Pour participer</h4>
+				<p><%= link_to "Inscrivez-vous", new_user_registration_path, class: "font-weight-bold" %> gratuitement pour profiter d'une plateforme sans publicité centralisant les engagements pris par les acteurs de l'écologie.</p>
+				<br/>
+				<p>Vous avez une suggestion ? Vous souhaitez devenir partenaire ?	<%= link_to "Contactez-nous", new_contact_path, class: "font-weight-bold" %>, votre message sera reçu par nos administrateurs en charge du site.</p>
+			</div>
+		</div>
+	</div>
+</div>
 
+<!-- MODELS PRESENTATION -->
+<div class="container-fluid bg-primary p-4">
+	<div class="container mt-4 mb-4">
 
+		<!-- FIRST ROW -->
+		<div class="row justify-content-center align-items-center mt-4 mb-4">
 
+			<div class="col-md-4">
+				<div class="mx-auto rounded-circle bg-light" style="width: 150px; height: 150px;">
+					<p class="text-center mt-4"><%= fa_icon "info 5x" %></p>
+				</div>
+				<h4 class="text-center mt-2">Sources</h4>
+				<p class="text-center font-weight-bold" style="font-size: 22px;">
+				L'information est capitale dans la transition écologiaque.
+				<br/>
+				Le Lobby propose des <strong>Sources</strong>
+				pour chaque Thème et chaque Mouvement que nous mettons en ligne.
+				</p>
+			</div>
+
+			<div class="col-md-4">
+				<div class="mx-auto rounded-circle bg-light" style="width: 150px; height: 150px;">
+					<p class="text-center mt-4"><%= fa_icon "volume-up 5x" %></p>
+				</div>
+				<h4 class="text-center mt-2">Lobbying</h4>
+				<p class="text-center font-weight-bold" style="font-size: 22px;">
+				Pour que notre voix soit entendue et que nous ayons un impact,
+				il est necessaire de mener des actions de Lobbying.
+				<br/>
+				Cette fonctionnalité sera bientôt mise en place.
+				</p>
+			</div>
+
+			<div class="col-md-4">
+				<a href="<%= forum_path(1) %>">
+					<div class="mx-auto rounded-circle bg-light" style="width: 150px; height: 150px;">
+						<p class="text-center mt-4"><%= fa_icon "comments 5x" %></p>
+					</div>
+					<h4 class="text-center mt-2">Forum</h4>
+					<p class="text-center font-weight-bold" style="font-size: 22px;">
+					Pour s'organiser, pour échanger des bons tuyaux, ou juste pour papoter,
+					Le Lobby vous propose un Forum.
+					<br/>
+					Un Forum sera bientôt disponible pour chaque Thème et Mouvement.
+					</p>
+				</a>
+			</div>
+
+		</div>
+
+		<!-- SECOND ROW -->
+		<div class="row justify-content-center align-items-center mt-4 mb-4">
+
+			<div class="col-md-4">
+				<a href="<%= commitments_path %>">
+					<div class="mx-auto rounded-circle bg-light" style="width: 150px; height: 150px;">
+						<p class="text-center mt-4"><%= fa_icon "exclamation 5x" %></p>
+					</div>
+					<h4 class="text-center mt-2">Mouvements</h4>
+					<p class="text-center font-weight-bold" style="font-size: 22px;">
+					Un Mouvement est une démarche entreprise par un Lobbyiste.
+					Vous pouvez rejoindre un Mouvement et connaître les autres Lobbyistes ayant adopté la même démarche.
+					Vous pourrez ainsi participer au Forum qui lui est dédié.
+					</p>
+				</a>
+			</div>
+
+			<div class="col-md-4">
+				<a href="<%= themes_path %>">
+					<div class="mx-auto rounded-circle bg-light" style="width: 150px; height: 150px;">
+						<p class="text-center mt-4"><%= fa_icon "folder-open 5x" %></p>
+					</div>
+					<h4 class="text-center mt-2">Thèmes</h4>
+					<p class="text-center font-weight-bold" style="font-size: 22px;">
+					Alimentation, Mobilité ou encore Animaux : nos Mouvements sont regroupés par Thème.
+					Les Thèmes disposent également de Sources, et bientôt d'un Forum dédié.
+					Vous suivre d'ores et déjà suivre un Thème.
+					</p>
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<!-- A FEW EXAMPLE DATA -->
+<div class="container-fluid bg-secondary p-3">
+	<div class="container mt-4 mb-4 p-0">
+
+		<div class="row justify-content-between align-items-center pr-4">
+			<div class="col-md-4 border-dark border-right pr-4">
+				<h3 class="text-center mb-3">Évolution du nombre<br/>de Lobbyistes</h3>
+				<p class="text-center font-weight-bold" style="font-size: 22px;">
+				Retrouvez le Mouvement le plus populaire à l'heure actuelle.
+				Il est calculé en fonction du nombre d'Utilisateurs l'ayant rejoint.
+				Le graphique qui lui est attribué est celui de l'évolution des utilisateurs l'ayant rejoint.
+				</p>
+			</div>
+			<div class="col-md-8 pl-4">
+				<div class="card bg-primary">
+					<div class="card-header">
+						<h3 class="card-title text-right text-dark">Total des Utilisateurs du Lobby dans le temps</h3>
+					</div>
+					<div class="card-body">
+						<%= line_chart(User.count_by_day, legend: false) %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr class="mt-4 mb-4">
+
+		<div class="row justify-content-between align-items-center pr-4">
+			<div class="col-md-8 pr-4">
+				<a href="<%= commitment_path(Commitment.by_popularity[0].id) %>">
+					<div class="card bg-primary">
+						<div class="card-header">
+							<h3 class="card-title"><%= Commitment.by_popularity[0].title  %></h3>
+						</div>
+						<div class="card-body">
+							<p class="card-text"><%= Commitment.by_popularity[0].description %></p>
+							<%= line_chart(Commitment.by_popularity[0].users_by_day, legend: false) %>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-4 border-dark border-left pl-4">
+				<h3 class="text-center mb-3">Mouvement le plus populaire<br/>de Lobbyistes</h3>
+				<p class="text-center font-weight-bold" style="font-size: 22px;">
+				Retrouvez le Mouvement le plus populaire à l'heure actuelle.
+				Il est calculé en fonction du nombre d'Utilisateurs l'ayant rejoint.
+				Le graphique qui lui est attribué est celui de l'évolution des utilisateurs l'ayant rejoint.
+				</p>
+			</div>
+		</div>
+
+	</div>
+</div>

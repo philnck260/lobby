@@ -13,166 +13,142 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
-*/
+ */
 
-
- body {
-  
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(233, 251, 252);
-
- }
-
-
-
-.navbar-brand{
-
-  color: rgb(46, 49, 49)!important;
-
-}
- .navbar {
-font-family: 'Nunito Sans';
-padding-bottom: 7px!important;
-padding-top: 8px!important;
-font-size: 13px!important;
-letter-spacing:1px;
- background-color: #10191b!important;
-
- } 
-
-
- 
-.firstline {
-
-  min-height: 300px;
-
-}
-
-
-.grafik {
-  min-height: 250px;
-
-}
-
-p {
-  word-wrap: break-word;
-  text-align: justify;
-}
-
-.border-right {
-border-width:6px !important;
-
-}
-
-.btn a:hover {
-  text-decoration: none!important;
-
-}
-
-.btn-outline-primary a {
-
-  color: #35e9c5!important;
-  padding: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
-  min-width: 140px;
-  height: 36px;
-}
-
-.btn-outline-primary a:hover {
-
-  color: #212222!important;
-  padding-right: 22px;
-  padding-left: 22px;
-
-}
-footer
-{
-  min-height: 20vh;
-  margin-top: 50px;
-  background-color:#50565c!important;
-  
-}
-.bg 
-{
-  left: 0;
-  right: 0;
-  z-index: -3; 
-  display: block;
-  background-size: cover;
+body {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: rgb(233, 251, 252);
 }
 
 main {
-  flex: 1;
-  min-height: 70vh;
+	padding: 0;
+	margin: 0 ;
+	flex: 1;
+	min-height: 70vh;
+}
+
+footer {
+	margin-top: 50px;
+	background-color: #50565c!important;
 }
 
 html {
-  max-width: 100%;
+	max-width: 100%;
 }
 
+.navbar-brand{
+	color: rgb(46, 49, 49)!important;
+}
+
+.navbar {
+	font-family: 'Nunito Sans';
+	padding-bottom: 7px!important;
+	padding-top: 8px!important;
+	font-size: 13px!important;
+	letter-spacing: 1px;
+	background-color: #10191b!important;
+} 
+
+.firstline {
+	min-height: 300px;
+}
+
+.grafik {
+	min-height: 250px;
+}
+
+p {
+	word-wrap: break-word;
+	text-align: justify;
+}
+
+.border-right {
+	border-width:6px !important;
+}
+
+.btn a:hover {
+	text-decoration: none!important;
+}
+
+.btn-outline-primary a {
+	color: #35e9c5!important;
+	padding: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	min-width: 140px;
+	height: 36px;
+}
+
+.btn-outline-primary a:hover {
+	color: #212222!important;
+	padding-right: 22px;
+	padding-left: 22px;
+}
+
+.bg {
+	left: 0;
+	right: 0;
+	z-index: -3; 
+	background-size: cover;
+}
 
 .statistics {
-  min-width: 425px!important;
+	min-width: 425px!important;
 }
 
 
 .mosaik {
-
-  min-height: 450px!important;
-
+	min-height: 450px!important;
 }
 
 .mosaika {
-  min-height: 225px!important;
+	min-height: 225px!important;
 }
 
 .mosaikb {
-  min-width: 418px!important;
-  min-height: 235px!important;
+	min-width: 418px!important;
+	min-height: 235px!important;
 }
 
 .mosaikc {
-  min-height: 380px!important;
-
+	min-height: 380px!important;
 }
 
 /* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
 .commitement:hover {
-    background-color:#62c8a694;
-    text-decoration: none;
-
+	background-color:#62c8a694;
+	text-decoration: none;
 }
 
 .jumbotron{
-  width: 100%;
-  min-height: 600px;
-  border: none!important;
-  background-image: url('https://zupimages.net/up/20/13/wldx.jpg');
-  background-size: cover;
-  -webkit-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  -o-background-size: 100% 100%;
-  background-size: 100% 100%;
-  margin-top: -90px;
+	width: 100%;
+	min-height: 600px;
+	border: none!important;
+	background-image: url('https://zupimages.net/up/20/13/wldx.jpg');
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	background-size: 100% 100%;
 }
 
 .btnjumb{
-  margin-top: 150px!important;
+	margin-top: 150px!important;
 }
 
 #presentation {
-  margin-bottom: 80px!important;
-  margin-top: 30px!important;
-
+/*	margin-bottom: 80px!important; */
+/*	margin-top: 30px!important; */
 }
 
 #presentation p {
-  font-size: 22px!important;
+	font-size: 22px!important;
 }
 
 #stataccueil {
-  margin-bottom: -50px;
-  padding-bottom: 100px!important;
+	margin-bottom: -50px;
+	padding-bottom: 100px!important;
 }

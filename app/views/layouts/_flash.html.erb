@@ -1,8 +1,5 @@
-<p><% flash.each do |type, msg| %>
-  <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show" role="alert">
+<% flash.each do |type, msg| %>
+  <div class="m-0 alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show" role="alert">
     <%= msg.split(',').join('<br>').html_safe %>
-    <br>
   </div>
- 
-<% end %></p>
-<br><br>
+<% end %>
