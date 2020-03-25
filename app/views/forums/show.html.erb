@@ -1,19 +1,45 @@
-<% if @forum.commitment %>
-<%= @forum.commitment.title %>
-<% end %>
-<% if current_user == nil %>
-  <p>Pour créer un post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
- <% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
- <p>Si vous souhaitez créer un post sur ce forum, il faut <%= link_to 'adhérer au forum.', commitment_path(@forum.commitment) %>
- <% else %>
- <%= link_to 'Créer un post', new_forum_post_path(@forum) %>
- <% end %>
+  <div class="container"> 
 
-<% if @forum.posts.size >= 1 %>
-<% @forum.posts.each do |post| %>
-<%= link_to post.title, forum_post_path(@forum, post) %>
-<%  end %>
-<% else %>
-<p> Il n'y a pas de post dans ce forum </p>
-<% end %>
+    <div class="d-flex justify-content-center">
+    <% if current_user == nil %>
+      <p>Pour créer un post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
+    <% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
+    <p class="text-center">Si vous souhaitez créer un post sur ce forum, il faut <%= link_to 'adhérer au forum.', commitment_path(@forum.commitment) %>
+    <% else %>
+    <%= link_to 'Créer un post', new_forum_post_path(@forum),class:'btn btn-secondary', style:'min-width:200px' %>
+    <% end %>
+    </div>
 
+    <% if @forum.commitment %>
+    <h2 class="text-center mt-4"><%= @forum.commitment.title %></h2>
+    <% end %>
+
+  
+      <table class="table table-striped mt-4">
+        <thead>
+        <tr>
+          <th scope="col-md-10 ">Titre du Post</th>
+          <th scope="col-md-2 m-auto ">Créé par:</th>   
+        </tr>
+      </thead>
+      <tbody>
+    <% if @forum.posts.size >= 1 %>
+    <% @forum.posts.each do |post| %>
+    <tr>
+
+          <td> <%=link_to post.title, forum_post_path(@forum, post) %></td>
+          <td><%=post.user.username%></td>
+        
+        </tr>
+
+    <%  end %>
+    <% else %>
+    <p> Il n'y a pas de post dans ce forum </p>
+    <% end %>
+        
+
+          
+        </tbody>
+      </table>
+  
+  </div>
