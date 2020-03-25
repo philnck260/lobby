@@ -1,7 +1,33 @@
-<% @forums.each do |forum| %>
-<% if forum.commitment %>
-<%= link_to forum.commitment.title, forum_path(forum) %>
-<% else %>
-<%= link_to 'Forum Général', forum_path(forum) %>
-<% end %>
-<% end %>
+
+
+<div class='container'>
+  <table class="table table-striped mt-4">
+    <thead>
+    <tr class="border-0">
+      <th scope="col-md-10 border-0 text-primary">Titre du forum </th>
+      <th scope="col-md-2 m-auto border-0 text-white">Nombre de posts</th>   
+    </tr>
+  </thead>
+
+
+  <tbody>
+  <% @forums.each do |forum| %>
+    <% if forum.commitment %>
+    <tr>
+
+      <td> <%= link_to forum.commitment.title, forum_path(forum) %></td>
+      <td><%= forum.posts.count%></td>
+    
+    </tr>
+
+    <% else %>
+    <%= link_to 'Créer un post', forum_path(forum), class:'btn btn-primary' %>
+    <% end %>
+  <% end %>
+    
+
+      
+    </tbody>
+  </table>
+</div >
+
