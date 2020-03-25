@@ -31,8 +31,8 @@ module Admin
 			if @commitment.themes.count == 0 || @commitment.themes.count == 1
 				@commitment.commitment_themes.build
 			end
-			# BUILD NEW SOURCE FORM, if count == 2 or == 1
-			if @commitment.sources.count == 1 || @commitment.sources.count == 2
+			# BUILD NEW SOURCE FORM, if 0 <= count <= 2
+			if @commitment.sources.count >=0 && @commitment.sources.count <= 2
 				@commitment.sources.build
 			end
 		end
