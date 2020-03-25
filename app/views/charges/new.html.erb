@@ -1,0 +1,43 @@
+<div>
+  <div class="alert alert-primary alert-dismissible fade show mb-5" role="alert">
+    <strong>Avertissement :</strong><br />
+    Vous êtes sur le point d'éffectuer un don, merci de bien vouloir vérifier le prix inséré avant d'éffectuer le payement, le montant minimum 1 Euros
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="container border bg-light p-3 shadow">
+    <p class="float-right"><%= fa_icon "leaf 2x" %></p>
+    <h1 class="px-2">
+      Payement <br/>
+      <small>Le réseau des mouvements écologistes</small>
+    </h1>
+    <hr>
+    <p class="px-2">
+      Un autre texte explicatif "donner envie aux visiteurs de faire un don"
+    </p>
+    <p>
+      <%= form_tag charges_path do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <label>
+            <p class="px-4">Montant du don : <%= @amount %> &euro; </p>
+            <%= hidden_field_tag :@amount, @amount %>
+          </label>
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Effectuer un Don"
+                data-amount=<%= @amount  * 100 %>
+                data-currency="eur"
+                data-locale="auto"></script>
+      <% end %>
+    </p>
+  </div>
+

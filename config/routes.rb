@@ -29,6 +29,10 @@ Rails.application.routes.draw do
   get "/statistics" => "static#statistics"
   get "/about" => "static#about"
   get "/faq" => "static#faq"
+  get "/donate" => "static#donate"
+
+
+  resources :charges, only: [:new, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

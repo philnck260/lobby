@@ -1,0 +1,38 @@
+<div>
+<div class="alert alert-primary alert-dismissible fade show mb-5" role="alert">
+  <strong>Avertissement :</strong> Le Lobby est un projet étudiant en cours de développement et par conséquent en évolution permanente. En tant que structure nous nous présentons comme une Association loi de 1901 à but non-lucratif, mais il est important de noter que l’association n’existe pas à l’heure actuelle.
+  Ainsi, il est impossible pour le moment d'effectuer un "don", de nous trouver sur le Registre National des Associations, de consulter notre charte ou nos statuts.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="container border bg-light p-3 shadow">
+  <p class="float-right"><%= fa_icon "leaf 2x" %></p>
+  <h1 class="px-2">
+    Bienvenue sur Le Lobby<br/>
+    <small>Le réseau des mouvements écologistes</small>
+  </h1>
+  <hr>
+  <h3 class="px-2"> Texte explicatif "donner envie aux visiteurs de faire un don" </h3>
+
+  <p class="px-4">
+    Where does it come from?
+    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by Engl
+  </p>
+</div>
+  <div class='container border bg-light d-flex justify-content-center mt-5 shadow'>
+    <div class=" align-self-center col-md-6">
+<%= form_tag new_charge_path, :method=>"get", :class=>"form-group" do %>
+
+    <div class="field text-center">
+      <label> Inséré le prix du Don que vous souhaitez donner </label><br/> <small> Le montant doit être supérieur à 1 Euros</small><br />
+    <%= number_field_tag :@amount,'', class: 'form-control text-center', placeholder:'Euros' %>
+    </div>
+    <%= submit_tag "Enregistrer le montant pour effectuer le don", :class => "btn btn-success btn-md btn-block" %>
+
+<% end %>
+    </div>
+  </div>
+</div>
