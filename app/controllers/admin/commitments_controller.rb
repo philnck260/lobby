@@ -62,7 +62,7 @@ module Admin
 		end
 
 		def commitment_params
-			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy], sources_attributes: [:id, :title, :media, :url, :description, :category])
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy], sources_attributes: [:id, :title, :media, :url, :description, :category, :_destroy])
 		end
 
 		def is_user_admin?

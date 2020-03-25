@@ -21,7 +21,7 @@ class Commitment < ApplicationRecord
 	has_one :forum, dependent: :destroy
 	# LINK SOURCES
 	has_many :sources, as: :sourceable, dependent: :destroy
-	accepts_nested_attributes_for :sources
+	accepts_nested_attributes_for :sources, allow_destroy: true
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
