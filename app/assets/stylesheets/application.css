@@ -37,9 +37,7 @@ padding-bottom: 7px!important;
 padding-top: 8px!important;
 font-size: 13px!important;
 letter-spacing:1px;
-margin-bottom: 40px;
- background-color: #343a40!important;
-
+background-color: #343a40!important;
  } 
 
 
@@ -144,4 +142,32 @@ html {
     background-color: rgb(224, 224, 224);
     text-decoration: none;
 
+}
+
+.jumbotron{
+  width: 100%;
+  min-height: 600px;
+  border: none!important;
+  background-image: url('https://zupimages.net/up/20/13/wldx.jpg');
+  background-size: cover;
+  margin-top: -58px;
+}
+
+.btnjumb{
+  margin-top: 150px!important;
+}
+
+#presentation {
+  margin-bottom: 80px!important;
+  margin-top: 30px!important;
+
+}
+
+#presentation p {
+  font-size: 22px!important;
+}
+
+#stataccueil {
+  margin-bottom: -50px;
+  padding-bottom: 100px!important;
 }
