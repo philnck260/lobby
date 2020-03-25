@@ -26,7 +26,7 @@ module Admin
 
 		def edit
 			# BUILD NEW SOURCE FORM, if count == 1 or == 2
-			if @theme.sources.count == 1 || @theme.sources.count == 2
+			if @theme.sources.count >= 0 && @theme.sources.count <= 2
 				@theme.sources.build
 			end
 		end

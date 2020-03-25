@@ -20,7 +20,6 @@
           </button>
         </div>
       <% end %>
-			<h6>Si les champs sont vides, il s'agit d'un nouveau Thème, vous ne pouvez pas le Supprimer</h6>
 			<div class="row">
 				<%= f.fields_for :commitment_themes do |ct_form| %>
 					<div class="col-6">
@@ -35,7 +34,7 @@
 			</div>
 
 			<h5 class="mt-4">Modifier Sources</h5>
-			<% if @commitment.sources.count == 1 || @commitment.sources.count == 2 %>
+			<% if @commitment.sources.count >= 0 && @commitment.sources.count <= 2 %>
 				<div class="alert alert-danger alert-dismissible fade show" role"alert">
 					<strong>AVERTISSEMENT</strong><br/>
 					Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer
@@ -61,7 +60,7 @@
 						<%= s_form.text_field :description, class: "form-control border" %>
 
 						<%= s_form.label "Catégorie" %>
-						<%= s_form.select :category, ["Presse", "Étude scientifique", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
+						<%= s_form.select :category, ["Presse", "Étude", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
 
 						<div class="bg-warning border mt-2 p-3 clearfix">
 							<%= s_form.label "Supprimer cette Source", class: "float-left font-weight-bold" %>
