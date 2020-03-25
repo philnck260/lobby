@@ -50,8 +50,13 @@ module Admin
 
 		def destroy
 			@commitment.destroy
-			flash[:success] = 'Vous avez bien supprimé ce Mouvement'
-			redirect_to admin_commitments_path
+			respond_to do |format|
+        format.html do
+        end
+        format.js  do
+        end
+
+      end
 		end
 
 		private

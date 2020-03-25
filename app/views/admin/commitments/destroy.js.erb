@@ -1,0 +1,2 @@
+document.getElementById('<%= @commitment.id %>').remove()
+document.getElementsByTagName('main')[0].insertAdjacentHTML('afterbegin', "<p><div class='alert alert-success alert-dismissable fade show' role='alert'>Vous avez supprimé le mouvement '<%= @commitment.title %>'<br></div></p>")
