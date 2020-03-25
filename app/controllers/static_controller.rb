@@ -16,4 +16,8 @@ class StaticController < ApplicationController
     render params[:page]
   end
 
+  def donate
+    render params[:page]
+  end
+
 end
