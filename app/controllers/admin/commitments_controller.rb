@@ -8,16 +8,12 @@ module Admin
       @commitments = Commitment.all
     end
 
-    def new
-      @themes = themes_titles
-      @commitment = Commitment.new
-      @commitment.commitment_themes.build
-=begin
-			@commitment.commitment_themes.each do |ct|
-				ct.build_theme
-			end
-=end
-    end
+		def new
+			@themes = themes_titles 
+			@commitment = Commitment.new
+			@commitment.commitment_themes.build 
+			@commitment.sources.build
+		end
 
     def create
       @commitment = Commitment.new(commitment_params)
@@ -30,13 +26,16 @@ module Admin
       end
     end
 
-    def edit
-      if @commitment.themes.count == 0 || @commitment.themes.count == 1
-        @commitment.commitment_themes.build
-      elsif @commitment.themes.count == 2
-        @checkbox = true
-      end
-    end
+		def edit
+			# BUILD NEW COMMITMENT_THEME FORM, if count == 0 or == 1
+			if @commitment.themes.count == 0 || @commitment.themes.count == 1
+				@commitment.commitment_themes.build
+			end
+			# BUILD NEW SOURCE FORM, if 0 <= count <= 2
+			if @commitment.sources.count >= 0 && @commitment.sources.count <= 2
+				@commitment.sources.build
+			end
+		end
 
     def update
       if @commitment.update(commitment_params)
@@ -64,9 +63,9 @@ module Admin
       @commitment = Commitment.find(params[:id])
     end
 
-    def commitment_params
-      params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy])
-    end
+		def commitment_params
+			params.require(:commitment).permit(:title, :description, commitment_themes_attributes: [:id, :theme_id, :_destroy], sources_attributes: [:id, :title, :media, :url, :description, :category, :_destroy])
+		end
 
     def is_user_admin?
       unless current_user.role == "admin" && user_signed_in?

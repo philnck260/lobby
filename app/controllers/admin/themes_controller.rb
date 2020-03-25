@@ -8,23 +8,28 @@ module Admin
       @themes = Theme.all
     end
 
-    def new
-      @theme = Theme.new
-    end
+		def new
+			@theme = Theme.new
+			@theme.sources.build
+		end
 
-    def create
-      @theme = Theme.new(theme_params)
-      if @theme.save
-        flash[:success] = "Vous avez créé un Thème."
-        redirect_to admin_commitments_path
-      else
-        flash[:error] = @theme.errors.full_messages.to_sentence
-        redirect_to new_admin_theme_path
-      end
-    end
+		def create
+			@theme = Theme.new(theme_params)
+			if @theme.save
+				flash[:success] = "Vous avez créé un Thème."
+				redirect_to admin_themes_path
+			else
+				flash[:error] = @theme.errors.full_messages.to_sentence
+				redirect_to new_admin_theme_path
+			end
+		end
 
-    def edit
-    end
+		def edit
+			# BUILD NEW SOURCE FORM, if count == 1 or == 2
+			if @theme.sources.count == 1 || @theme.sources.count == 2
+				@theme.sources.build
+			end
+		end
 
     def update
       if @theme.update(theme_params)
@@ -49,12 +54,12 @@ module Admin
 
     private
 
+		def theme_params
+			params.require(:theme).permit(:title, :description, sources_attributes: [:id, :title, :media, :url, :description, :category, :_destroy])
+		end
+
     def find_theme
       @theme = Theme.find(params[:id])
-    end
-
-    def theme_params
-      params.require(:theme).permit(:title, :description)
     end
 
     def is_user_admin?
@@ -63,5 +68,6 @@ module Admin
         redirect_to root_path
       end
     end
+    
   end
 end

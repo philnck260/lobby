@@ -1,12 +1,13 @@
 class Commitment < ApplicationRecord
 
+	# CALLBACKS
 	after_create :create_forum
-
 	
 	# VALIDATIONS
 	validates :title, presence: {message: ": Le titre est obligatoire"}, length: {minimum: 10, message: ": Le titre doit avoir 10 caractères minimum"}
 	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
 	validates :commitment_themes, presence: true
+	validates :sources, presence: true
 
 	# LINK TABLES
 	# LINK USERS
@@ -15,12 +16,12 @@ class Commitment < ApplicationRecord
 	# LINK THEMES
 	has_many :commitment_themes, dependent: :destroy
 	has_many :themes, through: :commitment_themes
-
+	accepts_nested_attributes_for :commitment_themes, allow_destroy: true, reject_if: proc { |ct_attr| ct_attr[:theme_id].blank? }
+	# LINK FORUMS
 	has_one :forum, dependent: :destroy
-
-#	accepts_nested_attributes_for :themes
-	accepts_nested_attributes_for :commitment_themes, allow_destroy: true, reject_if: proc { |attr| attr[:theme_id].blank? }
-
+	# LINK SOURCES
+	has_many :sources, as: :sourceable, dependent: :destroy
+	accepts_nested_attributes_for :sources, allow_destroy: true, reject_if: proc { |s_attr| s_attr[:url].blank? }
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW

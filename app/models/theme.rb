@@ -3,6 +3,7 @@ class Theme < ApplicationRecord
 	# VALIDATIONS
 	validates :title, presence: true
 	validates :description, presence: true
+	validates :sources, presence: true
 
 	# LINK TABLES
 	# LINK USERS
@@ -11,6 +12,9 @@ class Theme < ApplicationRecord
 	# LINK COMMITMENTS
 	has_many :commitment_themes, dependent: :destroy
 	has_many :commitments, through: :commitment_themes
+	# LINK SOURCES
+	has_many :sources, as: :sourceable, dependent: :destroy
+	accepts_nested_attributes_for :sources, allow_destroy: true, reject_if: proc { |s_attr| s_attr[:url].blank? }
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
