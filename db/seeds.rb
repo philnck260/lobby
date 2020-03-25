@@ -34,7 +34,10 @@ count = 0
 	User.create(id: count, email: "#{(first_name + '.' + last_name).downcase}@yopmail.com", password: "nonono", first_name: first_name, last_name: last_name, department: (rand(1..95)).to_s, name_display: [true, false].sample)
 end
 # ADMIN USER SEED
-User.create(id: 21, role: 'admin', email: "adminlobby@yopmail.com", password: "nonono", first_name: 'Amine', last_name: 'Admin', department: (rand(1..95)).to_s, name_display: [true, false].sample)
+User.create(id: 21, role: 'admin', email: "adminlobby@yopmail.com", password: "nonono", first_name: 'Amine', last_name: 'Lobby', department: (rand(1..95)).to_s, name_display: [true, false].sample)
+
+# MODERATOR USER SEED
+User.create(id: 22, role: 'moderator', email: "moderator@yopmail.com", password: "nonono", first_name: 'Maud', last_name: 'Erator', department: (rand(1..95)).to_s, name_display: [true, false].sample)
 
 # THEME SEED
 t1 = Theme.create(title: "Alimentation", description: "Ce Thème traite des problématiques d'Alimentation, via l'impact de l'industrie agroalimentaire sur l'environnement et sur notre santé.")
@@ -44,6 +47,12 @@ t4 = Theme.create(title: "Animaux", description: "Ce Thème traite des probléma
 t5 = Theme.create(title: "Habitat", description: "Ce Thème traite des problématiques liées à l'Habitat, et sur l'impact de la strucutre de nos logements sur l'environnement et notre santé.")
 t6 = Theme.create(title: "Proximité", description: "Ce Thème traite des problématiques liées à la Proximité, et des possibilités de rapprocher les acteurs de l'économie géographiquement.")
 t7 = Theme.create(title: "Hygiène", description: "Ce Thème traite des problématiques liées à nos comportements liés à l'Hygiène, et des possibilités d'améliorer leurs impacts sur l'environnement.")
+
+
+#####################
+# FORUM MODELS PART :
+# GENERAL FORUM SEED
+Forum.create(id: 1)
 
 # COMMITMENT SEED
 c2 = Commitment.new(title: "Je ne mange plus ni viande ni poisson", description: "Economie moyenne de 1,12 tCO2/an/pers")
@@ -110,10 +119,6 @@ UserTheme.all.each do |each_ut|
 end
 
 
-#####################
-# FORUM MODELS PART :
-# GENERAL FORUM SEED
-Forum.create(id: 1)
 
 # POST SEED
 count = 0
