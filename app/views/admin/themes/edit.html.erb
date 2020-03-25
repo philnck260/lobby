@@ -13,7 +13,7 @@
 			<%= f.text_field :description, class:"form-control border" %></p>
 
 			<h5 class="mt-4">Modifier Sources</h5>
-			<% if @theme.sources.count == 1 || @theme.sources.count == 2 %>
+			<% if @theme.sources.count >= 0 && @theme.sources.count <= 2 %>
 				<div class="alert alert-danger alert-dismissible fade show" role"alert">
 					<strong>AVERTISSEMENT</strong><br/>
 					Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer
@@ -39,7 +39,7 @@
 						<%= s_form.text_field :description, class: "form-control border" %>
 
 						<%= s_form.label "Catégorie" %>
-						<%= s_form.select :category, ["Presse", "Étude scientifique", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
+						<%= s_form.select :category, ["Presse", "Étude", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
 
 						<div class="bg-warning border mt-2 p-3 clearfix">
 							<%= s_form.label "Supprimer cette Source", class: "float-left font-weight-bold" %>
