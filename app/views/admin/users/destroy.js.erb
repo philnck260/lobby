@@ -1,0 +1,2 @@
+document.getElementById('<%= @user.id %>').remove()
+document.getElementsByTagName('main')[0].insertAdjacentHTML('afterbegin', "<p><div class='alert alert-success alert-dismissable fade show' role='alert'>Vous avez supprimé l'utilisateur '<%= @user.username %>'<br></div></p>")

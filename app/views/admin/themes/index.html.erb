@@ -17,12 +17,12 @@
 				</thead>
 				<tbody>
 					<% @themes.each do |each_theme| %>
-						<tr>
+						<tr id = '<%= each_theme.id %>'>
 							<td class='text-center'><%= each_theme.id %></td>
 							<td><%= each_theme.title %></td>
 							<td class='text-center'><%= each_theme.users.count %></td>
 							<td><%= link_to 'Editer', edit_admin_theme_path(each_theme.id), class: 'btn btn-secondary' %></td>  
-							<td><%= link_to 'Supprimer', admin_theme_path(each_theme.id), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'}, class: 'btn btn-danger' %></td>
+							<td><%= link_to 'Supprimer', admin_theme_path(each_theme.id), method: 'delete', data: {confirm: 'Êtes-vous sûr ?'}, remote: true, class: 'btn btn-danger' %></td>
 						</tr>
 					<% end %>
 				</tbody> 
