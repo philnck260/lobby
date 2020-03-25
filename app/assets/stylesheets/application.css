@@ -152,7 +152,11 @@ html {
   border: none!important;
   background-image: url('https://zupimages.net/up/20/13/wldx.jpg');
   background-size: cover;
-  margin-top: -58px;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  margin-top: -90px;
 }
 
 .btnjumb{
