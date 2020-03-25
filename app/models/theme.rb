@@ -14,7 +14,7 @@ class Theme < ApplicationRecord
 	has_many :commitments, through: :commitment_themes
 	# LINK SOURCES
 	has_many :sources, as: :sourceable, dependent: :destroy
-	accepts_nested_attributes_for :sources
+	accepts_nested_attributes_for :sources, allow_destroy: true, reject_if: proc { |s_attr| s_attr[:url].blank? }
 
 	# METHODS
 	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW

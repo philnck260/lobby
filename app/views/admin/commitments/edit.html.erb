@@ -11,6 +11,15 @@
 			<%= f.text_field :description, class:"form-control border" %></p>
 
 			<h5 class="mt-4">Modifier Thèmes</h5>
+			<% if @commitment.themes.count == 0 || @commitment.themes.count == 1 %>
+        <div class="alert alert-danger alert-dismissible fade show" role"alert">
+          <strong>AVERTISSEMENT</strong><br/>
+          Si les champs sont vides, il s'agit d'un nouveau Thème, vous ne pouvez pas le Supprimer
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
 			<h6>Si les champs sont vides, il s'agit d'un nouveau Thème, vous ne pouvez pas le Supprimer</h6>
 			<div class="row">
 				<%= f.fields_for :commitment_themes do |ct_form| %>
@@ -26,12 +35,18 @@
 			</div>
 
 			<h5 class="mt-4">Modifier Sources</h5>
-			<h6>Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer</h6>
+			<% if @commitment.sources.count == 1 || @commitment.sources.count == 2 %>
+				<div class="alert alert-danger alert-dismissible fade show" role"alert">
+					<strong>AVERTISSEMENT</strong><br/>
+					Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<% end %>
 			<div class="row">
 				<%= f.fields_for :sources do |s_form| %>
 					<div class="col-4">
-
-						<%= puts s_form %>
 
 						<%= s_form.label "Titre" %>
 						<%= s_form.text_field :title, class: "form-control border" %>
@@ -57,6 +72,6 @@
 			</div>
 
 		</fieldset>
-		<button type='submit' class='btn btn-primary mt-3'>Éditer</button>
+		<button type='submit' class='btn btn-lg btn-primary mt-3'>Éditer</button>
 	<% end %>
 </div>

@@ -10,6 +10,7 @@ module Admin
 
 		def new
 			@theme = Theme.new
+			@theme.sources.build
 		end
 
 		def create
@@ -24,6 +25,10 @@ module Admin
 		end
 
 		def edit
+			# BUILD NEW SOURCE FORM, if count == 1 or == 2
+			if @theme.sources.count == 1 || @theme.sources.count == 2
+				@theme.sources.build
+			end
 		end
 
 		def update
@@ -49,7 +54,7 @@ module Admin
 		end
 
 		def theme_params
-			params.require(:theme).permit(:title, :description)
+			params.require(:theme).permit(:title, :description, sources_attributes: [:id, :title, :media, :url, :description, :category, :_destroy])
 		end
 
 		def is_user_admin?

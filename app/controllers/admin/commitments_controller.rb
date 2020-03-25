@@ -13,11 +13,6 @@ module Admin
 			@commitment = Commitment.new
 			@commitment.commitment_themes.build 
 			@commitment.sources.build
-=begin
-			@commitment.commitment_themes.each do |ct|
-				ct.build_theme
-			end
-=end
 		end
 
 		def create
@@ -38,7 +33,6 @@ module Admin
 			end
 			# BUILD NEW SOURCE FORM, if count == 2 or == 1
 			if @commitment.sources.count == 1 || @commitment.sources.count == 2
-				@add_msg = "Ajouter une Source"
 				@commitment.sources.build
 			end
 		end
