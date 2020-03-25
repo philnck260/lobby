@@ -34,8 +34,12 @@ module Admin
 
     def destroy
       @user.destroy
-      flash[:success] = "Vous avez supprimé l'utilisateur avec succès"
-      redirect_to admin_users_path
+      respond_to do |format|
+        format.html do
+        end
+        format.js do
+        end
+      end
     end
 
     private

@@ -15,8 +15,8 @@
     <div class="row">
 
       <% @themes.each do |each_theme| %>
-        <div class="col-sm-6 p-2">
-          <div class="card commitement border-0" style="min-height: 200px">
+        <div class="col-sm-4 justify-content-center p-2">
+          <div class="card commitement border-primary" style="min-height: 200px">
             <a href="<%= theme_path(each_theme.id)%>" style="text-decoration: none">
               <div class="card-body">
                 <h5 class="card-title text-center"> <%= each_theme.title %> </h5>
