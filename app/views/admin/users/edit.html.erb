@@ -1,11 +1,9 @@
-<div class="container my-4">
-  <div class='container d-flex'>
-    <div class=" align-self-center">
-      <h1>Editer l'utilisateur</h1>
-      <br>
-      <%= form_with(model: @user, url:  admin_user_path, method: "patch", class: 'align-self-center') do |f| %>
-        <%= render './users/edit_form', f: f %>
-      <% end %>
-    </div>
+<div class="container my-4 d-flex">
+  <div class=" align-self-center">
+    <h1>Editer l'utilisateur</h1>
+    <br>
+    <%= form_with(model: @user, url:  admin_user_path, method: "patch", class: 'align-self-center') do |f| %>
+      <%= render './users/edit_form', f: f %>
+    <% end %>
   </div>
 </div>
