@@ -3,7 +3,7 @@
 
 	<!-- COMMITMENT TITLE -->
 	<div class="container text-center mt-3 pt-3 pb-3">
-		<h2><%= @commitment.title%></h2>
+		<h2 class="mb-3"><%= @commitment.title%></h2>
 
 		<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
 		<div class="row justify-content-center">
@@ -22,7 +22,7 @@
 
 			<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
-				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-warning mt-3" %>
+				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-outline-secondary mt-3" %>
 			</div>
 
 		</div>
@@ -108,7 +108,7 @@
 					<div class="cheese col-md-5" style="height: 100%">
 						<div class="card">
 							<h3 class="card-header">Géographie</h3>
-							<div class="card-body p-0">
+							<div class="card-body p-2">
 								<%= pie_chart(@commitment.users.group(:department).count, legend: false) %>
 								<small class="text-muted m-0 p-0 pl-2">utilisateurs / département</small>
 							</div>
