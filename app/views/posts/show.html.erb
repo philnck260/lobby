@@ -1,38 +1,42 @@
-<div class="container my-5 "> 
+<div class="container my-5"> 
 
 	<!-- RULES ALERTS -->
 	<!-- IF NOT LOGGED, MUST SIGNIN OR SIGNUP TO USE FORUM ALERT -->
 	<% if !(user_signed_in?) %>
-		<div class="alert alert-danger aler-dismissible fade show mb-4">
+		<div class="alert alert-danger aler-dismissible fade show m-0 mb-4">
 			Pour répondre à ce post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 		</div>
 	<% end %>
-	<!-- IF LOGGED, MUST HAVE TAKEN THE COMMITMENT TO USE FORUM ALERT -->
-	<% if (@post.forum.commitment != nil ) && (current_user.commitments.include?(@post.forum.commitment) == false) %>
-		<div class="aler alert-danger alert-dismissible fade show mb-4">
-			Pour répondre à ce Post, vous devez 
-			<%= link_to 'rejoindre le Mouvement', commitment_path(@post.forum.commitment) %>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
+	<% if user_signed_in? %>
+		<!-- IF LOGGED, MUST HAVE TAKEN THE COMMITMENT TO USE FORUM ALERT -->
+		<% if (@post.forum.commitment != nil ) && (current_user.commitments.include?(@post.forum.commitment) == false) %>
+			<div class="alert alert-danger alert-dismissible fade show m-0 mb-4">
+				Pour répondre à ce Post, vous devez 
+				<%= link_to "rejoindre le Mouvement #{@post.forum.commitment.title}", commitment_path(@post.forum.commitment) %>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<% end %>
 	<% end %>
 
 	<!-- POST -->
 	<h5>Post</h5>
 	<div class="row border mb-3 align-items-center"> 
+
 		<!-- POST INFOS -->
 		<div class= "col-md-4 p-3 border-right ">
 			<h5><%= @post.title %></h5>
 			<h5>Créé par <%= @post.user.username %></h5>
-			<% if current_user.role != nil %>
-				<h5>(<%= current_user.role %>)</h5>
+			<% if @post.user.role != nil %>
+				<h5>(<%= @post.user.role %>)</h5>
 			<% end %>
-			<!-- CAN DELETE IF AUTHOR OR MODERATOR -->
+			<!-- IF USER LOGGED -->
 			<% if user_signed_in? %> 
+				<!-- CAN DELETE IF AUTHOR OR MODERATOR -->
 				<% if current_user == @post.user || current_user.role == "moderator" %>
 					<%= link_to 'Supprimer', forum_post_path(@post.forum, @post), class:'btn btn-outline-danger mt-3',method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
 				<% end %>
@@ -47,6 +51,7 @@
 		<div class="col-md-8 p-3">
 			<%= @post.content %>
 		</div>
+
 	</div>
 
 	<!-- REPLIES -->
@@ -61,8 +66,8 @@
 					<div class= "col-md-4 p-3 border-right ">
 						<p>par 
 						<%= reply.user.display %>
-						<% if current_user.role != nil %>
-							(<%= current_user.role %>)
+						<% if reply.user.role != nil %>
+							(<%= reply.user.role %>)
 						<% end %>
 						<br/>
 						<%= time_ago_in_words(reply.created_at)%> ago
@@ -97,8 +102,10 @@
 			<!-- IF FORUM IS NOT LINKED TO A COMMITMENT AND USER LOGGED IN -->
 			<!-- OR IF FORUM IS LINKED TO A COMMITMENT AND USER TOOK THIS COMMITMENT -->
 			<!-- OR IF USER IS MODERATOR -->
-			<% if (@post.forum.commitment == nil && user_signed_in?) || (@post.forum.commitment && current_user.commitments.include?(@post.forum.commitment)) || current_user.role == 'moderator' %>
-				<%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post), class:'btn btn-primary float-left' %>
+			<% if user_signed_in? %>
+				<% if (@post.forum.commitment == nil) || (@post.forum.commitment && current_user.commitments.include?(@post.forum.commitment)) || current_user.role == 'moderator' %>
+					<%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post), class:'btn btn-primary float-left' %>
+				<% end %>
 			<% end %>
 
 		</div>
