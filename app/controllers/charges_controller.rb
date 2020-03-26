@@ -6,6 +6,7 @@ class ChargesController < ApplicationController
     else
       @amount = params[:@amount].to_i
     end
+    puts @amount
   end
 
   def create
@@ -14,6 +15,8 @@ class ChargesController < ApplicationController
     else
     @amount = params[:@amount].to_i
     end
+    puts @amount
+    puts params[:@amount]
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
       source: params[:stripeToken],
