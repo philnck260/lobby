@@ -47,7 +47,7 @@
 				</div>
 				<h4 class="text-center mt-2">Sources</h4>
 				<p class="text-center font-weight-bold">
-				L'information est capitale dans la transition écologiaque.
+				L'information est capitale dans la transition écologique.
 				<br/>
 				Le Lobby propose des <strong>Sources</strong>
 				pour chaque Thème et chaque Mouvement que nous mettons en ligne.
@@ -110,7 +110,7 @@
 					<p class="text-center font-weight-bold">
 					Alimentation, Mobilité ou encore Animaux : nos Mouvements sont regroupés par Thème.
 					Les Thèmes disposent également de Sources, et bientôt d'un Forum dédié.
-					Vous poubez d'ores et déjà suivre un Thème.
+					Vous pouvez d'ores et déjà suivre un Thème.
 					</p>
 				</a>
 			</div>
@@ -128,15 +128,14 @@
 			<div class="col-md-4 pr-4">
 				<h3 class="text-center mb-3">Évolution du nombre<br/>de Lobbyistes</h3>
 				<p class="text-center font-weight-bold">
-				Retrouvez le Mouvement le plus populaire à l'heure actuelle.
-				Il est calculé en fonction du nombre d'Utilisateurs l'ayant rejoint.
-				<br/>Le graphique qui lui est attribué est celui de l'évolution des utilisateurs l'ayant rejoint.
+				Retrouvez l'évolution du nombre de Lobbyistes inscrits sur le site depuis sa création !  
+				
 				</p>
 			</div>
 			<div class="col-md-8 pl-4">
 				<div class="card ">
 					<div class="card-header bgstathome">
-						<h3 class="card-title text-center text-dark">Total des Utilisateurs du Lobby dans le temps</h3>
+						<h3 class="card-title text-center text-dark">Total des utilisateurs du Lobby dans le temps</h3>
 					</div>
 					<div class="card-body border-primary">
 						<%= line_chart(User.count_by_day, legend: false) %>
