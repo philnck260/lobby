@@ -24,16 +24,19 @@
 	<% end %>
 
 	<!-- POST -->
-	<h5>Post</h5>
+	<h2 class="text-right">Post</h2>
+	<h4><%= @post.title %></h4>
 	<div class="row border mb-3 align-items-center"> 
 
 		<!-- POST INFOS -->
-		<div class= "col-md-4 p-3 border-right ">
-			<h5><%= @post.title %></h5>
-			<h5>Créé par <%= @post.user.username %></h5>
+		<div class= "col-md-4 p-3 border-right bg-secondary">
+			<h5>par <%= @post.user.username %>
 			<% if @post.user.role != nil %>
-				<h5>(<%= @post.user.role %>)</h5>
+				(<%= @post.user.role %>)
 			<% end %>
+			</h5>
+			<small class="text-muted">créé le <%= @post.created_at.to_formatted_s(:long) %></small><br/>
+			<small class="text-muted">édité le <%= @post.updated_at.to_formatted_s(:long) %></small>
 			<!-- IF USER LOGGED -->
 			<% if user_signed_in? %> 
 				<!-- CAN DELETE IF AUTHOR OR MODERATOR -->
@@ -56,21 +59,22 @@
 
 	<!-- REPLIES -->
 	<div class="container p-0 mt-3"> 
-		<h5 class="mt-4">Réponses</h5 >
+		<h2 class="mt-4 text-right">Réponses</h2>
 
 		<% if @replies.size >= 1 %>
 			<% @post.sorted_replies.each do |reply| %>
 
 				<div class="row border my-1 align-items-center"> 
 					<!-- REPLY INFOS -->
-					<div class= "col-md-4 p-3 border-right ">
+					<div class= "col-md-4 p-3 border-right bg-secondary">
 						<p>par 
 						<%= reply.user.display %>
 						<% if reply.user.role != nil %>
 							(<%= reply.user.role %>)
 						<% end %>
 						<br/>
-						<%= time_ago_in_words(reply.created_at)%> ago
+						<small class="text-muted">créé le <%= reply.created_at.to_formatted_s(:long) %></small><br/>
+						<small class="text-muted">édité le <%= reply.updated_at.to_formatted_s(:long) %></small>
 						</p>
 						<% if user_signed_in? && (current_user == reply.user || current_user.role == "moderator") %>
 							<%= link_to 'Supprimer', forum_post_reply_path(@post.forum, @post, reply), class:'btn btn-outline-danger m-1', method: 'delete', data: {confirm: "Êtes-vous sûr ?"} %>

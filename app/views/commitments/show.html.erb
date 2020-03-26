@@ -51,15 +51,6 @@
 									<%= link_to each_theme.title, theme_path(each_theme.id) %><br/>
 								<% end %>
 							</li>
-							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Sources</h5></li>
-							<% @commitment.sources.each do |each_source| %>
-								<li class="list-group-item">
-									<a href="<%= each_source.url %>">
-										<h5><%= each_source.title %>, édité par <%= each_source.media %>.</h5>
-										<p class="mt-1"><%= each_source.description %></p>
-									</a>
-								</li>
-							<% end %>
 						</ul>
 					</div>
 
@@ -133,6 +124,31 @@
 		</div>
 	</div>
 
+	<!-- SOURCES -->
+	<div class="container mt-4">
+		<div class="card">
+			<h3 class="card-header text-center">Sources</h3>
+			<div class="card-body p-0">
+				<div class="row">
+
+					<% if @commitment.sources.count > 0 %>
+						<% @commitment.sources.each do |each_source| %>
+							<div class="col-md-<%= 12 / @commitment.sources.count %> p-2">
+								<a href="<%= each_source.url %>">
+									<h5 class="text-center mt-2"><%= each_source.title %>, édité par <%= each_source.media %>.</h5>
+									<p class="m-3"><%= each_source.description %></p>
+								</a>
+							</div>
+						<% end %>
+					<% else %>
+						</p>Il n'y a pas de Source pour ce Mouvement.</p>
+					<% end %>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- USERS LIST FOR THIS COMMITMENT -->
 	<div class="container mt-4">
 		<div class="border bg-secondary text-center pt-2 pb-1">
@@ -168,4 +184,3 @@
 	</div>
 
 </div>
-
