@@ -19,10 +19,11 @@
 						<div class="card border-primary commitement text-center" style="min-height: 200px">
 							<a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
 								<div class="card-body">
-									<h5 class="card-title text-center" style="height: 4rem;"> <%= each_commitment.title %> </h5>
+									<h5 class="card-title text-center" style="height: 4rem;">
+										<%= fa_icon 'leaf' %> <%= each_commitment.title %> <%= fa_icon 'leaf' %>
+									</h5>
 									<p class="card-text text-center"> <%= each_commitment.description %> </p>
-									<p class="card-text text-center size:5">Membres inscrits : <%= each_commitment.users.count %> </p>
-									<p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
+									<p class="card-text text-center size:5">Inscrits : <%= each_commitment.users.count %> </p>
 									<button class="btn btn-primary text-center mt-3">En savoir plus</button>
 								</div>
 							</a>
