@@ -128,15 +128,16 @@
 	<div class="container mt-4">
 		<div class="card">
 			<h3 class="card-header text-center">Sources</h3>
-			<div class="card-body p-0">
+			<div class="card-body pb-0 pt-1">
 				<div class="row">
 
 					<% if @commitment.sources.count > 0 %>
 						<% @commitment.sources.each do |each_source| %>
-							<div class="col-md-<%= 12 / @commitment.sources.count %> p-2">
+							<div class="col-md-<%= 12 / @commitment.sources.count %>">
 								<a href="<%= each_source.url %>">
-									<h5 class="text-center mt-2"><%= each_source.title %>, édité par <%= each_source.media %>.</h5>
-									<p class="m-3"><%= each_source.description %></p>
+									<h5 class="text-center mt-2" style="height: 4rem;"><%= each_source.title %></h5>
+									<h6><small>édité par</small> <%= each_source.media %>.</h6>
+									<p><%= each_source.description %></p>
 								</a>
 							</div>
 						<% end %>
