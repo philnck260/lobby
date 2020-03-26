@@ -1,45 +1,56 @@
-  <div class="container my-5"> 
+<div class="container my-5"> 
 
-    <div class="d-flex justify-content-center">
-    <% if current_user == nil %>
-      <p>Pour créer un post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
-    <% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
-    <p class="text-center">Si vous souhaitez créer un post sur ce forum, il faut <%= link_to 'adhérer au forum.', commitment_path(@forum.commitment) %>
-    <% else %>
-    <%= link_to 'Créer un post', new_forum_post_path(@forum),class:'btn btn-secondary', style:'min-width:200px' %>
-    <% end %>
-    </div>
 
-    <% if @forum.commitment %>
-    <h2 class="text-center mt-4"><%= @forum.commitment.title %></h2>
-    <% end %>
+	<div class="container">
+		<% if @forum.commitment %>
+			<h2 class="text-center mt-4"><%= @forum.commitment.title %></h2>
+		<% else %>
+			<h2 class="text-center mt-4">Forum Général</h2>
+		<% end %>
 
-  
-      <table class="table table-striped mt-4">
-        <thead>
-        <tr>
-          <th scope="col-md-10 ">Titre du Post</th>
-          <th scope="col-md-2 m-auto ">Créé par:</th>   
-        </tr>
-      </thead>
-      <tbody>
-    <% if @forum.posts.size >= 1 %>
-    <% @forum.posts.each do |post| %>
-    <tr>
+		<% if @forum.posts.count > 0 %>
+			<table class="table table-bordered table-striped mt-4">
+				<thead>
+					<tr>
+						<th scope="col">Titre</th>
+						<th scope="col">Auteur</th>   
+						<th scope="col">Réponses</th>   
+						<th scope="col">créé il y a</th>   
+						<th scope="col">dernière Réponse</th>   
+					</tr>
+				</thead>
+				<tbody>
+					<% @forum.posts.each do |post| %>
+						<tr>
+							<td class="py-2"><%= link_to post.title, forum_post_path(@forum, post) %></td>
+							<td class="py-2"><%= post.user.username %></td>
+							<td class="py-2"><%= post.replies.count %></td>
+							<td class="py-2"><%= time_ago_in_words(post.created_at) %></td>
+							<% if post.replies.count > 0 %>
+								<td class="py-2"><%= time_ago_in_words(post.last_reply.created_at) %></td>
+							<% else %>
+								<td class="py-2">Pas de Réponse</td>
+							<% end %>
+							</tr>
+						<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p>Il n'y a pas encore de Post sur ce Forum.</p>
+		<% end %>
+	</div>
 
-          <td> <%=link_to post.title, forum_post_path(@forum, post) %></td>
-          <td><%=post.user.username%></td>
-        
-        </tr>
+	<div class="container">
+		<% if current_user == nil %>
+			<p>Pour créer un Post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
+		<% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
+			<p class="text-center">
+			Si vous souhaitez créer un Post sur ce forum, il faut 
+			<%= link_to "rejoindre le Mouvement #{@forum.commitment.title}", commitment_path(@forum.commitment) %>
+			</p>
+		<% else %>
+			<%= link_to 'Créer un Post', new_forum_post_path(@forum), class:'btn btn-secondary', style:'min-width:200px' %>
+		<% end %>
+	</div>
 
-    <%  end %>
-    <% else %>
-    <p> Il n'y a pas de post dans ce forum </p>
-    <% end %>
-        
-
-          
-        </tbody>
-      </table>
-  
-  </div>
+</div>

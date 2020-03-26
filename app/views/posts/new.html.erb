@@ -1,5 +1,7 @@
-<%= form_for @post, :url => {:controller => "posts", :action => "create"} do |f| %>
-<%= render 'form', f: f %>
-<button type='submit' class='btn btn-primary'>Créer un post</button>
-<% end %>
-
+<div class="container my-5">
+	<h5>Votre Post</h5>
+	<%= form_for @post, :url => {:controller => "posts", :action => "create"} do |f| %>
+		<%= render 'form', f: f %>
+		<button type='submit' class='btn btn-primary'>Créer un post</button>
+	<% end %>
+</div>
