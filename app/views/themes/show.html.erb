@@ -131,8 +131,8 @@
 	</div>
 
 	<!-- THIS THEME'S COMMIMENTS -->
-	<div class="container mt-4">
-		<div class="border bg-secondary text-center pt-2 pb-1">
+	<div class="container mt-4 border-0">
+		<div class="border-0 bg-secondary text-center pt-2 pb-1">
 			<h4 class="align-middle">
 				Tous les Mouvements pour ce Thème 
 			</h4>
@@ -148,17 +148,17 @@
 
     <% else %>
 
-      <div class="row border">
+      <div class="row border-0 ">
         <% @theme.commitments.each do |each_commitment| %>
 
           <div class="col-md-3 p-2">
-            <div class="card border-primary commitement" style="min-height: 200px">
+            <div class="card border-primary commitement " style="min-height: 200px">
               <a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
-                <div class="card-body">
-                  <h5 class="card-title" style="height: 5rem;">
+                <div class="card-body text-center ">
+                  <h6 class="card-title text-center title-card-homepage" style="height: 7rem;">
                     <%= each_commitment.title %>
-                  </h5>
-                  <p class="card-text">Inscrits : <%= each_commitment.users.count %> </p>
+                  </h6>
+                  <p class="card-text text-center">Inscrits : <%= each_commitment.users.count %> </p>
                 </div>
               </a>
             </div>
