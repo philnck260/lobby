@@ -1,4 +1,7 @@
-<%= form_for @reply, :url => {:controller => "replies", :action => "update"} do |f|%>
-<%= render 'form', f: f %>
-<button type='submit' class='btn btn-primary'>Editer le post</button>
-<% end %>
+<div class="container my-5">
+	<h5>Modifier la Réponse</h5>
+	<%= form_for @reply, :url => {:controller => "replies", :action => "update"} do |f|%>
+		<%= render 'form', f: f %>
+		<button type='submit' class='btn btn-primary'>Editer le post</button>
+	<% end %>
+</div>

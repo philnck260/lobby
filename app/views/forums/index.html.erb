@@ -1,33 +1,28 @@
-
-
 <div class='container my-5'>
-  <table class="table table-striped mt-4">
-    <thead>
-    <tr class="border-0">
-      <th scope="col-md-10 border-0 text-primary">Titre du forum </th>
-      <th scope="col-md-2 m-auto border-0 text-white">Nombre de posts</th>   
-    </tr>
-  </thead>
 
+	<h1 class="text-center">Tous les Forums</h1>
 
-  <tbody>
-  <% @forums.each do |forum| %>
-    <% if forum.commitment %>
-    <tr>
+	<table class="table table-bordered table-striped mt-4">
 
-      <td> <%= link_to forum.commitment.title, forum_path(forum) %></td>
-      <td><%= forum.posts.count%></td>
-    
-    </tr>
+		<thead>
+			<tr class="border-0">
+				<th scope="col-md-10 border-0 text-primary">Titre du forum </th>
+				<th scope="col-md-2 m-auto border-0 text-white">Nombre de posts</th>   
+			</tr>
+		</thead>
 
-    <% else %>
-    <%= link_to 'Créer un post', forum_path(forum), class:'btn btn-primary' %>
-    <% end %>
-  <% end %>
-    
+		<tbody>
+			<% @forums.each do |forum| %>
+				<tr>
+					<% if forum.commitment %>
+						<td class="py-2"><%= link_to forum.commitment.title, forum_path(forum) %></td>
+					<% else %>
+						<td class="py-2"><%= link_to "Forum Général", forum_path(forum) %></td>
+					<% end %>
+					<td class="py-2"><%= forum.posts.count%></td>
+				</tr>
+			<% end %>
+		</tbody>
 
-      
-    </tbody>
-  </table>
-</div >
-
+	</table>
+</div>

@@ -1,9 +1,7 @@
-<div class="container">  
-
-<h5 class="mb-3">Ecrivez votre commentaire:</h5>
-  
-  <%= form_for @reply, :url => {:controller => "replies", :action => "create"} do |f| %>
-    <%= f.text_area :content, class:"form-control border" %></p>
-  <button type='submit' class='btn btn-primary'>Créer un commentaire</button>
-  <% end %>
+<div class="container my-5">  
+	<h5 class="mb-3">Votre Réponse</h5>
+	<%= form_for @reply, :url => {:controller => "replies", :action => "create"} do |f| %>
+		<%= f.text_area :content, class:"form-control border" %></p>
+		<button type='submit' class='btn btn-primary'>Répondre</button>
+	<% end %>
 </div>
