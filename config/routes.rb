@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "/about" => "static#about"
   get "/faq" => "static#faq"
   get "/donate" => "static#donate"
+  get "/rgpd" => "static#rgpd"
 
 
   resources :charges, only: [:new, :create]
