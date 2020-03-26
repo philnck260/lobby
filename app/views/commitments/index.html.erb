@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-4">
 
 	<h2 class="text-center pb-4">Tous les Mouvements</h2>
 
@@ -10,11 +10,10 @@
 				</div>
 			</div>
 
-		<% else %>
+			<% else %>
 
 			<div class="row">
 				<% @commitments.each do |each_commitment| %>
-
 					<div class="col-md-6 p-2">
 						<div class="card border-primary commitement text-center" style="min-height: 200px">
 							<a href="<%= commitment_path(each_commitment.id)%>" style="text-decoration: none">
