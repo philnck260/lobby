@@ -4,10 +4,10 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-<h3> From : <%= @charge.receipt_email %> </h3>
+<small> Numéro de payement -> <%= @charge.id %></small>
 <h2> </h2>
 <br/>
-<p>Tu à effectuer un don de <%= @charge.amount €%> </p>
+<p>Tu à effectuer un don de <%= @charge.amount / 100%> € </p>
 <br/>
 <p>Le Lobby est un projet engagé, militant, social et technique qui souhaite apporter sa pierre à la résolution des problématiques contemporaines les plus importantes.
   Merci de rejoindre notre projet qui est d'allier progression technique et engagement militant, nous t'invitons dès maintenant à mettre en avant tes motivations!
