@@ -1,35 +1,51 @@
-<h2 class="text-center pb-4">Liste des Thèmes</h2>
+<div class="container mt-4 mb-4">
 
-<div class="col-md-11 m-auto">
+	<h2 class="text-center pb-4">Tous les Thèmes</h2>
 
-  <% if @themes.count == 0 %>
+	<div class="col-md-11 m-auto">
 
-    <div class="list-group">
-      <div class="list-group-item">
-        Il n'y a pas de Thème actuellement sur Le Lobby...
-      </div>
-    </div>
+		<% if @themes.count == 0 %>
 
-  <% else %>
+			<div class="list-group">
+				<div class="list-group-item">
+					Il n'y a pas de Thème actuellement sur Le Lobby...
+				</div>
+			</div>
 
-    <div class="row">
+		<% else %>
 
-      <% @themes.each do |each_theme| %>
-        <div class="col-sm-4 justify-content-center p-2">
-          <div class="card commitement border-primary" style="min-height: 200px">
-            <a href="<%= theme_path(each_theme.id)%>" style="text-decoration: none">
-              <div class="card-body">
-                <h5 class="card-title text-center"> <%= each_theme.title %> </h5>
-                <p class="card-text text-center" style="height: 6rem;"> <%= each_theme.description %> </p> 
-                <p class="card-text text-center size:5">Membres inscrits : <%= each_theme.users.count %> </p> 
-                <p class='text-center m-0'><%= fa_icon "leaf 2x" %> </p>
-              </div>
-            </a>
-          </div>
-        </div>
-      <% end %>
+			<div class="row">
 
-    <% end %>
+				<% @themes.each do |each_theme| %>
+					<div class="col-md-6 p-2">
+						<div class="card commitement border-primary text-center" style="min-height: 200px">
+							<a href="<%= theme_path(each_theme.id) %>" style="text-decoration: none">
+								<div class="card-body">
+									<h5 class="card-title text-center">
+										<%= fa_icon 'leaf' %> <%= each_theme.title %> <%= fa_icon 'leaf' %>
+									</h5>
+									<p class="card-text text-center" style="height: 6rem;">
+									<%= each_theme.description %>
+									</p>
+									<p class="card-text text-center mb-0">
+									Utilisateurs inscrits : 
+									<%= each_theme.users.count %>
+									</p>
+									<p class="card-text text-center">
+									Nombre de Mouvements :
+									<%= each_theme.commitments.count %>
+									</p>
+									<button class="btn btn-primary text-center mt-3">En savoir plus</button>
+								</div>
+							</a>
+						</div>
+					</div>
+				<% end %>
 
-    </div>
+			</div>
+
+		<% end %>
+
+	</div>
+
 </div>
