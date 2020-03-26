@@ -1,55 +1,96 @@
-<div class="container col-sm-11 m-auto">
+<div class="container mt-4 mb-4">
 
 	<!-- COMMITMENT TITLE -->
-	<div class="container text-center mt-3 p-2 pt-3 pb-3">
-		<h4><%= @commitment.title%></h4>
+	<div class="container text-center mt-3 pt-3 pb-3">
+		<h1><%= @commitment.title%></h1>
+
+		<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
+		<div class="row justify-content-center">
+
+			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
+				<% if user_signed_in? %>
+					<% if current_user.commitments.include?(@commitment) %>
+						<%= link_to "Quitter ce Mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3' %>
+					<% else %>
+						<%= link_to "Rejoindre ce Mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-primary mt-3" %>
+					<% end %>
+				<% else %>
+					<%= link_to "Rejoindre ce Mouvement", user_session_path, method: 'get', class: "btn btn-primary mt-3" %>
+				<% end %>
+			</div>
+
+			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
+				<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
+				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-warning mt-3" %>
+			</div>
+
+		</div>
+
 	</div>
 
-	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
-	<% if user_signed_in? %>
-		<% if current_user.commitments.include?(@commitment) %>
-			<%= link_to "Quitter ce mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary btn-block mt-3' %>
-		<% else %>
-			<%= link_to "Rejoindre ce mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-block btn-primary mt-3" %>
-		<% end %>
-		<% else %>
-		<%= link_to "Cliquer ici pour vous connectez et rejoindre le Mouvement ", user_session_path, method: 'get', class: "btn btn-block btn-primary mt-3" %>
-	<% end %>
-
 	<!-- COMMITMENT PRESENTATION GRID -->
-	<div class="container mt-3 border border-primary">
+	<div class="container mt-3">
 
 		<div class="row">
 
 			<!-- LEFT CELL -->
-			<div class="col-sm-4 p-0">
+			<div class="col-md-4">
 				<div class="card" style="height: 100%;">	
-					<div class="card-header">Description</div>
-					<div class="card-body">
-						<%= @commitment.description %>
+					<h3 class="card-header">Informations</h3>
+					<div class="card-body p-0">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Description</h5></li>
+							<li class="list-group-item">
+								<%= @commitment.description %>
+							</li>
+							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Thèmes</h5></li>
+							<li class="list-group-item">
+								<% @commitment.themes.each do |each_theme| %>
+									<%= link_to each_theme.title, theme_path(each_theme.id) %><br/>
+								<% end %>
+							</li>
+							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Sources</h5></li>
+							<li class="list-group-item p-0">
+								<div class="container-fluid p-0">
+								<table class="table table-sm table-bordered m-0 p-0">
+									<thead>
+										<tr><td>Lien</td><td>Média</td></tr>
+									</thead>
+									<tbody>
+										<% @commitment.sources.each do |each_source| %>
+											<tr>
+												<td><%= link_to each_source.title, each_source.url %></td>
+												<td><%= each_source.media %> </td>
+											</tr>
+										<% end %>
+									</tbody>
+								</table>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-sm-8 border firstline">
+			<div class="col-md-8 firstline">
 
-				<div class="row">
+				<div class="row pb-4">
 
 					<!-- TOP MID CELL -->
-					<div class="col-sm-7 p-0">
+					<div class="col-md-7">
 						<div class="card" style="height: 100%;">	
-							<div class="card-header">Chiffres</div>
+							<h3 class="card-header">Chiffres</h3>
 							<div class="card-body p-0">
 								<table class="table table-sm table-striped m-0">
 									<thead>
 										<tr>
-											<th scope="col">Donnée</th>	
+											<th sope="col">Donnée</th>	
 											<th scope="col">Valeur</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>Total</td>
+											<td>Total utilisateurs</td>
 											<td><%= @commitment.users.count %></td>
 										</tr>
 										<% if user_signed_in? %>
@@ -58,7 +99,7 @@
 												<% if current_user.department == nil %>
 													<td>Inconnu</td>
 												<% else %>
-													<td><%= User.where(department: current_user.department).count %></td>
+													<td><%= @commitment.users.where(department: current_user.department).count %></td>
 												<% end %>
 											</tr>
 										<% end %>
@@ -70,9 +111,9 @@
 					</div>
 
 					<!-- TOP RIGHT CELL -->
-					<div class="cheese col-sm-5 border p-0" style="height: 100%">
+					<div class="cheese col-md-5" style="height: 100%">
 						<div class="card">
-							<div class="card-header">Géographiquement</div>
+							<h3 class="card-header">Géographie</h3>
 							<div class="card-body">
 								<%= pie_chart(@commitment.users.group(:department).count, legend: false) %>
 							</div>
@@ -83,9 +124,9 @@
 
 				<!-- BOTTOM RIGHT CELL -->
 				<div class="row">
-					<div class="grafik col-sm-12 p-0">
+					<div class="grafik col-md-12">
 						<div class="card m-0">
-							<div class="card-header">Evolution du nombre d'Utilisateurs</div>
+							<h3 class="card-header">Évolution du nombre d'utilisateurs</h3>
 							<div class="card-body">
 								<%= line_chart(@commitment.users_by_day) %>
 							</div>
@@ -98,37 +139,39 @@
 	</div>
 
 	<!-- USERS LIST FOR THIS COMMITMENT -->
-	<div class="container mt-3 p-0 border border-primary">
-		<div class= "border text-center pt-2 pb-1">
-			<h5 class= "align-middle">
-				Liste des Users ayant souscrit a ce Commitment
-			</h5>
+	<div class="container mt-4">
+		<div class="border bg-secondary text-center pt-2 pb-1">
+			<h4 class="align-middle">
+				Liste des utilisateurs ayant rejoint ce Mouvement
+			</h4>
 		</div>
-		<table class="table table-bordered table-sm">
-			<thead>
-				<tr>
-					<th scope="col"> Utilisateur </th>
-					<th scope="col">Départment</th>
-					<th scope="col">Nombre de Commitments</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% if @commitment.users.count == 0 %>
-					<tr>Il n'y a pas d'User ayant pris ce Commitment</tr>
-				<% else %>
+
+		<% if @commitment.users.count == 0 %>
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr><td>Il n'y a pas d'utilisateur ayant rejoint ce Mouvement pour le moment</td></tr>
+				</thead>
+			</table>
+		<% else %>
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr>
+						<th scope="col">Utilisateur</th>
+						<th scope="col">Département</th>
+						<th scope="col">Nombre de Mouvements rejoints</th>
+					</tr>
+				</thead>
+				<tbody>
 					<% @commitment.users.each do |each_user| %>
 						<tr>
-							<td><%= each_user.display %></td>
-							<td><%= each_user.department %></td>
-							<td><%= each_user.commitments.count %></td>
+							<td class="py-1"><%= each_user.display %></td>
+							<td class="py-1"><%= each_user.department %></td>
+							<td class="py-1"><%= each_user.commitments.count %></td>
 						</tr>
 					<% end %>
-				<% end %>
-			</tbody>
-		</table>
+				</tbody>
+			</table>
+		<% end %>
 	</div>
-
-	<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
-	<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning mt-3" %>
 
 </div>
