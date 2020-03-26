@@ -1,8 +1,10 @@
-<div class="container col-sm-11 m-auto">
+
 
 	<!-- COMMITMENT TITLE -->
-	<div class="container text-center mt-3 p-2 pt-3 pb-3">
-		<h4><%= @commitment.title%></h4>
+	<div class="row">
+		<div>
+		
+			<h4><%= @commitment.title%></h4>
 	</div>
 
 	<!-- BUTTON TO TAKE A COMMITMENT OR TAKE OUT A COMMITMENT -->
@@ -131,4 +133,3 @@
 	<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 	<%= link_to "Retour aux Commitments", commitments_path, class: "btn btn-block btn-warning mt-3" %>
 
-</div>
