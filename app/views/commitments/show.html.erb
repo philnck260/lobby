@@ -11,17 +11,17 @@
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
 				<% if user_signed_in? %>
 					<% if current_user.commitments.include?(@commitment) %>
-						<%= link_to "Quitter ce Mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3' %>
+						<%= link_to "Quitter ce Mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3 text-wrap' %>
 					<% else %>
-						<%= link_to "Rejoindre ce Mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-primary mt-3" %>
+						<%= link_to "Rejoindre ce Mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-primary mt-3 text-wrap" %>
 					<% end %>
 				<% else %>
-					<%= link_to "Rejoindre ce Mouvement", user_session_path, method: 'get', class: "btn btn-primary mt-3" %>
+					<%= link_to "Rejoindre ce Mouvement", user_session_path, method: 'get', class: "btn btn-primary mt-3 text-wrap" %>
 				<% end %>
 			</div>
 
+			<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
-				<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-warning mt-3" %>
 			</div>
 
@@ -38,6 +38,7 @@
 			<div class="col-md-4">
 				<div class="card" style="height: 100%;">	
 					<h3 class="card-header">Informations</h3>
+
 					<div class="card-body p-0">
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Description</h5></li>
@@ -51,25 +52,17 @@
 								<% end %>
 							</li>
 							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Sources</h5></li>
-							<li class="list-group-item p-0">
-								<div class="container-fluid p-0">
-								<table class="table table-sm table-bordered m-0 p-0">
-									<thead>
-										<tr><td>Lien</td><td>Média</td></tr>
-									</thead>
-									<tbody>
-										<% @commitment.sources.each do |each_source| %>
-											<tr>
-												<td><%= link_to each_source.title, each_source.url %></td>
-												<td><%= each_source.media %> </td>
-											</tr>
-										<% end %>
-									</tbody>
-								</table>
-								</div>
-							</li>
+							<% @commitment.sources.each do |each_source| %>
+								<li class="list-group-item">
+									<a href="<%= each_source.url %>">
+										<h5><%= each_source.title %>, édité par <%= each_source.media %>.</h5>
+										<p class="mt-1"><%= each_source.description %></p>
+									</a>
+								</li>
+							<% end %>
 						</ul>
 					</div>
+
 				</div>
 			</div>
 
@@ -85,7 +78,7 @@
 								<table class="table table-sm table-striped m-0">
 									<thead>
 										<tr>
-											<th sope="col">Donnée</th>	
+											<th scope="col">Donnée</th>	
 											<th scope="col">Valeur</th>
 										</tr>
 									</thead>
@@ -115,8 +108,9 @@
 					<div class="cheese col-md-5" style="height: 100%">
 						<div class="card">
 							<h3 class="card-header">Géographie</h3>
-							<div class="card-body">
+							<div class="card-body p-0">
 								<%= pie_chart(@commitment.users.group(:department).count, legend: false) %>
+								<small class="text-muted m-0 p-0 pl-2">utilisateurs / département</small>
 							</div>
 						</div>
 					</div>
@@ -147,14 +141,12 @@
 			</h4>
 		</div>
 
-		<% if @commitment.users.count == 0 %>
-			<table class="table table-bordered table-sm">
+		<table class="table table-bordered table-sm">
+			<% if @commitment.users.count == 0 %>
 				<thead>
 					<tr><td>Il n'y a pas d'utilisateur ayant rejoint ce Mouvement pour le moment</td></tr>
 				</thead>
-			</table>
-		<% else %>
-			<table class="table table-bordered table-sm">
+			<% else %>
 				<thead>
 					<tr>
 						<th scope="col">Utilisateur</th>
@@ -171,8 +163,8 @@
 						</tr>
 					<% end %>
 				</tbody>
-			</table>
-		<% end %>
+			<% end %>
+		</table>
 	</div>
 
 </div>
