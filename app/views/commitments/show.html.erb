@@ -20,9 +20,17 @@
 				<% end %>
 			</div>
 
+			<!-- BUTTON TO FORUM IF FORUM EXISTS -->
+			<% if @commitment.forum %>
+				<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
+					<%= link_to "Forum", forum_path(@commitment.forum.id), class: "btn btn-outline-primary mt-3"%>
+				</div>
+			<% end %>
+
 			<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
 				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-outline-secondary btnlinkoutline mt-3" %>
+
 			</div>
 
 		</div>
