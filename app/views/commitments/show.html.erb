@@ -11,18 +11,25 @@
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
 				<% if user_signed_in? %>
 					<% if current_user.commitments.include?(@commitment) %>
-						<%= link_to "Quitter ce Mouvement", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3 text-wrap' %>
+						<%= link_to "Quitter", commitment_user_commitment_path(@commitment.id, @commitment.user_commitments.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3 text-wrap' %>
 					<% else %>
-						<%= link_to "Rejoindre ce Mouvement", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-primary mt-3 text-wrap" %>
+						<%= link_to "Rejoindre", commitment_user_commitments_path(@commitment.id), method: 'post', class: "btn btn-primary mt-3 text-wrap" %>
 					<% end %>
 				<% else %>
-					<%= link_to "Rejoindre ce Mouvement", user_session_path, method: 'get', class: "btn btn-primary mt-3 text-wrap" %>
+					<%= link_to "Rejoindre", user_session_path, method: 'get', class: "btn btn-primary mt-3 text-wrap" %>
 				<% end %>
 			</div>
 
+			<!-- BUTTON TO FORUM IF FORUM EXISTS -->
+			<% if @commitment.forum %>
+				<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
+					<%= link_to "Forum", forum_path(@commitment.forum.id), class: "btn btn-outline-primary mt-3"%>
+				</div>
+			<% end %>
+
 			<!-- BUTTON BACK TO COMMITMENTS#INDEX.HTML.ERB -->
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
-				<%= link_to "Retour aux Mouvements", commitments_path, class: "btn btn-outline-secondary mt-3" %>
+				<%= link_to "Retour", commitments_path, class: "btn btn-outline-secondary mt-3" %>
 			</div>
 
 		</div>
