@@ -1,69 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-light d-flex align-items-center mb-0">
-	<a class="navbar-brand text-white" href="<%= root_path %>">LE LOBBY</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse " id="navbarColor01">
-
-		<ul class="navbar-nav mr-auto ml-3">
-			<li class="nav-item active">
-				<a class="nav-link text-muted" href="<%= commitments_path %>">
-					Mouvements<span class="sr-only">(current)</span>
-				</a>
-			</li>
-			<li class="nav-item active">
-				<a class="nav-link text-muted" href="<%= themes_path %>">
-					Thèmes<span class="sr-only">(current)</span>
-				</a>
-			</li>
-			<li class="nav-item active">
-				<a class="nav-link text-muted" href="<%= statistics_path %>">
-					Statistiques<span class="sr-only">(current)</span>
-				</a>
-			</li>
-			<li class="nav-item active">
-				<a class="nav-link text-muted" href="<%= forum_path(1) %>">
-					Forum<span class="sr-only">(current)</span>
-				</a>
-			</li>
-		</ul>
-
-		<ul class= "navbar-nav d-flex align-items-center">
-
-			<!-- ADMIN BUTTONS DROPDOWN -->
-			<% if isAdmin? %>
-				<li class="nav-item dropdown">
-					<a class="text-white nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Administrateur
-					</a>
-
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<%= link_to "Thèmes", admin_themes_path, class: 'dropdown-item' %>
-						<%= link_to "Mouvements", admin_commitments_path, class: 'dropdown-item' %>
-						<%= link_to "Utilisateurs", admin_users_path, class: 'dropdown-item' %>
-					</div>
-				</li>
-			<% end %>
-
-			<!-- USER BUTTONS -->
-			<% if user_signed_in? %>
-				<li class="nav-item">
-					<%= link_to "Profil", user_path(current_user.id), class: 'nav-link text-white' %>
-				</li>
-				<li class="nav-item pt-1 mb-1">
-					<%= link_to "Déconnexion", destroy_user_session_path, class: "btn btn-primary", method: 'delete' %>
-				</li>
-			<% else %>
-				<li class="nav-item pt-1 mb-1">
-					<%= link_to "Inscription", new_user_registration_path, class: "btn btn-primary"%>
-				</li>
-				<li class="nav-item pt-1 mb-1">
-					<%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
-				</li>
-			<% end %>
-
-		</ul>
-	</div>
+<nav class="navbar navbar-expand-lg navbar-dark d-flex align-items-center mb-0">
+  <a class="navbar-brand text-white" href="<%= root_path %>">LE LOBBY</a>
+  <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-white"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarColor01">
+    <ul class="navbar-nav mr-auto ml-3">
+      <li class="nav-item active">
+        <a class="nav-link text-muted" href="<%= commitments_path %>">
+          Mouvements<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-muted" href="<%= themes_path %>">
+          Thèmes<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-muted" href="<%= statistics_path %>">
+          Statistiques<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-muted" href="<%= forum_path(1) %>">
+          Forum<span class="sr-only">(current)</span>
+        </a>
+      </li>
+			
+    </ul>
+    <ul class= "navbar-nav ml-3 mr-md-0">
+      <!-- ADMIN BUTTONS DROPDOWN -->
+			<% if is_admin? %>
+        <li class="dropdown nav-item active navbar-nav">
+          <a onclick="myFunction()" class="dropbtn nav-link text-muted">Admin</a>
+          <div id="myDropdown" class="dropdown-content">
+            <%= link_to "Thèmes", admin_themes_path, class: 'dropdown-item' %>
+            <%= link_to "Mouvements", admin_commitments_path, class: 'dropdown-item' %>
+            <%= link_to "Utilisateurs", admin_users_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% end %>
+      <!-- USER BUTTONS -->
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Profil", user_path(current_user.id), class: 'nav-link text-white' %>
+        </li>
+        <li class="nav-item pt-1 mb-1">
+          <%= link_to "Déconnexion", destroy_user_session_path, class: "btn btn-primary", method: 'delete' %>
+        </li>
+      <% else %>
+        <li class="nav-item pt-1 mb-1">
+          <%= link_to "Inscription", new_user_registration_path, class: "btn btn-primary"%>
+        </li>
+        <li class="nav-item pt-1 mb-1">
+          <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>
-
