@@ -1,4 +1,4 @@
-# README
+# Bienvenue sur Le Lobby
 
 The Lobby platform is developed as part of The Hacking Project session 11 (winter 2020) Final Project.
 The team consists of Agathe Plunian, Amine Amarouche, Axel Aidan, Daniel Venera, Mathieu Lasserre and Nicolas Chattour.
