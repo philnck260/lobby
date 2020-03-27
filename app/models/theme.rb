@@ -17,21 +17,29 @@ class Theme < ApplicationRecord
 	accepts_nested_attributes_for :sources, allow_destroy: true, reject_if: proc { |s_attr| s_attr[:url].blank? }
 
 	# METHODS
-	# METHOD FOR PIE_CHART IN STATIC#STATISTICS VIEW
-	# RETRIEVE FROM COMMITMENT_MODEL
 
 	# METHOD FOR LINE_CHART IN THEME#SHOW VIEW
 	def users_by_day
 		hash = Hash.new
-		self.users.each do |each_user|
-			date = each_user.created_at.to_date
-			if hash[date] == nil
-				if hash[date - 1.day] == nil
-					hash[date - 1.day] = 0
-				end
-				hash[date] = hash[date - 1.day]
+		# SORTING USER_COMMITMENTS BY CREATION DATE TO AN ARRAY
+		sorted_array = self.user_themes.all.sort { |a, b| a.created_at <=> b.created_at }
+		# CREATING A HASH WHERE EACH DATE FROM FIRST UC CONTAINS VALUE OF UCs CREATED
+		sorted_array.each do |each_ut|
+			if hash[each_ut.created_at.to_date] == nil
+				hash[each_ut.created_at.to_date] = 0
 			end
-			hash[date] += 1
+			hash[each_ut.created_at.to_date] += 1
+		end
+		day_count = sorted_array[0].created_at.to_date
+		hash[day_count - 1.days] = 0
+		# INCREMENTING WITH PREVIOUS DAY
+		while (day_count <= Date.today)
+			if hash[day_count] != nil
+				hash[day_count] = hash[day_count - 1.days] + hash[day_count]
+			else
+				hash[day_count] = hash[day_count - 1.days]
+			end
+			day_count += 1.days
 		end
 		return hash
 	end
