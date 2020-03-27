@@ -129,20 +129,20 @@
 		<div class="card">
 			<h3 class="card-header text-center">Sources</h3>
 			<div class="card-body pb-0 pt-1">
-				<div class="row">
+				<div class="row align-items-center">
 
 					<% if @commitment.sources.count > 0 %>
 						<% @commitment.sources.each do |each_source| %>
 							<div class="col-md-<%= 12 / @commitment.sources.count %>">
-								<a href="<%= each_source.url %>">
-									<h5 class="text-center mt-2" style="height: 4rem;"><%= each_source.title %></h5>
+								<a href="<%= each_source.url %>" target="_blank">
+									<h5 class="text-center mt-2" style="height: 6rem;"><%= each_source.title %></h5>
 									<h6><small>édité par</small> <%= each_source.media %>.</h6>
 									<p><%= each_source.description %></p>
 								</a>
 							</div>
 						<% end %>
 					<% else %>
-						</p>Il n'y a pas de Source pour ce Mouvement.</p>
+						</p>Il n'y a pas de Source pour ce Thème.</p>
 					<% end %>
 
 				</div>

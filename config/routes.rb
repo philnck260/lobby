@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get "/home" => "static#home"
   get "/statistics" => "static#statistics"
   get "/about" => "static#about"
-  get "/faq" => "static#faq"
   get "/donate" => "static#donate"
   get "/rgpd" => "static#rgpd"
 
