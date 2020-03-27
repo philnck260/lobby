@@ -10,10 +10,10 @@
 	<br><br><br>
 
 	<!-- LINE CHART 1 -->
-	<div class="container col-md-10 p-0 ">
+	<div class="container p-0 ">
 		<div class="bg-white p-4">
 			<h5>Evolution du nombre total de Users dans le temps</h5>
-			<h6 class="text-muted">nombre total de users / day</h6>
+			<h6 class="text-muted">nombre total d'utilisateurs / jour</h6>
 			<br>
 			<%= line_chart(User.count_by_day) %>
 		</div>
@@ -21,27 +21,33 @@
 	<br><br>
 
 	<!-- PIE CHART 1 & 2 -->
-	<div class="container col-md-10">
-		<div class="row justify-content-between">
-			<div class="statistics bg-white col-md-5 p-4 ">
-				<h5 class="text-wrap text-center">Repartition des Mouvements</h5>
-				<h6 class="text-wrap text-muted text-center">user_commitment taken / commitment</h6>
-				<br>
-				<%= pie_chart(Commitment.users_number, legend: false) %>
-			</div>
-
-			<div class="statistics bg-white col-md-5 p-4">
-				<h5 class="text-wrap text-center">Nombre de Users par department</h5>
-				<h6 class="text-wrap text-muted text-center">nombre de users / departement</h6>
-				<br>
-				<%= pie_chart(User.group(:department).count, legend: false) %>
+		<div class="container bg-white p-3 mb-5 ">
+			<div class="row">
+				<div class="col-md-4 p-4 ">
+					<h5 class="text-wrap ">Repartition des Mouvements</h5>
+					<h6 class="text-wrap text-muted">Retrouvez sur ce graphique la répartition des mouvements. <br/> Vous pourrez ainsi vous tenir informés des mouvements les plus populaires !</h6>
+				</div>
+				<div class="col-md-8 p-3">
+						<%= pie_chart(Commitment.users_number,data:{min:1000}, legend:false) %>
+				</div>
 			</div>
 		</div>
-	</div>
+
+	<div class="container p-4 bg-white">
+			<div class="statistics  mt-2">
+				<h5 class="text-wrap text-center">Nombre d'utilisateurs par departement</h5>
+				<h6 class="text-wrap text-muted text-center">Ce graphique correspondant à la répartition des utilisateurs par département.</h6>
+				<br>
+					<div class="">
+					<%= column_chart(User.group(:department).count,  colors: ["#43beae", "#43beae"])%>
+					</div>
+			</div>
+		</div>
+
 	<br><br>
 
 	<!-- LINE CHART 2 -->
-	<div class="container col-md-10 p-0 ">
+	<div class="container p-0 ">
 		<div class="bg-white p-4">
 			<h5>Nombre d'Utilisateurs crees chaque jour</h5>
 			<h6 class="text-muted">users created / day</h6>
