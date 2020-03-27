@@ -13,6 +13,7 @@ require 'faker'
 Commitment.destroy_all
 User.destroy_all
 Theme.destroy_all
+Source.destroy_all
 # JOIN MODELS PART
 UserCommitment.destroy_all
 UserTheme.destroy_all
@@ -41,23 +42,23 @@ User.create(id: 22, role: 'moderator', email: "moderator@yopmail.com", password:
 # SOURCE SEED
 # SOURCE CATEGORY ARRAY
 categ_array = ["Association", "Presse", "Manifeste", "Etude"] 
-s1 = Source.new(title: "s1 title", description: "s1 description", url: "s1 url", media: "s1 media", category: categ_array[rand(0..3)])
-s2 = Source.new(title: "s2 title", description: "s2 description", url: "s2 url", media: "s2 media", category: categ_array[rand(0..3)] )
-s3 = Source.new(title: "s3 title", description: "s3 description", url: "s3 url", media: "s3 media", category: categ_array[rand(0..3)] )
-s4 = Source.new(title: "s4 title", description: "s4 description", url: "s4 url", media: "s4 media", category: categ_array[rand(0..3)] )
-s5 = Source.new(title: "s5 title", description: "s5 description", url: "s5 url", media: "s5 media", category: categ_array[rand(0..3)] )
-s6 = Source.new(title: "s6 title", description: "s6 description", url: "s6 url", media: "s6 media", category: categ_array[rand(0..3)] )
-s7 = Source.new(title: "s7 title", description: "s7 description", url: "s7 url", media: "s7 media", category: categ_array[rand(0..3)] )
-s8 = Source.new(title: "s8 title", description: "s8 description", url: "s8 url", media: "s8 media", category: categ_array[rand(0..3)] )
-s9 = Source.new(title: "s9 title", description: "s9 description", url: "s9 url", media: "s9 media", category: categ_array[rand(0..3)] )
-s10 = Source.new(title: "s10 title", description: "s10 description", url: "s10 url", media: "s10 media", category: categ_array[rand(0..3)])
-s11 = Source.new(title: "s11 title", description: "s11 description", url: "s11 url", media: "s11 media", category: categ_array[rand(0..3)])
-s12 = Source.new(title: "s12 title", description: "s12 description", url: "s12 url", media: "s12 media", category: categ_array[rand(0..3)])
-s13 = Source.new(title: "s13 title", description: "s13 description", url: "s13 url", media: "s13 media", category: categ_array[rand(0..3)])
-s14 = Source.new(title: "s14 title", description: "s14 description", url: "s14 url", media: "s14 media", category: categ_array[rand(0..3)])
-s15 = Source.new(title: "s15 title", description: "s15 description", url: "s15 url", media: "s15 media", category: categ_array[rand(0..3)])
-s16 = Source.new(title: "s16 title", description: "s16 description", url: "s16 url", media: "s16 media", category: categ_array[rand(0..3)])
-s17 = Source.new(title: "s17 title", description: "s17 description", url: "s17 url", media: "s17 media", category: categ_array[rand(0..3)])
+s1 = Source.new(title: "s1 title word_to_10", description: "s1 description Kitsch microdosing normcore wolf ethical, jianbing fashion axe art party gentrify tote bag knausgaard. ", url: "s1 url", media: "s1 media", category: categ_array[rand(0..3)])
+s2 = Source.new(title: "s2 title word_to_10", description: "s2 description I'm baby quinoa chartreuse chia, hoodie iceland shabby chic air plant man bun.", url: "s2 url", media: "s2 media", category: categ_array[rand(0..3)] )
+s3 = Source.new(title: "s3 title word_to_10", description: "s3 description Narwhal edison bulb helvetica street art church-key food truck, keytar sustainable lomo semiotics lo-fi ugh.", url: "s3 url", media: "s3 media", category: categ_array[rand(0..3)] )
+s4 = Source.new(title: "s4 title word_to_10", description: "s4 description Yr retro woke, blog glossier neutra master cleanse affogato mixtape. ", url: "s4 url", media: "s4 media", category: categ_array[rand(0..3)] )
+s5 = Source.new(title: "s5 title word_to_10", description: "s5 description Hell of kinfolk leggings polaroid pabst air plant gastropub, kickstarter before they sold out. Blue beard pitchfork.", url: "s5 url", media: "s5 media", category: categ_array[rand(0..3)] )
+s6 = Source.new(title: "s6 title word_to_10", description: "s6 description Chicharrones air plant raclette freegan copper mug banh mi snackwave swag ramps heirloom roof party knausgaard.", url: "s6 url", media: "s6 media", category: categ_array[rand(0..3)] )
+s7 = Source.new(title: "s7 title word_to_10", description: "s7 description Keffiyeh messenger bag health goth occupy PBR&B gastropub hashtag trust fund ugh.", url: "s7 url", media: "s7 media", category: categ_array[rand(0..3)] )
+s8 = Source.new(title: "s8 title word_to_10", description: "s8 description 90's ramps bespoke, quinoa glossier pabst intelligentsia tacos thundercats lumbersexual marfa street art mumblecore.", url: "s8 url", media: "s8 media", category: categ_array[rand(0..3)] )
+s9 = Source.new(title: "s9 title word_to_10", description: "s9 description Mustache pabst green juice, chillwave tote bag tumeric tumblr knausgaard man braid woke hell of thundercats.", url: "s9 url", media: "s9 media", category: categ_array[rand(0..3)] )
+s10 = Source.new(title: "s10 title word_to_10", description: "s10 description Gastropub glossier humblebrag photo booth trust fund everyday carry vape pok pok. Banjo VHS hella tilde.", url: "s10 url", media: "s10 media", category: categ_array[rand(0..3)])
+s11 = Source.new(title: "s11 title word_to_10", description: "s11 description Knausgaard intelligentsia chicharrones mustache selfies prism organic VHS man bun waistcoat dreamcatcher. ", url: "s11 url", media: "s11 media", category: categ_array[rand(0..3)])
+s12 = Source.new(title: "s12 title word_to_10", description: "s12 description Air plant meditation hell of direct trade paleo, copper mug lyft put a pok hot chicken franzen trust fund prism.", url: "s12 url", media: "s12 media", category: categ_array[rand(0..3)])
+s13 = Source.new(title: "s13 title word_to_10", description: "s13 description Franzen leggings seitan tacos quinoa, four loko vaporware bicycle rights master cleanse scenester williamsburg poke. ", url: "s13 url", media: "s13 media", category: categ_array[rand(0..3)])
+s14 = Source.new(title: "s14 title word_to_10", description: "s14 description Meditation taxidermy distillery prism salvia hexagon occupy shoreditch edison bulb selvage gochujang fingerstache tbh.", url: "s14 url", media: "s14 media", category: categ_array[rand(0..3)])
+s15 = Source.new(title: "s15 title word_to_10", description: "s15 description Readymade flannel adaptogen, coloring book cronut vinyl beard everyday carry hoodie. ", url: "s15 url", media: "s15 media", category: categ_array[rand(0..3)])
+s16 = Source.new(title: "s16 title", description: "s16 description Migas snackwave butcher, PBR&B art party cred fam gastropub intelligentsia kogi williamsburg", url: "s16 url", media: "s16 media", category: categ_array[rand(0..3)])
+s17 = Source.new(title: "s17 title word_to_10", description: "s17 description Cold-pressed brooklyn +1 offal, butcher shoreditch occupy helvetica chambray YOLO art party trust fund.", url: "s17 url", media: "s17 media", category: categ_array[rand(0..3)])
 
 # THEME SEED
 t1 = Theme.create(title: "Alimentation", description: "Ce Thème traite des problématiques d'Alimentation, via l'impact de l'industrie agroalimentaire sur l'environnement et sur notre santé.", sources: [s1])
@@ -67,8 +68,6 @@ t4 = Theme.create(title: "Animaux", description: "Ce Thème traite des probléma
 t5 = Theme.create(title: "Habitat", description: "Ce Thème traite des problématiques liées à l'Habitat, et sur l'impact de la strucutre de nos logements sur l'environnement et notre santé.", sources: [s5])
 t6 = Theme.create(title: "Proximité", description: "Ce Thème traite des problématiques liées à la Proximité, et des possibilités de rapprocher les acteurs de l'économie géographiquement.", sources: [s6])
 t7 = Theme.create(title: "Hygiène", description: "Ce Thème traite des problématiques liées à nos comportements liés à l'Hygiène, et des possibilités d'améliorer leurs impacts sur l'environnement.", sources: [s7])
-
-
 
 # COMMITMENT SEED
 c2 = Commitment.new(title: "Je ne mange plus ni viande ni poisson", description: "Economie moyenne de 1,12 tCO2/an/pers", sources: [s8])
@@ -110,7 +109,6 @@ count = 0
 20.times do
 	count += 1
 	uc = UserCommitment.create(id: count, user: User.all[rand(0..20)], commitment: Commitment.all[rand(0..9)])
-	puts uc.errors.messages
 end
 # CREATING ARRAY WITHOUT DOUBLE ENTRY TO SKIP COMMITMENT MODEL VALIDATION 
 uc_array = Array.new
@@ -124,7 +122,6 @@ count = 0
 20.times do 
 	count += 1
 	ut = UserTheme.create(id: count, user: User.all[rand(0..20)], theme: Theme.all[rand(0..6)])
-	puts ut.errors.messages
 end
 # CREATING ARRAY WITHOUT DOUBLE ENTRY TO SKIP THEME MODEL VALIDATION
 ut_array = Array.new
