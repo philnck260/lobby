@@ -12,7 +12,7 @@
 	<!-- LINE CHART 1 -->
 	<div class="container p-0 ">
 		<div class="bg-white p-4">
-			<h5>Evolution du nombre total de Users dans le temps</h5>
+			<h5>Évolution du nombre total d'utilisateurs dans le temps</h5>
 			<h6 class="text-muted">nombre total d'utilisateurs / jour</h6>
 			<br>
 			<%= line_chart(User.count_by_day) %>
@@ -24,7 +24,7 @@
 		<div class="container bg-white p-3 mb-5 ">
 			<div class="row">
 				<div class="col-md-4 p-4 ">
-					<h5 class="text-wrap ">Repartition des Mouvements</h5>
+					<h5 class="text-wrap ">Répartition des Mouvements</h5>
 					<h6 class="text-wrap text-muted">Retrouvez sur ce graphique la répartition des mouvements. <br/> Vous pourrez ainsi vous tenir informés des mouvements les plus populaires !</h6>
 				</div>
 				<div class="col-md-8 p-3">
@@ -35,8 +35,8 @@
 
 	<div class="container p-4 bg-white">
 			<div class="statistics  mt-2">
-				<h5 class="text-wrap text-center">Nombre d'utilisateurs par departement</h5>
-				<h6 class="text-wrap text-muted text-center">Ce graphique correspondant à la répartition des utilisateurs par département.</h6>
+				<h5 class="text-wrap text-center">Nombre d'utilisateurs par département</h5>
+				<h6 class="text-wrap text-muted text-center">Ce graphique correspond à la répartition des utilisateurs par département.</h6>
 				<br>
 					<div class="">
 					<%= column_chart(User.group(:department).count,  colors: ["#43beae", "#43beae"])%>
@@ -49,8 +49,8 @@
 	<!-- LINE CHART 2 -->
 	<div class="container p-0 ">
 		<div class="bg-white p-4">
-			<h5>Nombre d'Utilisateurs crees chaque jour</h5>
-			<h6 class="text-muted">users created / day</h6>
+			<h5>Nombre d'utilisateurs créés chaque jour</h5>
+			<h6 class="text-muted">Utilisateurs créés / jour</h6>
 			<br>
 			<%= line_chart(User.group_by_day(:created_at).count) %>
 		</div>
@@ -58,8 +58,8 @@
 
 	<br><br>
 
-	<div class="col-md-10 mx-auto p-0 mb-3">
-		<a class="btn btn-block btn-secondary" href="/">Retour à l'Accueil</a>
+	<div class="col-md-2 mx-auto p-0 mb-3">
+		<a class="btn btn-block btnlink btn-secondary" href="/">Retour à l'Accueil</a>
 	</div>
 </div>
 

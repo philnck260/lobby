@@ -1,8 +1,8 @@
 <div class='container my-5'>
 
-	<h1 class="text-center mb-4">Tous les Forums</h1>
+	<h2 class="text-center mb-4">Tous les Forums</h2>
 
-	<h4 class="mb-0">Le Forum Général</h4>
+	<h4 class="mb-2">Le Forum Général</h4>
 	<table class="table table-bordered table-striped mb-4">
 
 		<thead>
@@ -21,13 +21,13 @@
 
 	</table>
 
-	<h4 class="mb-0">Les Forums des Mouvements</h4>
-	<table class="table table-bordered table-striped mb-4">
+	<h4 class="mb-3">Les Forums des Mouvements</h4>
+	<table class="table table-bordered table-striped border-primary mb-4">
 
 		<thead>
-			<tr class="border-0">
-				<th scope="col-md-10 border-0 text-primary">Titre du Forum</th>
-				<th scope="col-md-2 m-auto border-0 text-white">Nombre de Posts</th>   
+			<tr class="">
+				<th scope="col-md-10 text-primary">Titre du Forum</th>
+				<th scope="col-md-2 m-auto text-white">Nombre de Posts</th>   
 			</tr>
 		</thead>
 
@@ -35,13 +35,13 @@
 			<% @commitments.each do |each_commitment| %>
 				<% if each_commitment.forum %>
 					<tr>
-						<td class="py-2"><%= link_to each_commitment.title, forum_path(each_commitment.forum) %></td>
-						<td class="py-2"><%= each_commitment.forum.posts.count%></td>
+						<td class="py-2 border-bottom-0"><%= link_to each_commitment.title, forum_path(each_commitment.forum) %></td>
+						<td class="py-2 border-bottom-0"><%= each_commitment.forum.posts.count%></td>
 					</tr>
 				<% else %>
 					<tr>
-						<td class="py-2"><%= each_commitment.title %></td>
-						<td class="py-2">n'a pas encore de Forum.</td>
+						<td class="py-2 "><%= each_commitment.title %></td>
+						<td class="py-2 ">n'a pas encore de Forum.</td>
 					</tr>
 				<% end %>
 			<% end %>
