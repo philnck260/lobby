@@ -2,6 +2,6 @@
 	<h5>Modifier votre Post</h5>
 	<%= form_for @post, :url => {:controller => "posts", :action => "update"} do |f|%>
 		<%= render 'form', f: f %>
-		<button type='submit' class='btn btn-primary'>Editer le post</button>
+		<button type='submit' class='btn btn-primary btnlink'>Editer le post</button>
 	<% end %>
 </div>

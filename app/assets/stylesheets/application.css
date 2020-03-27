@@ -239,3 +239,19 @@ p {
 .show {
 	display: block;
 }
+
+.btn-primarynav {
+	color: #1f1e1e!important;
+  background-color:#62c8a6!important;
+  border-color:#62c8a6!important;
+}
+
+.btnlink{
+	padding-top:5px!important;
+	
+}
+
+.btnlinkoutline{
+	padding-top:4px!important;
+	
+}

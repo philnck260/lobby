@@ -64,13 +64,13 @@
 
 	<div class="container">
 		<!-- BACK BUTTON -->
-		<%= link_to 'Retour', forums_path, class: "btn btn-secondary float-right" %>
+		<%= link_to 'Retour', forums_path, class: "btn btn-secondary btnlink float-right" %>
 		<!-- IF FORUM IS NOT LINKED TO A COMMITMENT AND USER LOGGED IN -->
 		<!-- OR IF FORUM IS LINKED TO A COMMITMENT AND USER TOOK THIS COMMITMENT -->
 		<!-- OR IF USER IS MODERATOR -->
 		<% if user_signed_in? %>
 			<% if (@forum.commitment == nil) || (@forum.commitment && current_user.commitments.include?(@forum.commitment)) || current_user.role == 'moderator' %>
-				<%= link_to 'Créer un Post', new_forum_post_path(@forum), class:'btn btn-primary float-left' %>
+				<%= link_to 'Créer un Post', new_forum_post_path(@forum), class:'btn btn-primary btnlink float-left' %>
 			<% end %>
 		<% end %>
 
