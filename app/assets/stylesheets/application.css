@@ -24,7 +24,7 @@ body {
 
 main {
 	padding: 0;
-	margin: 0 ;
+	margin: 0;
 	flex: 1;
 	min-height: 80vh;
 }
@@ -38,7 +38,7 @@ html {
 	max-width: 100%;
 }
 
-.navbar-brand{
+.navbar-brand {
 	color: rgb(46, 49, 49)!important;
 }
 
@@ -49,7 +49,7 @@ html {
 	font-size: 13px!important;
 	letter-spacing: 1px;
 	background-color: #10191b!important;
-} 
+}
 
 .firstline {
 	min-height: 300px;
@@ -65,7 +65,7 @@ p {
 }
 
 .border-right {
-	border-width:6px !important;
+	border-width: 6px !important;
 }
 
 .btn a:hover {
@@ -90,14 +90,13 @@ p {
 .bg {
 	left: 0;
 	right: 0;
-	z-index: -3; 
+	z-index: -3;
 	background-size: cover;
 }
 
 .statistics {
 	min-width: 425px!important;
 }
-
 
 .mosaik {
 	min-height: 450px!important;
@@ -117,12 +116,13 @@ p {
 }
 
 /* Quand la souris et dans la cart commitement, elle devient gris annoncer qu'elle est clicable */
+
 .commitement:hover {
-	background-color:#62c8a694;
+	background-color: #62c8a694;
 	text-decoration: none;
 }
 
-.jumbotron{
+.jumbotron {
 	width: 100%;
 	min-height: 600px;
 	border: none!important;
@@ -132,44 +132,43 @@ p {
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
 	-o-background-size: 100% 100%;
-  position: relative;
-  background-size: cover;
-  background-position: center top;
-  overflow: hidden;
-  padding:0px!important;
-  margin-bottom:0px!important;
+	position: relative;
+	background-size: cover;
+	background-position: center top;
+	overflow: hidden;
+	padding: 0px!important;
+	margin-bottom: 0px!important;
 }
 
-.btnjumb{
-  width: 250px!important;
-  height: 50px!important;
-  margin: 0 auto!important;
-  padding: 0!important;
-
-  line-height: 50px!important;
-  text-align: center!important;
+.btnjumb {
+	width: 250px!important;
+	height: 50px!important;
+	margin: 0 auto!important;
+	padding: 0!important;
+	line-height: 50px!important;
+	text-align: center!important;
 }
 
 .jumbotext {
-  font-family: 'Bebas Neue', cursive!important;
-  font-size: 55pt;
-  font-weight: lighter;
+	font-family: 'Bebas Neue', cursive!important;
+	font-size: 55pt;
+	font-weight: lighter;
 }
-.jumbosoustext{
-  font-family: 'Bebas Neue', cursive!important;
-  font-size: 30pt;
-  font-weight: lighter;
-  opacity: 80%;
-  
+
+.jumbosoustext {
+	font-family: 'Bebas Neue', cursive!important;
+	font-size: 30pt;
+	font-weight: lighter;
+	opacity: 80%;
 }
 
 #presentation {
-/*	margin-bottom: 80px!important; */
-/*	margin-top: 30px!important; */
+	/*	margin-bottom: 80px!important; */
+	/*	margin-top: 30px!important; */
 }
 
 #presentation p {
-  font-size: 18px!important;
+	font-size: 18px!important;
 }
 
 #stataccueil {
@@ -178,19 +177,65 @@ p {
 }
 
 .icone {
-  min-width: 100px!important;
-  max-width: 200px!important;
-  min-height: 200px!important;
+	min-width: 100px!important;
+	max-width: 200px!important;
+	min-height: 200px!important;
 }
 
 .bgstathome {
-  background-color: #62c8a69a!important;
+	background-color: #62c8a69a!important;
 }
 
 .backg-secondary {
-  background-color: #cf445bbb!important;
+	background-color: #cf445bbb!important;
 }
 
 .profilpage {
-  margin-top: -40px;
+	margin-top: -40px;
+}
+
+/*** DROPDOWN LIST ADMIN ***/
+
+/* Dropdown Button */
+
+.dropbtn {
+	padding: 16px;
+	font-size: 13px;
+	border: none;
+	cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: white;
+	margin-top: 5px;
+	margin-left: 5px;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+	color: #343a40;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {
+	display: block;
 }
