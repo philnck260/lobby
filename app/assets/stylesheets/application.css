@@ -31,7 +31,7 @@ main {
 
 footer {
 	background-color: #50565c!important;
-	height: 20vh;
+	min-height: 20vh;
 }
 
 html {
