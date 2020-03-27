@@ -64,7 +64,7 @@ class User < ApplicationRecord
 		hash[day_count - 1.days] = 0
 		
 		# INCREMENTING WITH PREVIOUS DAY
-		while (day_count < Date.today)
+		while (day_count <= Date.today)
 			if hash[day_count] != nil
 			hash[day_count] = hash[day_count - 1.days] + hash[day_count]
 			else
