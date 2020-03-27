@@ -25,9 +25,9 @@
 
 	<div class="container">
 		<% if @forum.commitment %>
-			<h2 class="text-center mt-4"><%= @forum.commitment.title %></h2>
+			<h4 class="mt-4"><%= link_to "Forums", forums_path %> / <%= link_to @forum.commitment.title, forum_path(@forum.id) %></h4>
 		<% else %>
-			<h2 class="text-center mt-4">Forum Général</h2>
+			<h4 class="mt-4"><%= link_to "Forums", forums_path %> / <%= link_to "Général", forum_path(@forum.id) %></h4>
 		<% end %>
 
 		<% if @forum.posts.count > 0 %>
@@ -63,16 +63,18 @@
 	</div>
 
 	<div class="container">
-		<% if current_user == nil %>
-			<p>Pour créer un Post vous devez vous <%= link_to 'Connecter', new_user_session_path %> ou vous <%= link_to 'Inscrire', new_user_registration_path %></p>
-		<% elsif @forum.commitment && current_user.commitments.include?(@forum.commitment) == false %>
-			<p class="text-center">
-			Si vous souhaitez créer un Post sur ce forum, il faut 
-			<%= link_to "rejoindre le Mouvement #{@forum.commitment.title}", commitment_path(@forum.commitment) %>
-			</p>
-		<% else %>
-			<%= link_to 'Créer un Post', new_forum_post_path(@forum), class:'btn btn-secondary', style:'min-width:200px' %>
+		<!-- BACK BUTTON -->
+		<%= link_to 'Retour', forums_path, class: "btn btn-secondary float-right" %>
+		<!-- IF FORUM IS NOT LINKED TO A COMMITMENT AND USER LOGGED IN -->
+		<!-- OR IF FORUM IS LINKED TO A COMMITMENT AND USER TOOK THIS COMMITMENT -->
+		<!-- OR IF USER IS MODERATOR -->
+		<% if user_signed_in? %>
+			<% if (@forum.commitment == nil) || (@forum.commitment && current_user.commitments.include?(@forum.commitment)) || current_user.role == 'moderator' %>
+				<%= link_to 'Créer un Post', new_forum_post_path(@forum), class:'btn btn-primary float-left' %>
+			<% end %>
 		<% end %>
+
 	</div>
+
 
 </div>
