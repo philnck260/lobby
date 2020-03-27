@@ -1,28 +1,52 @@
 <div class='container my-5'>
 
-	<h1 class="text-center">Tous les Forums</h1>
+	<h1 class="text-center mb-4">Tous les Forums</h1>
 
-	<table class="table table-bordered table-striped mt-4">
+	<h4 class="mb-0">Le Forum Général</h4>
+	<table class="table table-bordered table-striped mb-4">
 
 		<thead>
 			<tr class="border-0">
-				<th scope="col-md-10 border-0 text-primary">Titre du forum </th>
-				<th scope="col-md-2 m-auto border-0 text-white">Nombre de posts</th>   
+				<th scope="col-md-10 border-0 text-primary">Titre du Forum </th>
+				<th scope="col-md-2 m-auto border-0 text-white">Nombre de Posts</th>   
 			</tr>
 		</thead>
 
 		<tbody>
-			<% @forums.each do |forum| %>
-				<tr>
-					<% if forum.commitment %>
-						<td class="py-2"><%= link_to forum.commitment.title, forum_path(forum) %></td>
-					<% else %>
-						<td class="py-2"><%= link_to "Forum Général", forum_path(forum) %></td>
-					<% end %>
-					<td class="py-2"><%= forum.posts.count%></td>
-				</tr>
+					<tr>
+						<td class="py-2"><%= link_to "Forum Général", forum_path(1) %></td>
+						<td class="py-2"><%= Forum.find(1).posts.count%></td>
+					</tr>
+		</tbody>
+
+	</table>
+
+	<h4 class="mb-0">Les Forums des Mouvements</h4>
+	<table class="table table-bordered table-striped mb-4">
+
+		<thead>
+			<tr class="border-0">
+				<th scope="col-md-10 border-0 text-primary">Titre du Forum</th>
+				<th scope="col-md-2 m-auto border-0 text-white">Nombre de Posts</th>   
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @commitments.each do |each_commitment| %>
+				<% if each_commitment.forum %>
+					<tr>
+						<td class="py-2"><%= link_to each_commitment.title, forum_path(each_commitment.forum) %></td>
+						<td class="py-2"><%= each_commitment.forum.posts.count%></td>
+					</tr>
+				<% else %>
+					<tr>
+						<td><%= each_commitment.title %></td>
+						<td>n'a pas encore de Forum.</td>
+					</tr>
+				<% end %>
 			<% end %>
 		</tbody>
 
 	</table>
+
 </div>

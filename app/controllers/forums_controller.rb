@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   def index
+		@commitments = Commitment.all
     @forums = Forum.all
   end
 

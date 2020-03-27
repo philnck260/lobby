@@ -23,6 +23,13 @@
 		<% end %>
 	<% end %>
 
+	<!-- BREADCRUMB -->
+	<% if @post.forum.commitment %>
+		<h4 class="mt-4"><%= link_to "Forums", forums_path %> / <%= link_to @post.forum.commitment.title, forum_path(@post.forum.id) %> / <%= link_to @post.title, forum_post_path(@post.id) %></h4>
+	<% else %>
+		<h4 class="mt-4"><%= link_to "Forums", forums_path %> / <%= link_to "Général", forum_path(@post.forum.id) %> / <%= link_to @post.title, forum_post_path(@post.id) %></h4>
+	<% end %>
+
 	<!-- POST -->
 	<h2 class="text-right">Post</h2>
 	<h4><%= @post.title %></h4>
