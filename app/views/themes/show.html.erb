@@ -10,18 +10,18 @@
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
 				<% if user_signed_in? %>
 					<% if current_user.themes.include?(@theme) %>
-						<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary mt-3' %>
+						<%= link_to "Ne plus suivre ce Thème", theme_user_theme_path(@theme.id, @theme.user_themes.find_by(user: current_user)), method: 'delete', class: 'btn btn-secondary  btnlink mt-3' %>
 					<% else %>
-						<%= link_to "Suivre ce Thème", theme_user_themes_path(@theme.id), method: 'post', class: "btn btn-primary mt-3" %>
+						<%= link_to "Suivre ce Thème", theme_user_themes_path(@theme.id), method: 'post', class: "btn btn-primary mt-3 btnlink" %>
 					<% end %>
 				<% else %>
-					<%= link_to "Suivre ce Thème", user_session_path, method: 'get', class: "btn btn-primary mt-3" %>
+					<%= link_to "Suivre ce Thème", user_session_path, method: 'get', class: "btn btn-primary mt-3 btn-link" %>
 				<% end %>
 			</div>
 
 			<!-- BUTTON BACK TO THEME#INDEX.HTML.ERB -->
 			<div class="col-md-3 d-flex justify-content-center align-items-center p-0">
-				<%= link_to "Retour aux Thèmes", themes_path, class: "btn btn-outline-secondary mt-3 text-wrap" %>
+				<%= link_to "Retour aux Thèmes", themes_path, class: "btn btn-outline-secondary mt-3 btnlinkoutline text-wrap" %>
 			</div>
 
 		</div>

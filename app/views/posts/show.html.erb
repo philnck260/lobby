@@ -31,7 +31,7 @@
 	<% end %>
 
 	<!-- POST -->
-	<h2 class="text-right">Post</h2>
+	<h4 class="text-right">Post</h4>
 	<h4><%= @post.title %></h4>
 	<div class="row border mb-3 align-items-center"> 
 
@@ -48,11 +48,11 @@
 			<% if user_signed_in? %> 
 				<!-- CAN DELETE IF AUTHOR OR MODERATOR -->
 				<% if current_user == @post.user || current_user.role == "moderator" %>
-					<%= link_to 'Supprimer', forum_post_path(@post.forum, @post), class:'btn btn-outline-danger mt-3',method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
+					<%= link_to 'Supprimer', forum_post_path(@post.forum, @post), class:'btn btn-outline-secondary  mt-3',method: 'delete', data: {confirm: 'Êtes-vous sûr ?'} %>
 				<% end %>
 				<!-- CAN EDIT IF AUTHOR -->
 				<% if current_user == @post.user %>
-					<%= link_to 'Éditer', edit_forum_post_path(@post.forum, @post), class:'btn btn-outline-primary'%>
+					<%= link_to 'Éditer', edit_forum_post_path(@post.forum, @post), class:'btn  btnlinkoutline btn-outline-primary'%>
 				<% end %>
 			<% end %>
 		</div>
@@ -66,7 +66,7 @@
 
 	<!-- REPLIES -->
 	<div class="container p-0 mt-3"> 
-		<h2 class="mt-4 text-right">Réponses</h2>
+		<h4 class="mt-4 text-right">Réponses</h4>
 
 		<% if @replies.size >= 1 %>
 			<% @post.sorted_replies.each do |reply| %>
@@ -109,13 +109,13 @@
 
 		<div class="col-12 p-0">
 			<!-- BACK BUTTON -->
-			<%= link_to 'Retour', forum_path(@post.forum.id), class: "btn btn-secondary float-right" %>
+			<%= link_to 'Retour', forum_path(@post.forum.id), class: "btn btn-secondary  btnlink float-right" %>
 			<!-- IF FORUM IS NOT LINKED TO A COMMITMENT AND USER LOGGED IN -->
 			<!-- OR IF FORUM IS LINKED TO A COMMITMENT AND USER TOOK THIS COMMITMENT -->
 			<!-- OR IF USER IS MODERATOR -->
 			<% if user_signed_in? %>
 				<% if (@post.forum.commitment == nil) || (@post.forum.commitment && current_user.commitments.include?(@post.forum.commitment)) || current_user.role == 'moderator' %>
-					<%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post), class:'btn btn-primary float-left' %>
+					<%= link_to 'Répondre', new_forum_post_reply_path(@post.forum, @post), class:'btn btn-primary btnlink float-left' %>
 				<% end %>
 			<% end %>
 

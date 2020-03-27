@@ -2732,16 +2732,16 @@ textarea.form-control {
           user-select: none;
   background-color: transparent;
   border: 0px solid transparent;
-  padding-top: 5px;
   padding-left: 7px;
   padding-right: 7px;
   min-width: 140px;
+  text-align: center;
+  vertical-align: middle!important; 
   height: 36px;
   font-size: 0.875rem;
   line-height: 1.5rem;
   border-radius: 0;
     display: table-cell;
-    vertical-align: middle;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2776,12 +2776,12 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #10191b!important;
+  color: #ffffff!important;
   background-color:#62c8a6;
   border-color:#62c8a6;
 }
 .btn-primary:hover {
-  color: #1a1a1a;
+  color: #faf6f6;
   background-color:#5ab697;
   border-color:#58b496;
 }
