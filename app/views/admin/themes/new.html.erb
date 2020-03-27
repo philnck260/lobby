@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
 
 	<h1>Créer un Thème</h1>
 
@@ -6,26 +6,35 @@
 		<fieldset class="form-group">
 
 			<h5 class="mt-3">Informations du Thème</h5>
-			<p><label>Titre</label>
+			<p class="mt-2"><label>Titre</label>
 			<%= f.text_field :title, class:"form-control border" %></p>
-			<p><label>Description</label>
-			<%= f.text_field :description, class:"form-control border" %></p>
+			<p class="mt-2"><label>Description</label>
+			<%= f.text_area :description, class:"form-control border" %></p>
 
 			<h5 class="mt-3">Sources</h5>
+			        <div class="alert alert-danger alert-dismissible fade show" role"alert">
+          <strong>AVERTISSEMENT</strong><br/>
+          Les URLs doivent commencet par "http://" ou "https://"<br/>
+          Tous les champs sont obligatoires.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
 			<%= f.fields_for :sources do |s_form| %>
-				<%= s_form.label "Titre" %>
+				<%= s_form.label "Titre", class:"mt-2" %>
 				<%= s_form.text_field :title, class: "form-control border" %>
 
-				<%= s_form.label "Média" %>
+				<%= s_form.label "Média", class:"mt-3" %>
 				<%= s_form.text_field :media, class: "form-control border" %>
 
-				<%= s_form.label "URL" %>
+				<%= s_form.label "URL", class:"mt-3" %>
 				<%= s_form.text_field :url, class: "form-control border" %>
 
-				<%= s_form.label "Description" %>
-				<%= s_form.text_field :description, class: "form-control border" %>
+				<%= s_form.label "Description", class:"mt-3" %>
+				<%= s_form.text_area :description, class: "form-control border" %>
 
-				<%= s_form.label "Catégorie" %>
+				<%= s_form.label "Catégorie", class:"mt-3" %>
 				<%= s_form.select :category, ["Presse", "Étude", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
 			<% end %>
 

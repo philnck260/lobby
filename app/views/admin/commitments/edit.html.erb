@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container my-5">
 	<h1>Éditer le Mouvement</h1>
 
 	<%= form_with(model: @commitment, url:  admin_commitment_path, method: "patch") do |f| %>
@@ -8,7 +8,7 @@
 			<p><label>Titre</label>
 			<%= f.text_field :title, class:"form-control border" %></p>
 			<p><label>Description</label>
-			<%= f.text_field :description, class:"form-control border" %></p>
+			<%= f.text_area :description, class:"form-control border" %></p>
 
 			<h5 class="mt-4">Modifier Thèmes</h5>
 			<% if @commitment.themes.count == 0 || @commitment.themes.count == 1 %>
@@ -37,7 +37,9 @@
 			<% if @commitment.sources.count >= 0 && @commitment.sources.count <= 2 %>
 				<div class="alert alert-danger alert-dismissible fade show" role"alert">
 					<strong>AVERTISSEMENT</strong><br/>
-					Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer
+					Si les champs sont vides, il s'agit d'une nouvelle Source, vous ne pouvez pas la Supprimer.<br/>
+          Les URLs doivent commencet par "http://" ou "https://"<br/>
+          Tous les champs sont obligatoires. 
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -47,22 +49,22 @@
 				<%= f.fields_for :sources do |s_form| %>
 					<div class="col-4">
 
-						<%= s_form.label "Titre" %>
+						<%= s_form.label "Titre", class: "mt-2" %>
 						<%= s_form.text_field :title, class: "form-control border" %>
 
-						<%= s_form.label "Média" %>
+						<%= s_form.label "Média", class: "mt-3" %>
 						<%= s_form.text_field :media, class: "form-control border" %>
 
-						<%= s_form.label "URL" %>
+						<%= s_form.label "URL", class: "mt-3" %>
 						<%= s_form.text_field :url, class: "form-control border" %>
 
-						<%= s_form.label "Description" %>
-						<%= s_form.text_field :description, class: "form-control border" %>
+						<%= s_form.label "Description", class: "mt-3" %>
+						<%= s_form.text_area :description, class: "form-control border" %>
 
-						<%= s_form.label "Catégorie" %>
+						<%= s_form.label "Catégorie", class: "mt-3" %>
 						<%= s_form.select :category, ["Presse", "Étude", "Manifeste", "Association"], { :prompt => 'Choisir une Catégorie' }, class: "form-control border" %>
 
-						<div class="bg-warning border mt-2 p-3 clearfix">
+						<div class="bg-warning border mt-3 p-3 clearfix">
 							<%= s_form.label "Supprimer cette Source", class: "float-left font-weight-bold" %>
 							<%= s_form.check_box :_destroy, class: "float-right" %>
 						</div>
@@ -71,6 +73,6 @@
 			</div>
 
 		</fieldset>
-		<button type='submit' class='btn btn-lg btn-primary mt-3'>Éditer</button>
+		<button type='submit' class='btn btn-primary mt-3'>Éditer</button>
 	<% end %>
 </div>

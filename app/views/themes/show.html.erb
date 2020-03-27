@@ -44,15 +44,6 @@
 							<li class="list-group-item">
 								<%= @theme.description %>
 							</li>
-							<li class="list-group-item bg-secondary pt-1 pb-0"><h5>Sources</h5></li>
-							<% @theme.sources.each do |each_source| %>
-								<li class="list-group-item">
-									<a href="<%= each_source.url %>">
-										<h5><%= each_source.title %>, édité par <%= each_source.media %>.</h5>
-										<p class="mt-1"><%= each_source.description %></p>
-									</a>
-								</li>
-							<% end %>
 						</ul>
 					</div>
 
@@ -129,6 +120,33 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- SOURCES -->
+  <div class="container mt-4">
+    <div class="card">
+      <h3 class="card-header text-center">Sources</h3>
+      <div class="card-body pb-0 pt-1">
+        <div class="row align-items-center">
+
+          <% if @theme.sources.count > 0 %>
+            <% @theme.sources.each do |each_source| %>
+              <div class="col-md-<%= 12 / @theme.sources.count %>">
+                <a href="<%= each_source.url %>" target="_blank">
+                  <h5 class="text-center mt-2" style="height: 6rem;"><%= each_source.title %></h5>
+                  <h6><small>édité par</small> <%= each_source.media %>.</h6>
+                  <p><%= each_source.description %></p>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            </p>Il n'y a pas de Source pour ce Mouvement.</p>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 	<!-- THIS THEME'S COMMIMENTS -->
 	<div class="container mt-4 border-0">
