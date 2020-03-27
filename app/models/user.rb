@@ -19,9 +19,18 @@ class User < ApplicationRecord
   has_many :posts
   has_many :replies 
   
+  # LINK TABLES
+	#	LINK COMMITMENTS
+  has_many :user_commitments, dependent: :destroy
+  has_many :commitments, through: :user_commitments
+	# LINK THEMES
+	has_many :user_themes, dependent: :destroy
+	has_many :themes, through: :user_themes
 	# CALLBACKS
   after_create :assign_default_username
   after_create :welcome_send
+
+	# METHODS
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
@@ -40,26 +49,30 @@ class User < ApplicationRecord
     end
   end
 
-  # LINK TABLES
-	#	LINK COMMITMENTS
-  has_many :user_commitments, dependent: :destroy
-  has_many :commitments, through: :user_commitments
-	# LINK THEMES
-	has_many :user_themes, dependent: :destroy
-	has_many :themes, through: :user_themes
-
 	def self.count_by_day
     hash = Hash.new
-    self.all.each do |each_user|
-      date = each_user.created_at.to_date
-      if hash[date] == nil
-        if hash[date - 1.day] == nil
-          hash[date - 1.day] = 0
-        end
-        hash[date] = hash[date - 1.day]
-      end
-      hash[date] += 1
-    end
-    return hash
+
+		# SORTING USERS BY CREATION DATE TO AN ARRAY
+		sorted_array = self.all.sort { |a, b| a.created_at <=> b.created_at }
+		sorted_array.each do |each_user|
+			if hash[each_user.created_at.to_date] == nil
+				hash[each_user.created_at.to_date] = 0
+			end
+			hash[each_user.created_at.to_date] += 1
+		end
+		day_count = sorted_array[0].created_at.to_date
+		hash[day_count - 1.days] = 0
+		
+		# INCREMENTING WITH PREVIOUS DAY
+		while (day_count < Date.today)
+			if hash[day_count] != nil
+			hash[day_count] = hash[day_count - 1.days] + hash[day_count]
+			else
+			hash[day_count] = hash[day_count - 1.days]
+			end
+			day_count += 1.days
+		end
+		return hash
   end
+
 end

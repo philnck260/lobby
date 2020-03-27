@@ -2,7 +2,7 @@ class Commitment < ApplicationRecord
 
 	# CALLBACKS
 	after_create :create_forum
-	
+
 	# VALIDATIONS
 	validates :title, presence: {message: ": Le titre est obligatoire"}, length: {minimum: 10, message: ": Le titre doit avoir 10 caractères minimum"}
 	validates :description, presence: {message: ": La description est obligatoire"}, length: {minimum: 20, message: ": La description doit avoir 20 caractères minimum"}
@@ -36,20 +36,30 @@ class Commitment < ApplicationRecord
 	# METHOD FOR LINE_CHART IN COMMITMENT#SHOW VIEW
 	def users_by_day
 		hash = Hash.new
-		self.users.each do |each_user|
-			date = each_user.created_at.to_date
-			if hash[date] == nil
-				if hash[date - 1.day] == nil
-					hash[date - 1.day] = 0
-				end
-				hash[date] = hash[date - 1.day]
-				end
-			hash[date] += 1
+		# SORTING USER_COMMITMENTS BY CREATION DATE TO AN ARRAY
+		sorted_array = self.user_commitments.all.sort { |a, b| a.created_at <=> b.created_at }
+		# CREATING A HASH WHERE EACH DATE FROM FIRST UC CONTAINS VALUE OF UCs CREATED
+		sorted_array.each do |each_uc|
+			if hash[each_uc.created_at.to_date] == nil
+				hash[each_uc.created_at.to_date] = 0
+			end
+			hash[each_uc.created_at.to_date] += 1
+		end
+		day_count = sorted_array[0].created_at.to_date
+		hash[day_count - 1.days] = 0
+		# INCREMENTING WITH PREVIOUS DAY
+		while (day_count <= Date.today)
+			if hash[day_count] != nil
+				hash[day_count] = hash[day_count - 1.days] + hash[day_count]
+			else
+				hash[day_count] = hash[day_count - 1.days]
+			end
+			day_count += 1.days
 		end
 		return hash
 	end
 
-	# METHOD TO RETURN ARRAY OF TWO MOST POPULAR COMMITMENTS IN HOMEPAGE
+	# METHOD TO RETURN ARRAY OF COMMITMENTS SORTED BY USERS_NUMBER, TO HOMEPAGE
 	def self.by_popularity 
 		to_sort_array = Commitment.all
 		to_sort_array.sort { |a, b| b.users.count <=> a.users.count }
@@ -57,7 +67,7 @@ class Commitment < ApplicationRecord
 
 	# METHOD TO CREATE A FORUM AFTER A CREATION OF COMMITMENT
 	def create_forum
-    @forum = Forum.create(id: self.id, commitment: self)
-  end
+		@forum = Forum.create(id: self.id, commitment: self)
+	end
 
 end
