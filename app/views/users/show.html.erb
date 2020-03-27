@@ -2,17 +2,17 @@
 <div class="container my-5">
 	<div class="container m-auto">
 		<div class="row mb-5">
-			<div class="col-md-8">
-				<h5 class="text-dark card-header border-0"> <%= @user.username %></h5><br/>
+			<div class="col-md-12">
+				<h5 class="text-dark card-header border-0 text-center"> <%= @user.username %></h5><br/>
 				<div class="card-body p-0">
 					<table class="table table-sm">
 						<tbody>
-							<tr><td class="font-weight-bold text-muted">E-mail&#8239:</td><td vor><%= @user.email %></td></tr>
-							<tr><td class="font-weight-bold text-muted">Prénom&#8239:</td><td><%= @user.first_name %></td></tr>
-							<tr><td class="font-weight-bold text-muted">Nom&#8239:</td><td><%= @user.last_name %></td></tr>
-							<tr><td class="font-weight-bold text-muted">Département&#8239:</td><td><%= @user.department %></td></tr>
-							<tr><td class="font-weight-bold text-muted">Mouvements&#8239:</td><td><%= @user.commitments.count %></td></tr>
-							<tr>
+							<tr class="text-center"><td class="font-weight-bold text-muted">E-mail&#8239:</td><td><%= @user.email %></td></tr>
+							<tr class="text-center"><td class="font-weight-bold text-muted">Prénom&#8239:</td><td><%= @user.first_name %></td></tr>
+							<tr class="text-center"><td class="font-weight-bold text-muted">Nom&#8239:</td><td><%= @user.last_name %></td></tr>
+							<tr class="text-center"><td class="font-weight-bold text-muted">Département&#8239:</td><td><%= @user.department %></td></tr>
+							<tr class="text-center"><td class="font-weight-bold text-muted">Mouvements&#8239:</td><td><%= @user.commitments.count %></td></tr>
+							<tr class="text-center">
 								<td class="font-weight-bold text-muted">Affichage de l'identité&#8239:</td>
 								<% if @user.name_display == true %>
 									<td>Nom et Prénom</td>
@@ -20,23 +20,22 @@
 									<td>Pseudonyme</td>
 								<% end %>
 							</tr>
-							<tr><td class="font-weight-bold text-muted">Inscrit aux emails&#8239:</td>
+							<tr class="text-center"><td class="font-weight-bold text-muted">Inscrit aux emails&#8239:</td>
 								<% if @user.accept_mails %>
 									<td>Oui</td></tr>
 						<% else %>
 							<td>Non</td></tr>
 					<% end %>
-					<tr><td class="font-weight-bold text-muted">Membre depuis&#8239:</td><td><%= @user.created_at.to_date.to_s(:long) %></td></tr>
+					<tr class="text-center"><td class="font-weight-bold text-muted">Membre depuis&#8239:</td><td><%= @user.created_at.to_date.to_s(:rfc822 ) %></td></tr>
 						</tbody>
 					</table>
 				</div>
-
+			</div>
 
 
 			</div>
-
-			<div class="col-md-4"> 
-
+			<div class="row mb-5">
+			<div class="col-md-12 d-flex justify-content-sm-between">
 				<div class="mb-2 float-right">
 					<%= link_to 'Modifier votre profil', edit_user_path(@user), class: 'btn btn-block btn-secondary' %>
 				</div>
@@ -44,16 +43,17 @@
 					<%= link_to 'Paramètres de connexion', edit_user_registration_path, class: 'btn btn-block btn-outline-secondary' %>
 				</div>
 			</div>
-
 		</div>
 
 
 		<!-- COMMITMENTS TAKEN BY USER -->
-		<h1 class="border-0 text-dark mb-0">
+		<h1 class="border-0 p-3 text-dark mb-0 text-center">
 			Les Mouvements que vous avez rejoint
 		</h1>
 		<div class="card border mt-2 mb-3 ">
-			<div class="card-body border-0 p-0">
+			<div class="card-body border-0 p-0 table-responsive">
+		<% if @user_commitments.length > 0 %>
+			<% @user_commitments.each do |user_commitment| %>
 				<table class="table table-sm border-0">
 					<thead>
 						<tr class="border-0 table-bordered table-primary">
@@ -62,8 +62,6 @@
 						</tr>
 					</thead>
 					<tbody class="border-0">
-						<% if @user_commitments.length > 0 %>
-							<% @user_commitments.each do |user_commitment| %>
 								<tr>
 									<td class="border-0">
 										<%= link_to "#{user_commitment.commitment.title}", commitment_path(user_commitment.commitment.id) %>
@@ -72,25 +70,32 @@
 										<%= user_commitment.commitment.description %>
 									</td>
 								</tr>
-							<% end %>
-						<% else %>
-							<p>Vous n'avez adhéré à aucun Mouvement pour le moment.</p>
-						<% end %>
 					</tbody>
 				</table>
+							<% end %>
+						<% else %>
+					<div class="d-lg-flex justify-content-lg-between align-items-center">
+						<p class="m-1">Vous n'avez adhéré à aucun Mouvement pour le moment. </p>
+						<%= link_to 'Cliquez ici pour visiter les Mouvements', commitments_path, class: 'btn btn-primary'%>
+					</div>
+						<% end %>
 			</div>
+			<% if @user_commitments.length > 0 %>
 			<div>
-				<%= link_to 'Tous les Mouvements', commitments_path, class: 'btn btn-secondary float-right' %>
+				<%= link_to 'Tous les Mouvements', commitments_path, class: 'btn btn-secondary' %>
 			</div>
+				<% end %>
 		</div>
 
 
 		<!-- THEMES FOLLOWED BY USER -->
-		<h1 class="border-0 text-dark mb-0 mt-4">
+		<h1 class="border-0 p-3 text-dark mb-0 text-center">
 			Les Thèmes que vous suivez
 		</h1>
 		<div class="card border mt-2 mb-3">
-			<div class="card-body border-0 p-0">
+			<div class="card-body border-0 p-0 table-responsive">
+						<% if @user.themes.length > 0 %>
+							<% @user.themes.each do |each_theme| %>
 				<table class="table table-sm border-0">
 					<thead>
 						<tr class="border-0 table-bordered table-primary">
@@ -99,8 +104,6 @@
 						</tr>
 					</thead>
 					<tbody class="border-0">
-						<% if @user.themes.length > 0 %>
-							<% @user.themes.each do |each_theme| %>
 								<tr>
 									<td class="border-0">
 										<%= link_to "#{each_theme.title}",theme_path(each_theme.id) %>
@@ -109,17 +112,22 @@
 										<%= each_theme.description %>
 									</td>
 								</tr>
-							<% end %>
-						<% else %>
-							<p>Vous ne suivez aucun Thème pour le moment.</p>
-						<% end %>
 					</tbody>
 				</table>
-			</div>
+						<% end %>
+				<% if @user.themes.length > 0 %>
 			<div>
-				<%= link_to 'Tous les Thèmes', themes_path, class: 'btn btn-secondary float-right' %>
+				<%= link_to "Visiter d'autres Thèmes", themes_path, class: 'btn btn-secondary justify-content-center' %>
 			</div>
+					<% end %>
+						<% else %>
+					<div class="d-lg-flex justify-content-between">
+						<p class="m-1">Vous ne suivez aucun Thème pour le moment. </p>
+					<%= link_to 'Cliquez ici pour visiter les Thèmes', themes_path, class: 'btn btn-primary' %>
+					</div>
+						<% end %>
 		</div>
 
+			</div>
 	</div>
-</div>	
+</div>
